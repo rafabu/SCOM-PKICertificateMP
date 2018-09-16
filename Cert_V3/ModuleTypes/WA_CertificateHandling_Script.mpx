@@ -1,0 +1,103 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <ModuleTypes>
+      <WriteActionModuleType ID="SystemCenterCentral.Utilities.Certificates.HandlingScriptWA" Accessibility="Internal" RunAs="SystemCenterCentral.Utilities.Certificates.HighPrivilege.SecureReference" Batching="false">
+        <Configuration>
+          <xsd:element minOccurs="1" name="TimeoutSeconds" type="xsd:integer" />
+          <xsd:element minOccurs="1" name="ComputerName" type="xsd:string" />
+          <xsd:element minOccurs="1" name="CertStoreID" type="xsd:string" />
+          <xsd:element minOccurs="0" name="StoreProvider" type="xsd:string" default="System"/>
+          <xsd:element minOccurs="0" name="StoreType" type="xsd:string" default="LocalMachine"/>
+          <xsd:element minOccurs="0" name="RevocationFlag" type="xsd:string" default="EntireChain"/>
+          <xsd:element minOccurs="0" name="RevocationMode" type="xsd:string" default="Online"/>
+          <xsd:element minOccurs="0" name="VerificationFlags" type="xsd:string" default="IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown" />
+          <xsd:element minOccurs="0" name="Operation" type="xsd:string" default="LIST"/>
+          <xsd:element minOccurs="0" name="Verify" type="xsd:boolean" default="true"/>
+          <xsd:element minOccurs="0" name="IncludeArchived" type="xsd:boolean" default="false"/>
+          <xsd:element minOccurs="0" name="WideOutput" type="xsd:boolean" default="false"/>
+          <xsd:element minOccurs="0" name="Thumbprint" type="xsd:string" default="."/>
+          <xsd:element minOccurs="1" name="TaskId" type="xsd:string" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="RevocationFlag" Selector="$Config/RevocationFlag$" ParameterType="string" />
+          <OverrideableParameter ID="RevocationMode" Selector="$Config/RevocationMode$" ParameterType="string" />
+          <OverrideableParameter ID="VerificationFlags" Selector="$Config/VerificationFlags$" ParameterType="string" />
+          <OverrideableParameter ID="Thumbprint" Selector="$Config/Thumbprint$" ParameterType="string" />
+          <OverrideableParameter ID="Verify" Selector="$Config/Verify$" ParameterType="bool" />
+          <OverrideableParameter ID="IncludeArchived" Selector="$Config/IncludeArchived$" ParameterType="bool" />
+          <OverrideableParameter ID="WideOutput" Selector="$Config/WideOutput$" ParameterType="bool" />
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <WriteAction ID="CertificateHandlingScript" TypeID="Windows!Microsoft.Windows.PowerShellWriteAction">
+                <ScriptName>SystemCenterCentral.Utilities.Certificates.Certificate_Handling_Script_V4.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scripts/Certificate_Handling_Script_V4.ps1$</ScriptBody>
+                <Parameters>
+                  <Parameter>
+                    <Name>computerName</Name>
+                    <Value>$Config/ComputerName$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>storeName</Name>
+                    <Value>$Config/CertStoreID$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>storeProvider</Name>
+                    <Value>$Config/StoreProvider$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>storeType</Name>
+                    <Value>$Config/StoreType$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>revocationFlag</Name>
+                    <Value>$Config/RevocationFlag$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>revocationMode</Name>
+                    <Value>$Config/RevocationMode$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>verificationFlags</Name>
+                    <Value>$Config/VerificationFlags$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>operation</Name>
+                    <Value>$Config/Operation$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>verify</Name>
+                    <Value>$Config/Verify$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>searchArchived</Name>
+                    <Value>$Config/IncludeArchived$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>wideOutput</Name>
+                    <Value>$Config/WideOutput$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>thumbprint</Name>
+                    <Value>$Config/Thumbprint$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>scomTask</Name>
+                    <Value>$Config/TaskId$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+              </WriteAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="CertificateHandlingScript" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>Windows!Microsoft.Windows.SerializedObjectData</OutputType>
+        <InputType>System!System.BaseData</InputType>
+      </WriteActionModuleType>
+    </ModuleTypes>
+  </TypeDefinitions>
+</ManagementPackFragment>

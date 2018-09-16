@@ -1,0 +1,85 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Discoveries>
+
+      <!-- AuthRoot (Third-Party Root Certification Authorities) is managed automatically                         -->
+      <!--     on later Windows versions via automatic update                                                     -->
+      <!--     hence there's not usually anything to monitor there; so remove this discovery                      -->
+
+      <!--     in the future I might add a monitor for the update process of this store                           -->
+      <!--          see "Configure Trusted Roots and Disallowed Certificates" on technet                          -->
+
+      <!--
+      <Discovery ID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry.AuthRoot.Discovery" Enabled="false" Target="SC!Microsoft.SystemCenter.HealthService" ConfirmDelivery="false" Remotable="false" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry">
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="CertStoreName" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="CertStoreID" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="StoreProvider" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="StoreType" />
+
+            <Property TypeID="System!System.Entity" PropertyID="DisplayName" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="Sync" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="ChildScriptTimeout" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="ChildMonitorInterval" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="ChildDiscoveryInterval" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="RevocationFlag" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="RevocationMode" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="VerificationFlags" />
+          </DiscoveryClass>
+          <DiscoveryRelationship TypeID="Microsoft.Windows.Computer.Hosts.SystemCenterCentral.Utilities.Certificates.CertificateStore" />
+        </DiscoveryTypes>
+        <DataSource ID="DS" TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStoreDiscoveryProvider">
+          <ComputerName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/NetworkName$</ComputerName>
+          <Frequency>86300</Frequency>
+
+          <CertStoreID>AuthRoot</CertStoreID>
+          <StoreProvider>SystemRegistry</StoreProvider>
+          <StoreType>LocalMachine</StoreType>
+          <ComputerPrincipalName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerPrincipalName>
+          <CertStoreName>Third-Party Root Certification Authorities</CertStoreName>
+          <ChildMonitorSync> - </ChildMonitorSync>
+          
+          <ChildMonitorInterval>14110</ChildMonitorInterval>
+          
+          <ChildDiscoveryInterval>42330</ChildDiscoveryInterval>
+          
+          <ChildScriptTimeout>300</ChildScriptTimeout>
+          <RevocationFlag>EntireChain</RevocationFlag>
+          <RevocationMode>Online</RevocationMode>
+          <VerificationFlags>IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown</VerificationFlags>
+
+          <DisplayName>Third-Party Root Certification Authorities Certificate Store</DisplayName>
+        </DataSource>
+      </Discovery>
+-->
+    </Discoveries>
+  </Monitoring>
+  <!--
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry.AuthRoot.Discovery">
+          <Name>Discovery of local computer's Third-Party Root Certification Authorities certificate store (registry)</Name>
+          <Description>Discovers the certificate store 'Third-Party Root Certification Authorities'. This discovery is disabled by default.</Description>
+        </DisplayString>
+      </DisplayStrings>
+      <KnowledgeArticles>
+        <KnowledgeArticle ElementID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry.AuthRoot.Discovery" Visible="true">
+          <MamlContent>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Summary</maml:title>
+              <maml:para>Discovers the certificate store 'Third-Party Root Certification Authorities'. This discovery is disabled by default.</maml:para>
+            </maml:section>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Configuration</maml:title>
+              <maml:para>Use an override to enable this discovery if you require monitoring of certificates stored in this store.</maml:para>
+            </maml:section>
+          </MamlContent>
+        </KnowledgeArticle>
+      </KnowledgeArticles>
+    </LanguagePack>
+  </LanguagePacks>
+  -->
+</ManagementPackFragment>

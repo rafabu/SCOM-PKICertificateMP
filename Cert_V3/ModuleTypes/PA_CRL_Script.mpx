@@ -1,0 +1,50 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <ModuleTypes>
+      <ProbeActionModuleType ID="SystemCenterCentral.Utilities.Certificates.CRLScriptProbe" Accessibility="Internal" RunAs="SystemCenterCentral.Utilities.Certificates.HighPrivilege.SecureReference" Batching="false" PassThrough="false">
+        <Configuration>
+          <xsd:element minOccurs="1" name="TimeoutSeconds" type="xsd:integer" />
+          <xsd:element minOccurs="1" name="CertStoreID" type="xsd:string" />
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean" />
+        </Configuration>
+        <OverrideableParameters>
+          <!--
+			  <OverrideableParameter ID="TimeoutSeconds" Selector="$Config/TimeoutSeconds$" ParameterType="integer" />
+			  -->
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="CRLBagProbe" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagProbe">
+                <ScriptName>SystemCenterCentral.Utilities.Certificates.CRL_Probe_Script.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scripts/CRL_Probe_Script.ps1$</ScriptBody>
+                <Parameters>
+                  <Parameter>
+                    <Name>storeName</Name>
+                    <Value>$Config/CertStoreID$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>arsPowerShellSnapInPath</Name>
+                    <Value>$FileResource[Name="Quest.ActiveRoles.ArsPowerShellSnapIn.Resource"]/Path$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>debugFlag</Name>
+                    <Value>$Config/Debug$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>120</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="CRLBagProbe" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+        <InputType>System!System.BaseData</InputType>
+      </ProbeActionModuleType>
+
+    </ModuleTypes>
+  </TypeDefinitions>
+
+</ManagementPackFragment>

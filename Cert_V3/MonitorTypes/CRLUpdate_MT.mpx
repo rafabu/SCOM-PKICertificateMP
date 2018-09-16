@@ -1,0 +1,194 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <MonitorTypes>
+      <UnitMonitorType ID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.MonitorType" Accessibility="Internal">
+        <MonitorTypeStates>
+          <MonitorTypeState ID="Current" NoDetection="false" />
+          <MonitorTypeState ID="UpdateRequired" NoDetection="false" />
+        </MonitorTypeStates>
+        <Configuration>
+          <xsd:element minOccurs="1" name="CertStoreID" type="xsd:string" />
+         <xsd:element minOccurs="0" name="StoreProvider" type="xsd:string" default="System"/>
+          <xsd:element minOccurs="0" name="StoreType" type="xsd:string" default="LocalMachine"/>
+           <xsd:element minOccurs="1" name="CRLThumbprint" type="xsd:string" />
+          <xsd:element minOccurs="0" name="RevocationFlag" type="xsd:string" default="EntireChain"/>
+          <xsd:element minOccurs="0" name="RevocationMode" type="xsd:string" default="Online"/>
+          <xsd:element minOccurs="0" name="VerificationFlags" type="xsd:string" default="IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown" />
+           
+          <xsd:element minOccurs="0" name="SubjectIncludeRegEx" type="xsd:string" default="^.*$"/>
+          <xsd:element minOccurs="0" name="IssuerIncludeRegEx" type="xsd:string" default="^.*$"/>
+          <xsd:element minOccurs="0" name="SubjectExcludeRegEx" type="xsd:string" default="^$"/>
+          <xsd:element minOccurs="0" name="IssuerExcludeRegEx" type="xsd:string" default="^$"/>
+          <xsd:element minOccurs="0" name="EnhKeyUseExcludeRegEx" type="xsd:string" default="^$"/>
+          <xsd:element minOccurs="0" name="TemplateIncludeRegEx" type="xsd:string" default="^(|.+)$"/>
+          <xsd:element minOccurs="0" name="TemplateExcludeRegEx" type="xsd:string" default="\s+"/>
+
+     
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer" />
+          <xsd:element minOccurs="0" name="SyncTime" type="xsd:string" />
+          <xsd:element minOccurs="0" name="SpreadInitializationOverInterval" type="xsd:integer" default="900"/>
+          <xsd:element minOccurs="1" name="TimeoutSeconds" type="xsd:integer" />
+          <xsd:element minOccurs="1" name="NextUpdateThreshold" type="xsd:integer" />
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean" />
+        </Configuration>
+        <OverrideableParameters>
+          <!-- potential to break cookdown
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+		  
+          <OverrideableParameter ID="RevocationFlag" Selector="$Config/RevocationFlag$" ParameterType="string" />
+          <OverrideableParameter ID="RevocationMode" Selector="$Config/RevocationMode$" ParameterType="string" />
+          <OverrideableParameter ID="VerificationFlags" Selector="$Config/VerificationFlags$" ParameterType="string" />
+          -->
+           <OverrideableParameter ID="SpreadInitializationOverInterval" Selector="$Config/SpreadInitializationOverInterval$" ParameterType="int" />
+          <OverrideableParameter ID="NextUpdateThreshold" Selector="$Config/NextUpdateThreshold$" ParameterType="int" />
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool" />
+        </OverrideableParameters>
+        <MonitorImplementation>
+          <MemberModules>
+            <DataSource ID="ScriptDS" TypeID="SystemCenterCentral.Utilities.Certificates.ScriptDataSource">
+              <CertStoreID>$Config/CertStoreID$</CertStoreID>
+              <StoreProvider>$Config/StoreProvider$</StoreProvider>
+              <StoreType>$Config/StoreType$</StoreType>
+              <RevocationFlag>$Config/RevocationFlag$</RevocationFlag>
+              <RevocationMode>$Config/RevocationMode$</RevocationMode>
+              <VerificationFlags>$Config/VerificationFlags$</VerificationFlags>
+             <SubjectIncludeRegEx>$Config/SubjectIncludeRegEx$</SubjectIncludeRegEx>
+              <IssuerIncludeRegEx>$Config/IssuerIncludeRegEx$</IssuerIncludeRegEx>
+              <SubjectExcludeRegEx>$Config/SubjectExcludeRegEx$</SubjectExcludeRegEx>
+              <IssuerExcludeRegEx>$Config/IssuerExcludeRegEx$</IssuerExcludeRegEx>
+              <EnhKeyUseExcludeRegEx>$Config/EnhKeyUseExcludeRegEx$</EnhKeyUseExcludeRegEx>
+              <TemplateIncludeRegEx>$Config/TemplateIncludeRegEx$</TemplateIncludeRegEx>
+              <TemplateExcludeRegEx>$Config/TemplateExcludeRegEx$</TemplateExcludeRegEx>
+              <ExpiryThresholdDays>31</ExpiryThresholdDays>
+              <Debug>$Config/Debug$</Debug>
+              <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+              <SyncTime>$Config/SyncTime$</SyncTime>
+              <SpreadInitializationOverInterval>$Config/SpreadInitializationOverInterval$</SpreadInitializationOverInterval>
+              <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+            </DataSource>
+            <!--
+            <ProbeAction ID="ScriptOnDemandProbe" TypeID="SystemCenterCentral.Utilities.Certificates.ScriptOnDemandProbe">
+              <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+              <CertStoreID>$Config/CertStoreID$</CertStoreID>
+              <Debug>$Config/Debug$</Debug>
+            </ProbeAction>
+            -->
+            <ConditionDetection ID="CRLIsCurrent" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Double">Property[@Name='CRLDaysUntilUpdate']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>GreaterEqual</Operator>
+                  <ValueExpression>
+                    <Value Type="Double">$Config/NextUpdateThreshold$</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="CRLNotCurrent" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Double">Property[@Name='CRLDaysUntilUpdate']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Less</Operator>
+                  <ValueExpression>
+                    <Value Type="Double">$Config/NextUpdateThreshold$</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="CorrectInstance" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Property[@Name='CRLHash']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="String">$Config/CRLThumbprint$</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="CRLInstance" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Property[@Name='InstanceType']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="String">CRL</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+          </MemberModules>
+          <RegularDetections>
+            <RegularDetection MonitorTypeStateID="Current">
+              <Node ID="CRLIsCurrent">
+                <Node ID="CorrectInstance">
+                  <Node ID="CRLInstance">
+                    <Node ID="ScriptDS" />
+                  </Node>
+                </Node>
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="UpdateRequired">
+              <Node ID="CRLNotCurrent">
+                <Node ID="CorrectInstance">
+                  <Node ID="CRLInstance">
+                    <Node ID="ScriptDS" />
+                  </Node>
+                </Node>
+              </Node>
+            </RegularDetection>
+          </RegularDetections>
+        </MonitorImplementation>
+      </UnitMonitorType>
+
+    </MonitorTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.MonitorType">
+          <Name>CRL Update monitor type</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.MonitorType" SubElementID="CorrectInstance">
+          <Name>Instance filter</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.MonitorType" SubElementID="CRLInstance">
+          <Name>CRL filter</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.MonitorType" SubElementID="CRLIsCurrent">
+          <Name>CRL is current</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.MonitorType" SubElementID="CRLNotCurrent">
+          <Name>CRL requires update</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.MonitorType" SubElementID="Current">
+          <Name>Is current</Name>
+        </DisplayString>
+        <!--
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.MonitorType" SubElementID="IntervalSeconds">
+          <Name>     Not used (Interval)</Name>
+        </DisplayString>
+		-->
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.MonitorType" SubElementID="ScriptDS">
+          <Name>CertUtil output datasource</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.MonitorType" SubElementID="UpdateRequired">
+          <Name>Requires update</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.MonitorType" SubElementID="NextUpdateThreshold">
+          <Name>Next Update Threshold (days)</Name>
+        </DisplayString>
+        
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+
+</ManagementPackFragment>

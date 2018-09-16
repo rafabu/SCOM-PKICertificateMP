@@ -1,0 +1,1581 @@
+﻿       <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+            <DataSources>
+              <DataSource Name="DataWarehouseMain">
+                <rd:DataSourceID>e4235c51-407f-4065-8519-a1e57374bc45</rd:DataSourceID>
+                <DataSourceReference>Data Warehouse Main</DataSourceReference>
+              </DataSource>
+            </DataSources>
+            <InteractiveHeight>8.5in</InteractiveHeight>
+            <ReportParameters>
+              <ReportParameter Name="LT_Report">
+                <DataType>String</DataType>
+                <DefaultValue>
+                  <DataSetReference>
+                    <DataSetName>LT_Report_Query</DataSetName>
+                    <ValueField>ValueXml</ValueField>
+                  </DataSetReference>
+                </DefaultValue>
+                <ValidValues>
+                  <DataSetReference>
+                    <DataSetName>LT_Report_Query</DataSetName>
+                    <ValueField>ValueXml</ValueField>
+                    <LabelField>ValueName</LabelField>
+                  </DataSetReference>
+                </ValidValues>
+                <Hidden>true</Hidden>
+              </ReportParameter>
+              <ReportParameter Name="LT_Table">
+                <DataType>String</DataType>
+                <DefaultValue>
+                  <DataSetReference>
+                    <DataSetName>LT_Table_Query</DataSetName>
+                    <ValueField>ValueXml</ValueField>
+                  </DataSetReference>
+                </DefaultValue>
+                <ValidValues>
+                  <DataSetReference>
+                    <DataSetName>LT_Table_Query</DataSetName>
+                    <ValueField>ValueXml</ValueField>
+                    <LabelField>ValueName</LabelField>
+                  </DataSetReference>
+                </ValidValues>
+                <Hidden>true</Hidden>
+              </ReportParameter>
+              <ReportParameter Name="ManagementGroupId">
+                <DataType>String</DataType>
+                <DefaultValue>
+                  <DataSetReference>
+                    <DataSetName>NeighborManagementGroups</DataSetName>
+                    <ValueField>ManagementGroupGuid</ValueField>
+                  </DataSetReference>
+                </DefaultValue>
+                <Prompt>ManagementGroupId</Prompt>
+                <ValidValues>
+                  <DataSetReference>
+                    <DataSetName>NeighborManagementGroups</DataSetName>
+                    <ValueField>ManagementGroupGuid</ValueField>
+                    <LabelField>ManagementGroupName</LabelField>
+                  </DataSetReference>
+                </ValidValues>
+                <MultiValue>true</MultiValue>
+                <Hidden>true</Hidden>
+              </ReportParameter>
+              <ReportParameter Name="UserLanguageCode">
+                <DataType>String</DataType>
+                <DefaultValue>
+                  <Values>
+                    <Value>=Code.GetReportLocLanguageCode()</Value>
+                  </Values>
+                </DefaultValue>
+              </ReportParameter>
+              <ReportParameter Name="StartDate_BaseType">
+                <DataType>String</DataType>
+                <Prompt>[Start Date Base]</Prompt>
+              </ReportParameter>
+              <ReportParameter Name="StartDate_BaseValue">
+                <DataType>DateTime</DataType>
+                <Prompt>[From]</Prompt>
+              </ReportParameter>
+              <ReportParameter Name="StartDate_OffsetType">
+                <DataType>String</DataType>
+                <Prompt>[Start Date Offset Type]</Prompt>
+              </ReportParameter>
+              <ReportParameter Name="StartDate_OffsetValue">
+                <DataType>Integer</DataType>
+                <AllowBlank>true</AllowBlank>
+                <Prompt>[Start Date Offset]</Prompt>
+              </ReportParameter>
+              <ReportParameter Name="EndDate_BaseType">
+                <DataType>String</DataType>
+                <Prompt>[End Date Base]</Prompt>
+              </ReportParameter>
+              <ReportParameter Name="EndDate_BaseValue">
+                <DataType>DateTime</DataType>
+                <Prompt>[To]</Prompt>
+              </ReportParameter>
+              <ReportParameter Name="EndDate_OffsetType">
+                <DataType>String</DataType>
+                <Prompt>[End Date Offset Type]</Prompt>
+              </ReportParameter>
+              <ReportParameter Name="EndDate_OffsetValue">
+                <DataType>Integer</DataType>
+                <AllowBlank>true</AllowBlank>
+                <Prompt>[End Date Offset]</Prompt>
+              </ReportParameter>
+              <ReportParameter Name="TimeZone">
+                <DataType>String</DataType>
+                <Prompt>[Time Zone]</Prompt>
+              </ReportParameter>
+              <ReportParameter Name="TimeZoneName">
+                <DataType>String</DataType>
+                <Nullable>true</Nullable>
+                <AllowBlank>true</AllowBlank>
+                <Prompt>[Time Zone Name]</Prompt>
+              </ReportParameter>
+              <ReportParameter Name="Interactive">
+                <DataType>Boolean</DataType>
+                <Nullable>true</Nullable>
+                <DefaultValue>
+                  <Values>
+                    <Value>=False</Value>
+                  </Values>
+                </DefaultValue>
+                <Prompt>Interactive</Prompt>
+                <Hidden>true</Hidden>
+              </ReportParameter>
+              <ReportParameter Name="GroupName">
+                <DataType>String</DataType>
+                <DefaultValue>
+                  <Values>
+                    <Value>SystemCenterCentral.Utilities.Certificates.CertCRLGroup</Value>
+                  </Values>
+                </DefaultValue>
+                <Prompt>[GroupName]</Prompt>
+              </ReportParameter>
+              <ReportParameter Name="ObjectList">
+                <DataType>String</DataType>
+                <DefaultValue>
+                  <DataSetReference>
+                    <DataSetName>GroupXML</DataSetName>
+                    <ValueField>ObjectXML</ValueField>
+                  </DataSetReference>
+                </DefaultValue>
+                <AllowBlank>true</AllowBlank>
+                <Prompt>ObjectList</Prompt>
+                <ValidValues>
+                  <DataSetReference>
+                    <DataSetName>GroupXML</DataSetName>
+                    <ValueField>ObjectXML</ValueField>
+                    <LabelField>ObjectName</LabelField>
+                  </DataSetReference>
+                </ValidValues>
+                <MultiValue>true</MultiValue>
+                <Hidden>true</Hidden>
+              </ReportParameter>
+              <ReportParameter Name="ColumnList">
+                <DataType>String</DataType>
+                <DefaultValue>
+                  <DataSetReference>
+                    <DataSetName>ColumnList</DataSetName>
+                    <ValueField>PropertyGuid</ValueField>
+                  </DataSetReference>
+                </DefaultValue>
+                <AllowBlank>true</AllowBlank>
+                <Prompt>ColumnList</Prompt>
+                <ValidValues>
+                  <DataSetReference>
+                    <DataSetName>ColumnList</DataSetName>
+                    <ValueField>PropertyGuid</ValueField>
+                    <LabelField>PropertyDefaultName</LabelField>
+                  </DataSetReference>
+                </ValidValues>
+                <MultiValue>true</MultiValue>
+                <Hidden>true</Hidden>
+              </ReportParameter>
+              <ReportParameter Name="Properties">
+                <DataType>String</DataType>
+                <Prompt>[Properties]</Prompt>
+                <MultiValue>true</MultiValue>
+              </ReportParameter>
+              <ReportParameter Name="ReportTitle">
+                <DataType>String</DataType>
+                <DefaultValue>
+                  <Values>
+                    <Value>System Center Central Custom Inventory Report</Value>
+                  </Values>
+                </DefaultValue>
+                <Prompt>[Report Title]</Prompt>
+              </ReportParameter>
+            </ReportParameters>
+            <rd:DrawGrid>true</rd:DrawGrid>
+            <InteractiveWidth>11in</InteractiveWidth>
+            <rd:GridSpacing>0.05in</rd:GridSpacing>
+            <rd:SnapToGrid>true</rd:SnapToGrid>
+            <rd:ReportID>ab518a51-343d-46c4-b1f8-4ec65faafd95</rd:ReportID>
+            <CodeModules>
+              <CodeModule>Microsoft.EnterpriseManagement.Reporting.Code, Version=6.0.0.0, Culture=neutral</CodeModule>
+            </CodeModules>
+            <PageWidth>11in</PageWidth>
+            <DataSets>
+              <DataSet Name="LT_Report_Query">
+                <Fields>
+                  <Field Name="ValueXml">
+                    <DataField>XML_F52E2B61-18A1-11d1-B105-00805F49916B</DataField>
+                    <rd:TypeName>System.String</rd:TypeName>
+                  </Field>
+                  <Field Name="ValueName">
+                    <Value>="LT"</Value>
+                  </Field>
+                </Fields>
+                <Query>
+                  <DataSourceName>DataWarehouseMain</DataSourceName>
+                  <CommandType>StoredProcedure</CommandType>
+                  <CommandText>ReportDisplayStringGet</CommandText>
+                  <QueryParameters>
+                    <QueryParameter Name="@ManagementGroupGuid">
+                      <Value>=Code.GetCallingManagementGroupId()</Value>
+                    </QueryParameter>
+                    <QueryParameter Name="@ManagementPackSystemName">
+                      <Value>Microsoft.SystemCenter.DataWarehouse.Report.Library</Value>
+                    </QueryParameter>
+                    <QueryParameter Name="@ReportSystemName">
+                      <Value>Microsoft.SystemCenter.DataWarehouse.Report.CustomConfiguration</Value>
+                    </QueryParameter>
+                    <QueryParameter Name="@LanguageCode">
+                      <Value>=Code.GetReportLocLanguageCode()</Value>
+                    </QueryParameter>
+                    <QueryParameter Name="@Scope">
+                      <Value>R.%</Value>
+                    </QueryParameter>
+                  </QueryParameters>
+                </Query>
+              </DataSet>
+              <DataSet Name="LT_Table_Query">
+                <Fields>
+                  <Field Name="ValueXml">
+                    <DataField>XML_F52E2B61-18A1-11d1-B105-00805F49916B</DataField>
+                    <rd:TypeName>System.String</rd:TypeName>
+                  </Field>
+                  <Field Name="ValueName">
+                    <Value>="LT"</Value>
+                  </Field>
+                </Fields>
+                <Query>
+                  <DataSourceName>DataWarehouseMain</DataSourceName>
+                  <CommandType>StoredProcedure</CommandType>
+                  <CommandText>ReportDisplayStringGet</CommandText>
+                  <QueryParameters>
+                    <QueryParameter Name="@ManagementGroupGuid">
+                      <Value>=Code.GetCallingManagementGroupId()</Value>
+                    </QueryParameter>
+                    <QueryParameter Name="@ManagementPackSystemName">
+                      <Value>Microsoft.SystemCenter.DataWarehouse.Report.Library</Value>
+                    </QueryParameter>
+                    <QueryParameter Name="@ReportSystemName">
+                      <Value>Microsoft.SystemCenter.DataWarehouse.Report.CustomConfiguration</Value>
+                    </QueryParameter>
+                    <QueryParameter Name="@LanguageCode">
+                      <Value>=Code.GetReportLocLanguageCode()</Value>
+                    </QueryParameter>
+                    <QueryParameter Name="@Scope">
+                      <Value>RT.%</Value>
+                    </QueryParameter>
+                  </QueryParameters>
+                </Query>
+              </DataSet>
+              <DataSet Name="ObjectList">
+                <Fields>
+                  <Field Name="ManagedEntityDefaultName">
+                    <DataField>ManagedEntityDefaultName</DataField>
+                    <rd:TypeName>System.String</rd:TypeName>
+                  </Field>
+                  <Field Name="Path">
+                    <DataField>Path</DataField>
+                    <rd:TypeName>System.String</rd:TypeName>
+                  </Field>
+                  <Field Name="DisplayName">
+                    <DataField>DisplayName</DataField>
+                    <rd:TypeName>System.String</rd:TypeName>
+                  </Field>
+                  <Field Name="ManagedEntityRowId">
+                    <DataField>ManagedEntityRowId</DataField>
+                    <rd:TypeName>System.Int32</rd:TypeName>
+                  </Field>
+                  <Field Name="ManagementGroupDefaultName">
+                    <DataField>ManagementGroupDefaultName</DataField>
+                    <rd:TypeName>System.String</rd:TypeName>
+                  </Field>
+                  <Field Name="ManagedEntityUse">
+                    <DataField>ManagedEntityUse</DataField>
+                    <rd:TypeName>System.String</rd:TypeName>
+                  </Field>
+                </Fields>
+                <Query>
+                  <DataSourceName>DataWarehouseMain</DataSourceName>
+                  <CommandType>StoredProcedure</CommandType>
+                  <CommandText>Microsoft_SystemCenter_DataWarehouse_Report_Library_ReportObjectList</CommandText>
+                  <QueryParameters>
+                    <QueryParameter Name="@ObjectList">
+                      <Value>=Parameters!ObjectList.Value</Value>
+                    </QueryParameter>
+					  <!-- removed for SP1 & RTM compatibility
+                    <QueryParameter Name="@LanguageCode">
+                      <Value>=Code.GetReportLocLanguageCode()</Value>
+                    </QueryParameter>
+					-->
+                  </QueryParameters>
+                  <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+                </Query>
+              </DataSet>
+              <DataSet Name="NeighborManagementGroups">
+                <Fields>
+                  <Field Name="ManagementGroupGuid">
+                    <DataField>ManagementGroupGuid</DataField>
+                    <rd:TypeName>System.Guid</rd:TypeName>
+                  </Field>
+                  <Field Name="ManagementGroupName">
+                    <DataField>ManagementGroupName</DataField>
+                    <rd:TypeName>System.String</rd:TypeName>
+                  </Field>
+                </Fields>
+                <Query>
+                  <DataSourceName>DataWarehouseMain</DataSourceName>
+                  <CommandText>
+								SELECT     ManagementGroupGuid, ManagementGroupDefaultName AS ManagementGroupName
+								FROM         vManagementGroup
+							</CommandText>
+                </Query>
+              </DataSet>
+              <DataSet Name="PropertyTableList">
+                <Fields>
+                  <Field Name="ManagedEntityPropertyRowId">
+                    <DataField>ManagedEntityPropertyRowId</DataField>
+                  </Field>
+                  <Field Name="ManagedEntityRowId">
+                    <DataField>ManagedEntityRowId</DataField>
+                  </Field>
+                  <Field Name="Level">
+                    <DataField>Level</DataField>
+                  </Field>
+                  <Field Name="ConfigurationRecordCount">
+                    <DataField>ConfigurationRecordCount</DataField>
+                  </Field>
+                  <Field Name="FromDateTime">
+                    <DataField>FromDateTime</DataField>
+                  </Field>
+                  <Field Name="ToDateTime">
+                    <DataField>ToDateTime</DataField>
+                  </Field>
+                  <Field Name="PropertyGuid">
+                    <DataField>PropertyGuid</DataField>
+                  </Field>
+                  <Field Name="PropertyValue">
+                    <DataField>PropertyValue</DataField>
+                  </Field>
+                  <Field Name="Position">
+                    <DataField>Position</DataField>
+                  </Field>
+                  <Field Name="PropertyTypeGuid">
+                    <DataField>PropertyTypeGuid</DataField>
+                  </Field>
+                  <Field Name="PropertyTypeDefaultName">
+                    <DataField>PropertyTypeDefaultName</DataField>
+                  </Field>
+                  <Field Name="RelatedManagedEntityDefaultName">
+                    <DataField>RelatedManagedEntityDefaultName</DataField>
+                  </Field>
+                  <Field Name="RelatedManagedEntityRowId">
+                    <DataField>RelatedManagedEntityRowId</DataField>
+                  </Field>
+                  <Field Name="ManagedEntityGuid">
+                    <DataField>ManagedEntityGuid</DataField>
+                  </Field>
+                  <Field Name="ManagedEntityDefaultName">
+                    <DataField>ManagedEntityDefaultName</DataField>
+                  </Field>
+                  <Field Name="Path">
+                    <DataField>Path</DataField>
+                  </Field>
+                  <Field Name="ManagementGroupDefaultName">
+                    <DataField>ManagementGroupDefaultName</DataField>
+                  </Field>
+                  <Field Name="ManagementGroupGuid">
+                    <DataField>ManagementGroupGuid</DataField>
+                  </Field>
+                  <Field Name="ManagedEntityTypeGuid">
+                    <DataField>ManagedEntityTypeGuid</DataField>
+                  </Field>
+                  <Field Name="DisplayName">
+                    <DataField>DisplayName</DataField>
+                  </Field>
+                  <Field Name="Image">
+                    <DataField>Image</DataField>
+                  </Field>
+                  <Field Name="PropertyDefaultName">
+                    <DataField>PropertyDefaultName</DataField>
+                  </Field>
+                </Fields>
+                <Query>
+                  <DataSourceName>DataWarehouseMain</DataSourceName>
+                  <CommandType>StoredProcedure</CommandType>
+                  <CommandText>Microsoft_SystemCenter_DataWarehouse_Report_Library_CustomConfigurationReportDataGet</CommandText>
+                  <QueryParameters>
+					  <!-- removed for SP1 & RTM compatibility
+                    <QueryParameter Name="@LanguageCode">
+                      <Value>=Code.GetReportLocLanguageCode()</Value>
+                    </QueryParameter>
+					-->
+					  <QueryParameter Name="@LanguageCode">
+						  <Value>ENU</Value>
+					  </QueryParameter>
+                    <QueryParameter Name="@StartDate">
+                      <Value>=Code.ToDbDate(Code.GetReportStartDate())</Value>
+                    </QueryParameter>
+                    <QueryParameter Name="@EndDate">
+                      <Value>=Code.ToDbDate(Code.GetReportEndDate())</Value>
+                    </QueryParameter>
+                    <QueryParameter Name="@InputXML">
+                      <Value>=Parameters!Properties.Value</Value>
+                    </QueryParameter>
+                    <QueryParameter Name="@ObjectList">
+                      <Value>=Parameters!ObjectList.Value</Value>
+                    </QueryParameter>
+                  </QueryParameters>
+                </Query>
+              </DataSet>
+              <DataSet Name="FilterList">
+                <Fields>
+                  <Field Name="PropertyDefaultName">
+                    <DataField>PropertyDefaultName</DataField>
+                    <rd:TypeName>System.String</rd:TypeName>
+                  </Field>
+                  <Field Name="FilterType">
+                    <DataField>FilterType</DataField>
+                    <rd:TypeName>System.String</rd:TypeName>
+                  </Field>
+                  <Field Name="FilterValue">
+                    <DataField>FilterValue</DataField>
+                    <rd:TypeName>System.String</rd:TypeName>
+                  </Field>
+                </Fields>
+                <Query>
+                  <DataSourceName>DataWarehouseMain</DataSourceName>
+                  <CommandText>
+								DECLARE @InputXML xml
+								SET @InputXML = @Property
+								SELECT
+								vManagedEntityTypeProperty.PropertyDefaultName,
+								InputTable.FilterType,
+								InputTable.FilterValue
+								FROM
+
+								(Select
+								Input.ColumnXML.query('ID').value('.','uniqueidentifier') AS PropertyGuid,
+								Input.ColumnXML.value('@Visible','nvarchar(16)') AS Visible,
+								Input.ColumnXML.query('Filter').value('.','nvarchar(256)') AS FilterValue,
+								Input.ColumnXML.value('./Filter[1]/@Type','nvarchar(256)') AS FilterType
+								FROM @InputXML.nodes('/Data/Columns/Column') AS Input(ColumnXML)
+								)AS InputTable
+								INNER JOIN
+								vManagedEntityTypeProperty ON vManagedEntityTypeProperty.PropertyGuid = InputTable.PropertyGuid
+								AND
+								InputTable.FilterType IS NOT NULL
+							</CommandText>
+                  <QueryParameters>
+                    <QueryParameter Name="@Property">
+                      <Value>=Parameters!Properties.Value</Value>
+                    </QueryParameter>
+                  </QueryParameters>
+                  <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+                </Query>
+              </DataSet>
+              <DataSet Name="ColumnList">
+                <Fields>
+                  <Field Name="PropertyGuid">
+                    <DataField>PropertyGuid</DataField>
+                    <rd:TypeName>System.Guid</rd:TypeName>
+                  </Field>
+                  <Field Name="ManagedEntityTypeRowId">
+                    <DataField>ManagedEntityTypeRowId</DataField>
+                    <rd:TypeName>System.Int32</rd:TypeName>
+                  </Field>
+                  <Field Name="PropertySystemName">
+                    <DataField>PropertySystemName</DataField>
+                    <rd:TypeName>System.String</rd:TypeName>
+                  </Field>
+                  <Field Name="PropertyDefaultName">
+                    <DataField>PropertyDefaultName</DataField>
+                    <rd:TypeName>System.String</rd:TypeName>
+                  </Field>
+                </Fields>
+                <Query>
+                  <DataSourceName>DataWarehouseMain</DataSourceName>
+                  <CommandType>StoredProcedure</CommandType>
+                  <CommandText>Microsoft_SystemCenter_DataWarehouse_Report_Library_ReportColumnList</CommandText>
+                  <QueryParameters>
+                    <QueryParameter Name="@StartDate">
+                      <Value>19000101</Value>
+                    </QueryParameter>
+                    <QueryParameter Name="@EndDate">
+                      <Value>99990101</Value>
+                    </QueryParameter>
+					  <!-- removed for SP1 & RTM compatibility
+                    <QueryParameter Name="@LanguageCode">
+                      <Value>=Parameters!UserLanguageCode.Value</Value>
+                    </QueryParameter>
+					-->
+                    <QueryParameter Name="@ObjectList">
+                      <Value>=Parameters!ObjectList.Value</Value>
+                    </QueryParameter>
+                  </QueryParameters>
+                </Query>
+              </DataSet>
+              <DataSet Name="GroupXML">
+                <Fields>
+                  <Field Name="ObjectXML">
+                    <DataField>XML_F52E2B61-18A1-11d1-B105-00805F49916B</DataField>
+                    <rd:TypeName>System.String</rd:TypeName>
+                  </Field>
+                  <Field Name="ObjectName">
+                    <Value>="ObjectID"</Value>
+                  </Field>
+                </Fields>
+                <Query>
+                  <DataSourceName>DataWarehouseMain</DataSourceName>
+                  <CommandText>
+								SELECT     'Containment' [Object/@Use], ManagedEntityRowId AS Object
+								FROM         vmanagedentity
+								WHERE     fullname = @GroupName
+								FOR XML PATH('Objects'), ROOT('Data')
+							</CommandText>
+                  <QueryParameters>
+                    <QueryParameter Name="@GroupName">
+                      <Value>=Parameters!GroupName.Value</Value>
+                    </QueryParameter>
+                  </QueryParameters>
+                  <Timeout>3600</Timeout>
+                  <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+                </Query>
+              </DataSet>
+            </DataSets>
+            <Code>
+					Const LocTableStringQuery As String = "R/S[@N='{0}']/text()"
+
+					Const TimeZoneParameterName As String = "TimeZone"
+					Const SD_BaseTypeParameterName As String = "StartDate_BaseType"
+					Const SD_BaseValueParameterName As String = "StartDate_BaseValue"
+					Const SD_OffsetTypeParameterName As String = "StartDate_OffsetType"
+					Const SD_OffsetValueParameterName As String = "StartDate_OffsetValue"
+					Const ED_BaseTypeParameterName As String = "EndDate_BaseType"
+					Const ED_BaseValueParameterName As String = "EndDate_BaseValue"
+					Const ED_OffsetTypeParameterName As String = "EndDate_OffsetType"
+					Const ED_OffsetValueParameterName As String = "EndDate_OffsetValue"
+					Const IsRelativeTimeSupported As Boolean = False
+					Const TimeTypeParameterName As String = "TimeType"
+					Const TimeWeekMapParameterName As String = "TimeWeekMap"
+
+					Dim LocTables As System.Collections.Generic.Dictionary(Of String, Microsoft.EnterpriseManagement.Reporting.XmlStringTable)
+					Dim ReportTimeZone As Microsoft.EnterpriseManagement.Reporting.TimeZoneCoreInformation
+					Dim ReportStartDate As DateTime
+					Dim ReportEndDate As DateTime
+					Dim ReportTime As Microsoft.EnterpriseManagement.Reporting.ParameterProcessor.RelativeTime
+					Dim ReportCulture As System.Globalization.CultureInfo
+					Dim ParameterProcessor As Microsoft.EnterpriseManagement.Reporting.ParameterProcessor
+
+					Protected Overrides Sub OnInit()
+					LocTables = new System.Collections.Generic.Dictionary(Of String, Microsoft.EnterpriseManagement.Reporting.XmlStringTable)()
+					ReportTimeZone = Nothing
+					ReportStartDate = DateTime.MinValue
+					ReportEndDate = DateTime.MinValue
+					ReportTime = Nothing
+					ReportCulture = System.Globalization.CultureInfo.GetCultureInfo(Report.User("Language"))
+					ParameterProcessor = New Microsoft.EnterpriseManagement.Reporting.ParameterProcessor(ReportCulture)
+					End Sub
+
+					Public Function GetCallingManagementGroupId() As String
+					Return Microsoft.EnterpriseManagement.Reporting.ReportingConfiguration.ManagementGroupId
+					End Function
+
+					Public Function GetReportLocLanguageCode() As String
+					Return ReportCulture.ThreeLetterWindowsLanguageName
+					End Function
+
+					Public Function GetLocTable(Name As String) As Microsoft.EnterpriseManagement.Reporting.XmlStringTable
+					Dim LocTable As Microsoft.EnterpriseManagement.Reporting.XmlStringTable
+
+					If Not LocTables.TryGetValue(Name, LocTable) Then
+					LocTable = New Microsoft.EnterpriseManagement.Reporting.XmlStringTable(LocTableStringQuery, Report.Parameters(Name).Value)
+					LocTables.Add(Name, LocTable)
+					End If
+
+					Return LocTable
+					End Function
+
+					Public Function GetReportTimeZone() As Microsoft.EnterpriseManagement.Reporting.TimeZoneCoreInformation
+					If IsNothing(ReportTimeZone) Then ReportTimeZone = Microsoft.EnterpriseManagement.Reporting.TimeZoneCoreInformation.FromValueString(Report.Parameters(TimeZoneParameterName).Value)
+					Return ReportTimeZone
+					End Function
+
+					Public Function ToDbDate(ByVal DateValue As DateTime) As DateTime
+					return GetReportTimeZone.ToUniversalTime(DateValue)
+					End Function
+
+					Public Function ToReportDate(ByVal DateValue As DateTime) As DateTime
+					return GetReportTimeZone.ToLocalTime(DateValue)
+					End Function
+
+					Public Function GetReportStartDate() As DateTime
+					If (ReportStartDate = DateTime.MinValue) Then
+					If (IsRelativeTimeSupported) Then
+					ReportStartDate = ParameterProcessor.GetDateTime(ToReportDate(DateTime.UtcNow), Report.Parameters(SD_BaseTypeParameterName).Value, Report.Parameters(SD_BaseValueParameterName).Value, Report.Parameters(SD_OffsetTypeParameterName).Value, Report.Parameters(SD_OffsetValueParameterName).Value, Report.Parameters(TimeTypeParameterName).Value)
+					Else
+					ReportStartDate = ParameterProcessor.GetDateTime(ToReportDate(DateTime.UtcNow), Report.Parameters(SD_BaseTypeParameterName).Value, Report.Parameters(SD_BaseValueParameterName).Value, Report.Parameters(SD_OffsetTypeParameterName).Value, Report.Parameters(SD_OffsetValueParameterName).Value)
+					End if
+					End If
+					return ReportStartDate
+					End Function
+
+					Public Function GetReportEndDate() As DateTime
+					If (ReportEndDate = DateTime.MinValue) Then
+					If (IsRelativeTimeSupported) Then
+					ReportEndDate = ParameterProcessor.GetDateTime(ToReportDate(DateTime.UtcNow), Report.Parameters(ED_BaseTypeParameterName).Value, Report.Parameters(ED_BaseValueParameterName).Value, Report.Parameters(ED_OffsetTypeParameterName).Value, Report.Parameters(ED_OffsetValueParameterName).Value, Report.Parameters(TimeTypeParameterName).Value)
+					If IsBusinessHours(GetReportTimeFilter()) Then ReportEndDate = ReportCulture.Calendar.AddDays(ReportEndDate, 1)
+					Else
+					ReportEndDate = ParameterProcessor.GetDateTime(ToReportDate(DateTime.UtcNow), Report.Parameters(ED_BaseTypeParameterName).Value, Report.Parameters(ED_BaseValueParameterName).Value, Report.Parameters(ED_OffsetTypeParameterName).Value, Report.Parameters(ED_OffsetValueParameterName).Value)
+					End if
+					End If
+					return ReportEndDate
+					End Function
+
+					Public Function GetReportTimeFilter() As Microsoft.EnterpriseManagement.Reporting.ParameterProcessor.RelativeTime
+					If IsNothing(ReportTime) Then ReportTime = New Microsoft.EnterpriseManagement.Reporting.ParameterProcessor.RelativeTime(Report.Parameters(TimeTypeParameterName).Value, Report.Parameters(SD_BaseValueParameterName).Value, Report.Parameters(ED_BaseValueParameterName).Value, CStr(Join(Report.Parameters(TimeWeekMapParameterName).Value, ",")))
+					return ReportTime
+					End Function
+
+					Public Function IsBusinessHours(Value As Microsoft.EnterpriseManagement.Reporting.ParameterProcessor.RelativeTime) As Boolean
+					return (Not IsNothing(Value)) And (Value.TimeType = Microsoft.EnterpriseManagement.Reporting.ParameterProcessor.RelativeTimeType.Business)
+					End Function
+
+					Public Function FormatDateTime(Format As String, Value As DateTime) As String
+					return Value.ToString(Format, ReportCulture)
+					End Function
+
+					Public Function FormatNumber(Format As String, Value As Decimal) As String
+					return Value.ToString(Format, ReportCulture)
+					End Function
+
+					Public Function FormatString(Format As String, ParamArray Values() as  Object) As String
+					return String.Format(ReportCulture, Format, Values)
+					End Function
+
+					Public Function NullFormatString(Format As String, Value as  String) As String
+					return IIF(String.IsNullOrEmpty(Value), String.Empty, String.Format(ReportCulture, Format, Value))
+					End Function
+
+					Public Function FormatBusinessHours(Format As String, Value As Microsoft.EnterpriseManagement.Reporting.ParameterProcessor.RelativeTime) As String
+					Dim result As String
+
+					If IsBusinessHours(Value) Then
+
+					Dim firstDay As DayOfWeek
+					Dim days As System.Collections.Generic.List(Of String)
+
+					firstDay = ReportCulture.DateTimeFormat.FirstDayOfWeek
+					days = new System.Collections.Generic.List(Of String)()
+
+					For loopDay As DayOfWeek = DayOfWeek.Sunday To DayOfWeek.Saturday
+					Dim day As DayOfWeek
+					day = CType((CInt(loopDay) + CInt(firstDay)) Mod 7, DayOfWeek)
+
+					If value.WeekMap.Contains(day) Then days.Add(ReportCulture.DateTimeFormat.GetAbbreviatedDayName(day))
+					Next loopDay
+
+					result = FormatString(Format, DateTime.Today.Add(Value.StartTime).ToString(ReportCulture.DateTimeFormat.ShortTimePattern), DateTime.Today.Add(Value.EndTime).ToString(ReportCulture.DateTimeFormat.ShortTimePattern), String.Join(",", days.ToArray()))
+
+					Else
+					result = String.Empty
+					End if
+
+					return result
+					End Function
+
+					Public Function BuildXmlValueList(ByVal ValueList() As Object) As String
+					Return Microsoft.EnterpriseManagement.Reporting.MultiValueParameter.ToXml("Data", "Value", ValueList)
+					End Function
+				</Code>
+            <Width>10.8in</Width>
+            <Body>
+              <ReportItems>
+                <Image Name="banner_image">
+                  <Sizing>AutoSize</Sizing>
+                  <Top>0.1in</Top>
+                  <Width>10.55208in</Width>
+                  <MIMEType />
+                  <Source>External</Source>
+                  <Style />
+                  <ZIndex>6</ZIndex>
+                  <Left>0.15in</Left>
+                  <Height>0.64583in</Height>
+                  <Value>SCC_banner_landscape.jpg</Value>
+                </Image>
+                <Rectangle Name="rectangle5">
+                  <Left>0.15in</Left>
+                  <ZIndex>5</ZIndex>
+                  <Top>1.5in</Top>
+                  <Width>10.55in</Width>
+                  <Style>
+                    <BackgroundColor>Gainsboro</BackgroundColor>
+                    <BorderColor>
+                      <Default>DarkGray</Default>
+                    </BorderColor>
+                    <BorderStyle>
+                      <Bottom>Solid</Bottom>
+                    </BorderStyle>
+                  </Style>
+                  <Height>0.05in</Height>
+                </Rectangle>
+                <Rectangle Name="rectangle4">
+                  <Left>0.15in</Left>
+                  <ZIndex>4</ZIndex>
+                  <ReportItems>
+                    <Textbox Name="reportDescriptionTitle">
+                      <DataElementOutput>NoOutput</DataElementOutput>
+                      <Top>0.3in</Top>
+                      <Width>10.35in</Width>
+                      <Style>
+                        <Color>DimGray</Color>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.2in</Height>
+                      <Value>=Code.GetLocTable("LT_Report").GetString("R.DescriptionTitle", "[Report Description Title]")</Value>
+                    </Textbox>
+                    <Textbox Name="reportTitle">
+                      <DataElementOutput>Output</DataElementOutput>
+                      <Top>0.05in</Top>
+                      <Width>10.15in</Width>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>11pt</FontSize>
+                        <FontWeight>700</FontWeight>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <DataElementStyle>ElementNormal</DataElementStyle>
+                      <CanGrow>true</CanGrow>
+                      <Left>0.2in</Left>
+                      <DataElementName>Title</DataElementName>
+                      <Height>0.25in</Height>
+                      <Value>=Parameters!ReportTitle.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                  <Top>0.75in</Top>
+                  <Width>10.55in</Width>
+                  <Style>
+                    <BackgroundColor>Gainsboro</BackgroundColor>
+                  </Style>
+                  <Height>0.55in</Height>
+                </Rectangle>
+                <Rectangle Name="rectangle3">
+                  <Left>0.15in</Left>
+                  <ZIndex>3</ZIndex>
+                  <Visibility>
+                    <Hidden>true</Hidden>
+                    <ToggleItem>reportDescriptionTitle</ToggleItem>
+                  </Visibility>
+                  <ReportItems>
+                    <Textbox Name="reportDescription">
+                      <DataElementOutput>NoOutput</DataElementOutput>
+                      <Width>10.15in</Width>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Left>0.2in</Left>
+                      <Value>=Code.GetLocTable("LT_Report").GetString("R.Description", "[Report Description]")</Value>
+                    </Textbox>
+                  </ReportItems>
+                  <Top>1.3in</Top>
+                  <Width>10.55in</Width>
+                  <Style>
+                    <BackgroundColor>Gainsboro</BackgroundColor>
+                  </Style>
+                  <Height>0.2in</Height>
+                </Rectangle>
+                <Rectangle Name="rectangle2">
+                  <Left>0.15in</Left>
+                  <ZIndex>2</ZIndex>
+                  <ReportItems>
+                    <Rectangle Name="rectangle1">
+                      <Left>0.00104in</Left>
+                      <ZIndex>16</ZIndex>
+                      <Visibility>
+                        <Hidden>true</Hidden>
+                        <ToggleItem>objectsParameterTitle</ToggleItem>
+                      </Visibility>
+                      <ReportItems>
+                        <Line Name="line3">
+                          <Top>0.04in</Top>
+                          <Width>8.45in</Width>
+                          <Style>
+                            <BorderColor>
+                              <Default>DimGray</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                          </Style>
+                          <ZIndex>1</ZIndex>
+                          <Left>1.95in</Left>
+                          <Height>0in</Height>
+                        </Line>
+                        <List Name="objectParameterList">
+                          <Sorting>
+                            <SortBy>
+                              <SortExpression>=Fields!ManagementGroupDefaultName.Value</SortExpression>
+                              <Direction>Ascending</Direction>
+                            </SortBy>
+                            <SortBy>
+                              <SortExpression>=Fields!DisplayName.Value</SortExpression>
+                              <Direction>Ascending</Direction>
+                            </SortBy>
+                            <SortBy>
+                              <SortExpression>=Fields!ManagedEntityDefaultName.Value</SortExpression>
+                              <Direction>Ascending</Direction>
+                            </SortBy>
+                          </Sorting>
+                          <DataSetName>ObjectList</DataSetName>
+                          <Visibility>
+                            <Hidden>true</Hidden>
+                            <ToggleItem>objectsParameterTitle</ToggleItem>
+                          </Visibility>
+                          <ReportItems>
+                            <Textbox Name="textbox43">
+                              <Visibility>
+                                <Hidden>=Fields!ManagedEntityUse.Value &lt;&gt; "Containment"</Hidden>
+                              </Visibility>
+                              <CanShrink>true</CanShrink>
+                              <Width>8.45in</Width>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>8pt</FontSize>
+                                <VerticalAlign>Bottom</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                              <ZIndex>3</ZIndex>
+                              <CanGrow>true</CanGrow>
+                              <Left>1.95in</Left>
+                              <Height>0.2in</Height>
+                              <Value>=Code.GetLocTable("LT_Report").GetString("R.ObjectUseContainment", "[All objects contained by:]")</Value>
+                            </Textbox>
+                            <Line Name="line1">
+                              <Top>0.6in</Top>
+                              <Width>8.45in</Width>
+                              <Style>
+                                <BorderColor>
+                                  <Default>DimGray</Default>
+                                </BorderColor>
+                                <BorderStyle>
+                                  <Default>Solid</Default>
+                                </BorderStyle>
+                              </Style>
+                              <ZIndex>2</ZIndex>
+                              <Left>1.95in</Left>
+                              <Height>0in</Height>
+                            </Line>
+                            <Textbox Name="textbox14">
+                              <CanShrink>true</CanShrink>
+                              <Top>0.4in</Top>
+                              <Width>8.45in</Width>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>8pt</FontSize>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                              <ZIndex>1</ZIndex>
+                              <CanGrow>true</CanGrow>
+                              <Left>1.95in</Left>
+                              <Height>0.19in</Height>
+                              <Value>=Code.FormatString(Code.GetLocTable("LT_Report").GetString("R.ObjectFormatLine2", "{0} {1}"), Fields!ManagementGroupDefaultName.Value, Code.NullFormatString(Code.GetLocTable("LT_Report").GetString("R.ObjectFormatLine2Path", "| {0}"), Fields!Path.Value))</Value>
+                            </Textbox>
+                            <Textbox Name="textbox36">
+                              <CanShrink>true</CanShrink>
+                              <Top>0.2in</Top>
+                              <Width>8.45in</Width>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>8pt</FontSize>
+                                <VerticalAlign>Bottom</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Left>1.95in</Left>
+                              <Height>0.2in</Height>
+                              <Value>=Code.FormatString(Code.GetLocTable("LT_Report").GetString("R.ObjectFormatLine1", "{0}: {1}"), Fields!DisplayName.Value, Fields!ManagedEntityDefaultName.Value)</Value>
+                            </Textbox>
+                          </ReportItems>
+                          <Top>0.05in</Top>
+                          <Style>
+                            <BackgroundColor>Gainsboro</BackgroundColor>
+                          </Style>
+                          <DataInstanceElementOutput>NoOutput</DataInstanceElementOutput>
+                        </List>
+                      </ReportItems>
+                      <Top>0.65in</Top>
+                      <Style>
+                        <BackgroundColor>Gainsboro</BackgroundColor>
+                      </Style>
+                      <Height>0.7in</Height>
+                    </Rectangle>
+                    <List Name="objectFilterList">
+                      <DataInstanceName>Filter</DataInstanceName>
+                      <NoRows>---</NoRows>
+                      <ZIndex>15</ZIndex>
+                      <DataElementOutput>Output</DataElementOutput>
+                      <Left>1.95in</Left>
+                      <DataSetName>FilterList</DataSetName>
+                      <ReportItems>
+                        <Textbox Name="textbox3">
+                          <rd:DefaultName>textbox3</rd:DefaultName>
+                          <DataElementOutput>Output</DataElementOutput>
+                          <Width>7.05in</Width>
+                          <Style>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>8pt</FontSize>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <DataElementName>Value</DataElementName>
+                          <Value>=Fields!PropertyDefaultName.Value &amp; "  "  &amp; Fields!FilterType.Value &amp; " " &amp; Chr(34) &amp;  Fields!FilterValue.Value &amp; Chr(34)</Value>
+                        </Textbox>
+                      </ReportItems>
+                      <Top>1.35in</Top>
+                      <Width>7.2in</Width>
+                      <DataElementName>FilterList</DataElementName>
+                      <Height>0.2in</Height>
+                    </List>
+                    <Textbox Name="textbox20">
+                      <DataElementOutput>NoOutput</DataElementOutput>
+                      <CanShrink>true</CanShrink>
+                      <Top>0.45in</Top>
+                      <Width>8.4in</Width>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>14</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Left>1.95in</Left>
+                      <Height>0.2in</Height>
+                      <Value>=Code.FormatString(Code.GetLocTable("LT_Report").GetString("R.ObjectsFormat", "{0}"), Code.FormatNumber("G", CountRows("ObjectList")))</Value>
+                    </Textbox>
+                    <Textbox Name="textbox2">
+                      <DataElementOutput>NoOutput</DataElementOutput>
+                      <CanShrink>true</CanShrink>
+                      <Top>0.45in</Top>
+                      <Width>0.1in</Width>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>13</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Left>1.85in</Left>
+                      <Height>0.2in</Height>
+                      <Value>:</Value>
+                    </Textbox>
+                    <Textbox Name="objectsParameterTitle">
+                      <DataElementOutput>NoOutput</DataElementOutput>
+                      <CanShrink>true</CanShrink>
+                      <Top>0.45in</Top>
+                      <Width>1.85in</Width>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>12</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.2in</Height>
+                      <Value>=Code.GetLocTable("LT_Report").GetString("R.ObjectsLabel", "[Report Objects Label]")</Value>
+                    </Textbox>
+                    <Textbox Name="textbox31">
+                      <DataElementOutput>NoOutput</DataElementOutput>
+                      <CanShrink>true</CanShrink>
+                      <Top>1.35in</Top>
+                      <Width>0.1in</Width>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>11</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Left>1.85in</Left>
+                      <Height>0.2in</Height>
+                      <Value>:</Value>
+                    </Textbox>
+                    <Textbox Name="textbox4">
+                      <DataElementOutput>NoOutput</DataElementOutput>
+                      <CanShrink>true</CanShrink>
+                      <Top>1.35in</Top>
+                      <Width>1.65in</Width>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>10</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Left>0.2in</Left>
+                      <Height>0.2in</Height>
+                      <Value>=Code.GetLocTable("LT_Report").GetString("R.ObjectFilterLabel", "[Objects Filtered By]")</Value>
+                    </Textbox>
+                    <Image Name="parameterBottomImage">
+                      <Sizing>AutoSize</Sizing>
+                      <Top>1.65in</Top>
+                      <MIMEType />
+                      <Source>External</Source>
+                      <Style />
+                      <ZIndex>9</ZIndex>
+                      <Value>../gradient_landscape.gif</Value>
+                    </Image>
+                    <Textbox Name="textbox17">
+                      <DataElementOutput>Output</DataElementOutput>
+                      <Visibility>
+                        <Hidden>true</Hidden>
+                      </Visibility>
+                      <CanShrink>true</CanShrink>
+                      <Top>0.25in</Top>
+                      <Width>0.05in</Width>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <DataElementStyle>ElementNormal</DataElementStyle>
+                      <ZIndex>8</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Left>0.1in</Left>
+                      <DataElementName>TimeZone</DataElementName>
+                      <Height>0.2in</Height>
+                      <Value>=Parameters!TimeZoneName.Value</Value>
+                    </Textbox>
+                    <Textbox Name="textbox5">
+                      <DataElementOutput>Output</DataElementOutput>
+                      <Visibility>
+                        <Hidden>true</Hidden>
+                      </Visibility>
+                      <CanShrink>true</CanShrink>
+                      <Top>0.25in</Top>
+                      <Width>0.05in</Width>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <DataElementStyle>ElementNormal</DataElementStyle>
+                      <ZIndex>7</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Left>0.05in</Left>
+                      <DataElementName>EndDate</DataElementName>
+                      <Height>0.2in</Height>
+                      <Value>=Code.FormatDateTime("g", Code.GetReportEndDate())</Value>
+                    </Textbox>
+                    <Textbox Name="textbox6">
+                      <DataElementOutput>Output</DataElementOutput>
+                      <Visibility>
+                        <Hidden>true</Hidden>
+                      </Visibility>
+                      <CanShrink>true</CanShrink>
+                      <Top>0.25in</Top>
+                      <Width>0.05in</Width>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <DataElementStyle>ElementNormal</DataElementStyle>
+                      <ZIndex>6</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <DataElementName>StartDate</DataElementName>
+                      <Height>0.2in</Height>
+                      <Value>=Code.FormatDateTime("g", Code.GetReportStartDate())</Value>
+                    </Textbox>
+                    <Textbox Name="textbox9">
+                      <DataElementOutput>Output</DataElementOutput>
+                      <CanShrink>true</CanShrink>
+                      <Top>0.05in</Top>
+                      <Width>8.4in</Width>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <DataElementStyle>ElementNormal</DataElementStyle>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Left>1.95in</Left>
+                      <DataElementName>Created</DataElementName>
+                      <Height>0.2in</Height>
+                      <Value>=Code.FormatDateTime("g", Code.ToReportDate(DateTime.UtcNow))</Value>
+                    </Textbox>
+                    <Textbox Name="textbox7">
+                      <DataElementOutput>NoOutput</DataElementOutput>
+                      <CanShrink>true</CanShrink>
+                      <Top>0.25in</Top>
+                      <Width>0.1in</Width>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Left>1.85in</Left>
+                      <Height>0.2in</Height>
+                      <Value>:</Value>
+                    </Textbox>
+                    <Textbox Name="textbox12">
+                      <DataElementOutput>NoOutput</DataElementOutput>
+                      <CanShrink>true</CanShrink>
+                      <Top>0.05in</Top>
+                      <Width>0.1in</Width>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Left>1.85in</Left>
+                      <Height>0.2in</Height>
+                      <Value>:</Value>
+                    </Textbox>
+                    <Textbox Name="textbox22">
+                      <DataElementOutput>NoOutput</DataElementOutput>
+                      <CanShrink>true</CanShrink>
+                      <Top>0.05in</Top>
+                      <Width>1.65in</Width>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Left>0.2in</Left>
+                      <Height>0.2in</Height>
+                      <Value>=Code.GetLocTable("LT_Report").GetString("R.GeneratedTimeLabel", "[Report Generated Time Label]")</Value>
+                    </Textbox>
+                    <Textbox Name="textbox28">
+                      <DataElementOutput>NoOutput</DataElementOutput>
+                      <CanShrink>true</CanShrink>
+                      <Top>0.25in</Top>
+                      <Width>8.4in</Width>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Left>1.95in</Left>
+                      <Height>0.2in</Height>
+                      <Value>=Code.FormatString(Code.GetLocTable("LT_Report").GetString("R.StartEndTimeFormat", "{0} - {1}"), Code.FormatDateTime("g", Code.GetReportStartDate()), Code.FormatDateTime("g", Code.GetReportEndDate()))</Value>
+                    </Textbox>
+                    <Textbox Name="textbox26">
+                      <DataElementOutput>NoOutput</DataElementOutput>
+                      <CanShrink>true</CanShrink>
+                      <Top>0.25in</Top>
+                      <Width>1.65in</Width>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Left>0.2in</Left>
+                      <Height>0.2in</Height>
+                      <Value>=Code.GetLocTable("LT_Report").GetString("R.StartEndTimeLabel", "[Report Start/End Time Label]")</Value>
+                    </Textbox>
+                  </ReportItems>
+                  <Top>1.55in</Top>
+                  <Width>10.55208in</Width>
+                  <Height>1.70208in</Height>
+                </Rectangle>
+                <Textbox Name="actionLabel">
+                  <DataElementOutput>NoOutput</DataElementOutput>
+                  <Visibility>
+                    <Hidden>=IIF(Parameters!Interactive.Value,False,True)</Hidden>
+                  </Visibility>
+                  <CanShrink>true</CanShrink>
+                  <Top>3.4in</Top>
+                  <Width>1.85in</Width>
+                  <Style>
+                    <FontFamily>Tahoma</FontFamily>
+                    <FontSize>8pt</FontSize>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                    <PaddingBottom>2pt</PaddingBottom>
+                  </Style>
+                  <ZIndex>1</ZIndex>
+                  <CanGrow>true</CanGrow>
+                  <Left>0.15in</Left>
+                  <Height>0.2in</Height>
+                  <Value>=Code.GetLocTable("LT_Report").GetString("R.ActionsLabel", "[Report Actions Label]")</Value>
+                </Textbox>
+                <Matrix Name="PropertyTable">
+                  <MatrixColumns>
+                    <MatrixColumn>
+                      <Width>0.8in</Width>
+                    </MatrixColumn>
+                  </MatrixColumns>
+                  <DataElementOutput>Output</DataElementOutput>
+                  <DataSetName>PropertyTableList</DataSetName>
+                  <RowGroupings>
+                    <RowGrouping>
+                      <Width>2.1in</Width>
+                      <DynamicRows>
+                        <Grouping Name="Row">
+                          <GroupExpressions>
+                            <GroupExpression>=Fields!ManagedEntityRowId.Value</GroupExpression>
+                          </GroupExpressions>
+                          <DataElementName>Object</DataElementName>
+                          <DataCollectionName>Objects</DataCollectionName>
+                        </Grouping>
+                        <Sorting>
+                          <SortBy>
+                            <SortExpression>=Fields!DisplayName.Value</SortExpression>
+                            <Direction>Ascending</Direction>
+                          </SortBy>
+                          <SortBy>
+                            <SortExpression>=Fields!ManagedEntityDefaultName.Value</SortExpression>
+                            <Direction>Ascending</Direction>
+                          </SortBy>
+                          <SortBy>
+                            <SortExpression>=Fields!ManagementGroupDefaultName.Value</SortExpression>
+                            <Direction>Ascending</Direction>
+                          </SortBy>
+                          <SortBy>
+                            <SortExpression>=Fields!Path.Value</SortExpression>
+                            <Direction>Ascending</Direction>
+                          </SortBy>
+                        </Sorting>
+                        <ReportItems>
+                          <Rectangle Name="rectangle7">
+                            <ZIndex>1</ZIndex>
+                            <ReportItems>
+                              <Textbox Name="textbox13">
+                                <DataElementOutput>Output</DataElementOutput>
+                                <CanShrink>true</CanShrink>
+                                <Action>
+                                  <Hyperlink>=IIF(Parameters!Interactive.Value,Microsoft.EnterpriseManagement.Reporting.ConsoleIntegration.CreateConsoleViewLink(Fields!ManagementGroupGuid.Value, "Microsoft.SystemCenter.AttributesView", Fields!ManagedEntityGuid.Value),"")</Hyperlink>
+                                </Action>
+                                <Style>
+                                  <Color>Blue</Color>
+                                  <FontFamily>Tahoma</FontFamily>
+                                  <FontSize>6pt</FontSize>
+                                  <VerticalAlign>Bottom</VerticalAlign>
+                                  <PaddingLeft>2pt</PaddingLeft>
+                                  <PaddingRight>2pt</PaddingRight>
+                                  <PaddingTop>2pt</PaddingTop>
+                                  <PaddingBottom>2pt</PaddingBottom>
+                                </Style>
+                                <DataElementStyle>ElementNormal</DataElementStyle>
+                                <ZIndex>2</ZIndex>
+                                <CanGrow>true</CanGrow>
+                                <Left>0.3in</Left>
+                                <DataElementName>DisplayName1</DataElementName>
+                                <Height>0.2in</Height>
+                                <Value>=Code.FormatString(Code.GetLocTable("LT_Report").GetString("R.ObjectFormatLine1", "{0}: {1}"), Fields!DisplayName.Value, Fields!ManagedEntityDefaultName.Value)</Value>
+                              </Textbox>
+                              <Textbox Name="textbox11">
+                                <DataElementOutput>Output</DataElementOutput>
+                                <CanShrink>true</CanShrink>
+                                <Top>0.2in</Top>
+                                <Style>
+                                  <Color>DarkGray</Color>
+                                  <FontFamily>Tahoma</FontFamily>
+                                  <FontSize>6pt</FontSize>
+                                  <PaddingLeft>2pt</PaddingLeft>
+                                  <PaddingRight>2pt</PaddingRight>
+                                  <PaddingTop>2pt</PaddingTop>
+                                  <PaddingBottom>2pt</PaddingBottom>
+                                </Style>
+                                <DataElementStyle>ElementNormal</DataElementStyle>
+                                <ZIndex>1</ZIndex>
+                                <CanGrow>true</CanGrow>
+                                <Left>0.3in</Left>
+                                <DataElementName>DisplayName2</DataElementName>
+                                <Value>=Code.FormatString(Code.GetLocTable("LT_Report").GetString("R.ObjectFormatLine2", "{0} {1}"), Fields!ManagementGroupDefaultName.Value, Code.NullFormatString(Code.GetLocTable("LT_Report").GetString("R.ObjectFormatLine2Path", "| {0}"), Fields!Path.Value))</Value>
+                              </Textbox>
+                              <Image Name="image2">
+                                <Sizing>FitProportional</Sizing>
+                                <Width>0.3in</Width>
+                                <MIMEType>image/png</MIMEType>
+                                <Source>Database</Source>
+                                <Style>
+                                  <PaddingLeft>4pt</PaddingLeft>
+                                  <PaddingTop>4pt</PaddingTop>
+                                </Style>
+                                <Height>0.4in</Height>
+                                <Value>=Fields!Image.Value</Value>
+                              </Image>
+                            </ReportItems>
+                            <Style>
+                              <BorderColor>
+                                <Default>DarkGray</Default>
+                              </BorderColor>
+                              <BorderStyle>
+                                <Default>Solid</Default>
+                              </BorderStyle>
+                            </Style>
+                          </Rectangle>
+                        </ReportItems>
+                      </DynamicRows>
+                    </RowGrouping>
+                  </RowGroupings>
+                  <Top>3.75in</Top>
+                  <ColumnGroupings>
+                    <ColumnGrouping>
+                      <Height>0.4in</Height>
+                      <DynamicColumns>
+                        <Grouping Name="Property">
+                          <GroupExpressions>
+                            <GroupExpression>=Fields!PropertyGuid.Value</GroupExpression>
+                          </GroupExpressions>
+                          <DataElementName>Property</DataElementName>
+                          <DataCollectionName>Properties</DataCollectionName>
+                        </Grouping>
+                        <Sorting>
+                          <SortBy>
+                            <SortExpression>=Fields!Position.Value</SortExpression>
+                            <Direction>Ascending</Direction>
+                          </SortBy>
+                        </Sorting>
+                        <ReportItems>
+                          <Rectangle Name="rectangle6">
+                            <ZIndex>2</ZIndex>
+                            <ReportItems>
+                              <Textbox Name="PropertyDefaultName">
+                                <rd:DefaultName>PropertyDefaultName</rd:DefaultName>
+                                <Style>
+                                  <Color>White</Color>
+                                  <FontFamily>Tahoma</FontFamily>
+                                  <FontSize>6pt</FontSize>
+                                  <TextAlign>Center</TextAlign>
+                                  <PaddingLeft>2pt</PaddingLeft>
+                                  <PaddingRight>2pt</PaddingRight>
+                                  <PaddingTop>2pt</PaddingTop>
+                                  <PaddingBottom>2pt</PaddingBottom>
+                                </Style>
+                                <DataElementStyle>ElementNormal</DataElementStyle>
+                                <ZIndex>1</ZIndex>
+                                <CanGrow>true</CanGrow>
+                                <DataElementName>PropertyName</DataElementName>
+                                <Height>0.2in</Height>
+                                <Value>=Fields!PropertyDefaultName.Value</Value>
+                              </Textbox>
+                              <Textbox Name="TypeDefaultName">
+                                <DataElementOutput>Output</DataElementOutput>
+                                <Top>0.2in</Top>
+                                <Style>
+                                  <Color>LightGrey</Color>
+                                  <FontFamily>Tahoma</FontFamily>
+                                  <FontSize>5.5pt</FontSize>
+                                  <TextAlign>Center</TextAlign>
+                                  <PaddingLeft>2pt</PaddingLeft>
+                                  <PaddingRight>2pt</PaddingRight>
+                                  <PaddingTop>2pt</PaddingTop>
+                                  <PaddingBottom>2pt</PaddingBottom>
+                                </Style>
+                                <DataElementStyle>ElementNormal</DataElementStyle>
+                                <CanGrow>true</CanGrow>
+                                <DataElementName>TypeName</DataElementName>
+                                <Value>=Fields!PropertyTypeDefaultName.Value</Value>
+                              </Textbox>
+                            </ReportItems>
+                            <Style>
+                              <BackgroundColor>Gray</BackgroundColor>
+                              <BorderColor>
+                                <Default>DimGray</Default>
+                              </BorderColor>
+                              <BorderStyle>
+                                <Default>Solid</Default>
+                              </BorderStyle>
+                            </Style>
+                          </Rectangle>
+                        </ReportItems>
+                      </DynamicColumns>
+                    </ColumnGrouping>
+                  </ColumnGroupings>
+                  <Width>2.9in</Width>
+                  <Corner>
+                    <ReportItems>
+                      <Textbox Name="ObjectTableTitle">
+                        <DataElementOutput>NoOutput</DataElementOutput>
+                        <Style>
+                          <Color>White</Color>
+                          <BackgroundColor>Gray</BackgroundColor>
+                          <BorderColor>
+                            <Default>DimGray</Default>
+                          </BorderColor>
+                          <BorderStyle>
+                            <Default>Solid</Default>
+                          </BorderStyle>
+                          <FontFamily>Tahoma</FontFamily>
+                          <FontSize>6pt</FontSize>
+                          <TextAlign>Center</TextAlign>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                        <ZIndex>3</ZIndex>
+                        <CanGrow>true</CanGrow>
+                        <UserSort>
+                          <SortExpression>=Fields!DisplayName.Value + Fields!ManagedEntityDefaultName.Value + Fields!ManagementGroupDefaultName.Value + Fields!Path.Value</SortExpression>
+                          <SortExpressionScope>Row</SortExpressionScope>
+                        </UserSort>
+                        <Value>=Code.GetLocTable("LT_Table").GetString("RT.Column.ObjectLabel", "[Objects]")</Value>
+                      </Textbox>
+                    </ReportItems>
+                  </Corner>
+                  <CellDataElementName>PropertyValue</CellDataElementName>
+                  <MatrixRows>
+                    <MatrixRow>
+                      <Height>0.40208in</Height>
+                      <MatrixCells>
+                        <MatrixCell>
+                          <ReportItems>
+                            <Textbox Name="PropertyValue">
+                              <rd:DefaultName>PropertyValue</rd:DefaultName>
+                              <DataElementOutput>Output</DataElementOutput>
+                              <Style>
+                                <BackgroundColor>=IIF(IsNothing(First(Fields!PropertyValue.Value)),"WhiteSmoke","Transparent")</BackgroundColor>
+                                <BorderColor>
+                                  <Default>DarkGray</Default>
+                                </BorderColor>
+                                <BorderStyle>
+                                  <Default>Solid</Default>
+                                </BorderStyle>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>6pt</FontSize>
+                                <TextAlign>Left</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                              <DataElementStyle>ElementNormal</DataElementStyle>
+                              <CanGrow>true</CanGrow>
+                              <DataElementName>Value</DataElementName>
+                              <Value>=Fields!PropertyValue.Value</Value>
+                            </Textbox>
+                          </ReportItems>
+                        </MatrixCell>
+                      </MatrixCells>
+                    </MatrixRow>
+                  </MatrixRows>
+                  <Height>0.80208in</Height>
+                  <Left>0.15in</Left>
+                </Matrix>
+              </ReportItems>
+              <Height>5.11042in</Height>
+            </Body>
+            <Language>en-US</Language>
+            <PageFooter>
+              <PrintOnFirstPage>true</PrintOnFirstPage>
+              <ReportItems>
+                <Textbox Name="textbox8">
+                  <Top>0.1in</Top>
+                  <Width>1.7in</Width>
+                  <Style>
+                    <Color>DimGray</Color>
+                    <FontFamily>Tahoma</FontFamily>
+                    <FontSize>8pt</FontSize>
+                    <TextAlign>Right</TextAlign>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                    <PaddingBottom>2pt</PaddingBottom>
+                  </Style>
+                  <ZIndex>1</ZIndex>
+                  <CanGrow>true</CanGrow>
+                  <Left>8.95in</Left>
+                  <Height>0.1875in</Height>
+                  <Value>=string.Format(Code.GetLocTable("LT_Report").GetString("R.PageFormat", "{0}/{1}"), Globals!PageNumber, Globals!TotalPages)</Value>
+                </Textbox>
+                <Textbox Name="textbox37">
+                  <Top>0.1in</Top>
+                  <Width>8.75in</Width>
+                  <Style>
+                    <Color>DimGray</Color>
+                    <FontFamily>Tahoma</FontFamily>
+                    <FontSize>8pt</FontSize>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                    <PaddingBottom>2pt</PaddingBottom>
+                  </Style>
+                  <CanGrow>true</CanGrow>
+                  <Left>0.15in</Left>
+                  <Height>0.1875in</Height>
+                  <Value>=string.Format(Code.GetLocTable("LT_Report").GetString("R.TimeZoneFormat", "{0}"), Parameters!TimeZoneName.Value)</Value>
+                </Textbox>
+              </ReportItems>
+              <Height>0.35in</Height>
+              <PrintOnLastPage>true</PrintOnLastPage>
+            </PageFooter>
+            <PageHeight>8.5in</PageHeight>
+          </Report>
+   

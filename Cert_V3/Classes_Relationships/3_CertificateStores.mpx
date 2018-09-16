@@ -1,0 +1,135 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.CertificateStore" Accessibility="Public" Abstract="false" Base="SystemCenterCentral.Utilities.Certificates.ApplicationComponent" Hosted="true" Singleton="false">
+          <Property ID="CertStoreName" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="CertStoreID" Type="string" Key="true" CaseSensitive="false" MinLength="0" />
+          <Property ID="StoreProvider" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="StoreType" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+           <Property ID="Sync" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <!-- added properties that can be used to override the frequency of discoveries and monitors -->
+          <Property ID="ChildScriptTimeout" Type="int" Key="false" />
+          <Property ID="ChildDiscoveryInterval" Type="int" Key="false" />
+          <Property ID="ChildMonitorInterval" Type="int" Key="false" />
+          <!-- 1.2: Verification flags added-->
+          <Property ID="RevocationFlag" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="RevocationMode" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="VerificationFlags" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <!-- 1.2.0.400: additional disocvery filters -->
+          <Property ID="SubjectIncludeRegEx" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="IssuerIncludeRegEx" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="SubjectExcludeRegEx" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="IssuerExcludeRegEx" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+           <Property ID="EnhKeyUseIncludeRegEx" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="EnhKeyUseExcludeRegEx" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="TemplateIncludeRegEx" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="TemplateExcludeRegEx" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+
+
+        </ClassType>
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore" Accessibility="Public" Abstract="false" Base="SystemCenterCentral.Utilities.Certificates.CertificateStore" Hosted="true" Singleton="false" />
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry" Accessibility="Public" Abstract="false" Base="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore" Hosted="true" Singleton="false" />
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.SmartCard" Accessibility="Public" Abstract="false" Base="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore" Hosted="true" Singleton="false" />
+
+      </ClassTypes>
+      <RelationshipTypes>
+        <RelationshipType ID="Microsoft.Windows.Computer.Hosts.SystemCenterCentral.Utilities.Certificates.CertificateStore" Accessibility="Public" Abstract="false" Base="System!System.Hosting">
+          <Source ID="Source" MinCardinality="0" MaxCardinality="2147483647" Type="Windows!Microsoft.Windows.Computer" />
+          <Target ID="Target" MinCardinality="0" MaxCardinality="2147483647" Type="SystemCenterCentral.Utilities.Certificates.CertificateStore" />
+        </RelationshipType>
+      </RelationshipTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore">
+          <Name>Certificate Store</Name>
+          <Description>Certificate store class</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="CertStoreID">
+          <Name>Access Key</Name>
+          <Description>Key property</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="StoreProvider">
+          <Name>Provider</Name>
+          <Description>System / File / LDAP</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="StoreType">
+          <Name>Type</Name>
+          <Description>LocalMachine / CurrentUser / Services / Users</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="CertStoreName">
+          <Name>Store Name</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="Sync">
+          <Name> - (legacy property) - </Name>
+        </DisplayString>
+		  <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="ChildMonitorInterval">
+			  <Name>Certificate Monitor Interval</Name>
+		  </DisplayString>
+		  <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="ChildDiscoveryInterval">
+			  <Name>Certificate Discovery Interval</Name>
+		  </DisplayString>
+		  <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="ChildScriptTimeout">
+			  <Name>Certificate Script Timeout</Name>
+		  </DisplayString>
+
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="RevocationFlag">
+          <Name>Certificate Monitor RevocationFlag</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="RevocationMode">
+          <Name>Certificate Monitor RevocationMode</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="VerificationFlags">
+          <Name>Certificate Monitor VerificationFlags</Name>
+        </DisplayString>
+
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="SubjectIncludeRegEx">
+          <Name>Subject Filter (Include)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="IssuerIncludeRegEx">
+          <Name>Issuer Filter (Include)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="SubjectExcludeRegEx">
+          <Name>Subject Filter (Exclude)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="IssuerExcludeRegEx">
+          <Name>Issuer Filter (Exclude)</Name>
+        </DisplayString>
+         <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="EnhKeyUseIncludeRegEx">
+          <Name>Enhanced Key Usage OID Filter (Include)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="EnhKeyUseExcludeRegEx">
+          <Name>Enhanced Key Usage OID Filter (Exclude)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="TemplateIncludeRegEx">
+          <Name>Certificate Template Filter (Include)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="TemplateExcludeRegEx">
+          <Name>Certificate Template Filter (Exclude)</Name>
+        </DisplayString>
+        
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore">
+          <Name>Certificate Store (Local)</Name>
+          <Description>Specialized certificate store class (locally on the server)</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry">
+          <Name>Certificate Store (Registry)</Name>
+          <Description>Specialized certificate store class (in local registry)</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.SmartCard">
+          <Name>Certificate Store (SmartCard)</Name>
+          <Description>Specialized certificate store class (on locally connected SmartCard)</Description>
+        </DisplayString>
+
+        <DisplayString ElementID="Microsoft.Windows.Computer.Hosts.SystemCenterCentral.Utilities.Certificates.CertificateStore">
+          <Name>Windows Computer hosts Certificate Store</Name>
+        </DisplayString>
+
+
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

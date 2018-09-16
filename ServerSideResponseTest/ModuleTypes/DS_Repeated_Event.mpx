@@ -1,0 +1,41 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <ModuleTypes>
+      <DataSourceModuleType ID="SystemCenterCentral.Utilities.Certificates.ServerSideTest.RepeatedEvent.DataSource" Accessibility="Internal" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>System!System.ExpressionEvaluatorSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element name="ComputerName" type="xsd:string" />
+          <xsd:element name="LogName" type="xsd:string" />
+          <xsd:element name="Expression" type="ExpressionType" />
+          <xsd:element name="Consolidator" type="ConsolidatorType" />
+        </Configuration>
+        <ModuleImplementation>
+          <Composite>
+            <MemberModules>
+              <DataSource TypeID="Windows!Microsoft.Windows.BaseEventProvider" ID="EventRepeatDS">
+                <ComputerName>$Config/ComputerName$</ComputerName>
+                <LogName>$Config/LogName$</LogName>
+              </DataSource>
+              <ConditionDetection TypeID="System!System.ExpressionFilter" ID="RepeatedFilterCondition">
+                <Expression>$Config/Expression$</Expression>
+              </ConditionDetection>
+              <ConditionDetection TypeID="System!System.ConsolidatorCondition" ID="RepeatedDataCondition">
+                <Consolidator>$Config/Consolidator$</Consolidator>
+              </ConditionDetection>
+            </MemberModules>
+            <Composition>
+              <Node ID="RepeatedDataCondition">
+                <Node ID="RepeatedFilterCondition">
+                  <Node ID="EventRepeatDS" />
+                </Node>
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.ConsolidatorData</OutputType>
+      </DataSourceModuleType>
+    </ModuleTypes>
+  </TypeDefinitions>
+</ManagementPackFragment>

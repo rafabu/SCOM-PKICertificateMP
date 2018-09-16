@@ -1,0 +1,155 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Rules>
+      <Rule ID="SystemCenterCentral.Utilities.Certificates.ServerSideTest.TriggerTestEvent.Rule" Target="Cert_V3!SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry" ConfirmDelivery="false" Enabled="true" Remotable="false">
+        <Category>EventCollection</Category>
+        <DataSources>
+          <DataSource ID="RepeatedEventCollection" TypeID="SystemCenterCentral.Utilities.Certificates.ServerSideTest.RepeatedEvent.DataSource">
+            <ComputerName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+            <LogName>Operations Manager</LogName>
+            <Expression>
+              <And>
+                <Expression>
+                  <SimpleExpression>
+                    <ValueExpression>
+                      <XPathQuery Type="String">PublisherName</XPathQuery>
+                    </ValueExpression>
+                    <Operator>Equal</Operator>
+                    <ValueExpression>
+                      <Value Type="String">Health Service Script</Value>
+                    </ValueExpression>
+                  </SimpleExpression>
+                </Expression>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="UnsignedInteger">EventDisplayNumber</XPathQuery>
+                  </ValueExpression>
+                  <Operator>MatchesRegularExpression</Operator>
+                  <Pattern>^(121|122|123|124|127)$</Pattern>
+                </RegExExpression>
+              </Expression>
+                <Expression>
+                  <Or>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Params/Param[2]</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="String">Certificate_Handling_Script_V3.ps1</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+                    <Expression>
+                      <SimpleExpression>
+                        <ValueExpression>
+                          <XPathQuery Type="String">Params/Param[2]</XPathQuery>
+                        </ValueExpression>
+                        <Operator>Equal</Operator>
+                        <ValueExpression>
+                          <Value Type="String">Certificate_DiscoveryDemand_Script_V1.ps1</Value>
+                        </ValueExpression>
+                      </SimpleExpression>
+                    </Expression>
+                  </Or>
+                </Expression>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Params/Param[4]</XPathQuery>
+                  </ValueExpression>
+                  <Operator>MatchesRegularExpression</Operator>
+                  <Pattern>$Target/Property[Type="Cert_V3!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</Pattern>
+                </RegExExpression>
+              </Expression>
+              </And>
+            </Expression>
+            <Consolidator>
+              <ConsolidationProperties />
+              <TimeControl>
+                <!-- wait for delayed events -->
+                <Latency>10</Latency>
+                <!-- don't wait for backlogged items -->
+                <DrainWait>0</DrainWait>
+                <WithinTimeSchedule>
+                  <!-- don't call script more than once every 10 seconds -->
+                  <Interval>10</Interval>
+                </WithinTimeSchedule>
+              </TimeControl>
+              <!-- output only after the latency has passed -->
+              <!--     will output any input item (if any) that has happened -->
+              <CountingCondition>
+                <CountMode>OnNewItemNOP_OnTimerOutputRestart</CountMode>
+              </CountingCondition>
+            </Consolidator>
+          </DataSource>
+        </DataSources>
+        <WriteActions>
+          <!--
+          <WriteAction ID="Target" TypeID="Windows!Microsoft.Windows.ScriptWriteAction">
+            <ScriptName>SystemCenterCentral.Utilities.Certificates.ServerSideTest.TriggerTestEvent.vbs</ScriptName>
+            <Arguments>9990 Target "$Data/Context/DataItem/Params/Param[3]$" "$Data/Context/DataItem/Params/Param[4]$"</Arguments>
+            <ScriptBody>$IncludeFileContent/Scripts/TriggerTestEvent.vbs$</ScriptBody>
+            <TimeoutSeconds>300</TimeoutSeconds>
+          </WriteAction>
+         
+          <WriteAction ID="ManagementServer" TypeID="Windows!Microsoft.Windows.ScriptWriteAction" Target="SC!Microsoft.SystemCenter.ManagementServer">
+            <ScriptName>SystemCenterCentral.Utilities.Certificates.ServerSideTest.TriggerTestEvent.vbs</ScriptName>
+            <Arguments>9991 ManagementServer "$Data/Context/DataItem/Params/Param[3]$" "$Data/Context/DataItem/Params/Param[4]$"</Arguments>
+            <ScriptBody>$IncludeFileContent/Scripts/TriggerTestEvent.vbs$</ScriptBody>
+            <TimeoutSeconds>300</TimeoutSeconds>
+          </WriteAction>
+          -->
+          <WriteAction ID="CollectionManagementServer" TypeID="Windows!Microsoft.Windows.ScriptWriteAction" Target="SC!Microsoft.SystemCenter.CollectionManagementServer">
+            <ScriptName>SystemCenterCentral.Utilities.Certificates.ServerSideTest.TriggerTestEvent.vbs</ScriptName>
+            <Arguments>9992 CollectionManagementServer "$Data/Context/DataItem/Params/Param[3]$" "$Data/Context/DataItem/Params/Param[4]$"</Arguments>
+            <ScriptBody>$IncludeFileContent/Scripts/TriggerTestEvent.vbs$</ScriptBody>
+            <TimeoutSeconds>300</TimeoutSeconds>
+          </WriteAction>
+          <!--
+          <WriteAction ID="GatewayManagementServer" TypeID="Windows!Microsoft.Windows.ScriptWriteAction" Target="SC!Microsoft.SystemCenter.GatewayManagementServer">
+            <ScriptName>SystemCenterCentral.Utilities.Certificates.ServerSideTest.TriggerTestEvent.vbs</ScriptName>
+            <Arguments>9993 GatewayManagementServer "$Data/Context/DataItem/Params/Param[3]$" "$Data/Context/DataItem/Params/Param[4]$"</Arguments>
+            <ScriptBody>$IncludeFileContent/Scripts/TriggerTestEvent.vbs$</ScriptBody>
+            <TimeoutSeconds>300</TimeoutSeconds>
+          </WriteAction>
+          
+          <WriteAction ID="HealthServiceWatcher" TypeID="Windows!Microsoft.Windows.ScriptWriteAction" Target="SC!Microsoft.SystemCenter.HealthServiceWatcher">
+            <ScriptName>SystemCenterCentral.Utilities.Certificates.ServerSideTest.TriggerTestEvent.vbs</ScriptName>
+            <Arguments>9994 HealthServiceWatcher "$Data/Context/DataItem/Params/Param[3]$" "$Data/Context/DataItem/Params/Param[4]$"</Arguments>
+            <ScriptBody>$IncludeFileContent/Scripts/TriggerTestEvent.vbs$</ScriptBody>
+            <TimeoutSeconds>300</TimeoutSeconds>
+          </WriteAction>
+          
+          <WriteAction ID="RootManagementServer" TypeID="Windows!Microsoft.Windows.ScriptWriteAction" Target="SC!Microsoft.SystemCenter.RootManagementServer">
+            <ScriptName>SystemCenterCentral.Utilities.Certificates.ServerSideTest.TriggerTestEvent.vbs</ScriptName>
+            <Arguments>9995 RootManagementServer "$Data/Context/DataItem/Params/Param[3]$" "$Data/Context/DataItem/Params/Param[4]$"</Arguments>
+            <ScriptBody>$IncludeFileContent/Scripts/TriggerTestEvent.vbs$</ScriptBody>
+            <TimeoutSeconds>300</TimeoutSeconds>
+          </WriteAction>
+        
+          <WriteAction ID="ComputerGroup" TypeID="Windows!Microsoft.Windows.ScriptWriteAction" Target="WindowsServer!Microsoft.Windows.Server.ComputerGroup">
+            <ScriptName>SystemCenterCentral.Utilities.Certificates.ServerSideTest.TriggerTestEvent.vbs</ScriptName>
+            <Arguments>9996 ComputerGroup "$Data/Context/DataItem/Params/Param[3]$" "$Data/Context/DataItem/Params/Param[4]$"</Arguments>
+            <ScriptBody>$IncludeFileContent/Scripts/TriggerTestEvent.vbs$</ScriptBody>
+            <TimeoutSeconds>300</TimeoutSeconds>
+          </WriteAction>
+           -->
+        </WriteActions>
+      </Rule>
+    </Rules>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ServerSideTest.TriggerTestEvent.Rule">
+          <Name>Trigger test events for Server-Side WriteAction target verification</Name>
+          <Description>Rule will write test events on server-side writeactions</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+  
+</ManagementPackFragment>

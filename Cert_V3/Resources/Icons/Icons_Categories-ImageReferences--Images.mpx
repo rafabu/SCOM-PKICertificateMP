@@ -1,0 +1,80 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Categories>
+      <Category ID="SystemCenterCentral.Utilities.Certificates.CertCRLGroup.Image16.Category" Target="SystemCenterCentral.Utilities.Certificates.CertCRLGroup.Image16" Value="System!System.Internal.ManagementPack.Images.u16x16Icon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.CertCRLGroup.Image80.Category" Target="SystemCenterCentral.Utilities.Certificates.CertCRLGroup.Image80" Value="System!System.Internal.ManagementPack.Images.DiagramIcon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.Components.Image16.Category" Target="SystemCenterCentral.Utilities.Certificates.Components.Image16" Value="System!System.Internal.ManagementPack.Images.u16x16Icon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.Components.Image80.Category" Target="SystemCenterCentral.Utilities.Certificates.Components.Image80" Value="System!System.Internal.ManagementPack.Images.DiagramIcon" />
+       <Category ID="SystemCenterCentral.Utilities.Certificates.SoonToExpireCertGroup.Image16.Category" Target="SystemCenterCentral.Utilities.Certificates.SoonToExpireCertGroup.Image16" Value="System!System.Internal.ManagementPack.Images.u16x16Icon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.SoonToExpireCertGroup.Image80.Category" Target="SystemCenterCentral.Utilities.Certificates.SoonToExpireCertGroup.Image80" Value="System!System.Internal.ManagementPack.Images.DiagramIcon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.InvalidCertGroup.Image16.Category" Target="SystemCenterCentral.Utilities.Certificates.InvalidCertGroup.Image16" Value="System!System.Internal.ManagementPack.Images.u16x16Icon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.InvalidCertGroup.Image80.Category" Target="SystemCenterCentral.Utilities.Certificates.InvalidCertGroup.Image80" Value="System!System.Internal.ManagementPack.Images.DiagramIcon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.ValidCertGroup.Image16.Category" Target="SystemCenterCentral.Utilities.Certificates.ValidCertGroup.Image16" Value="System!System.Internal.ManagementPack.Images.u16x16Icon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.ValidCertGroup.Image80.Category" Target="SystemCenterCentral.Utilities.Certificates.ValidCertGroup.Image80" Value="System!System.Internal.ManagementPack.Images.DiagramIcon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.Certificate.Image16.Category" Target="SystemCenterCentral.Utilities.Certificates.Certificate.Image16" Value="System!System.Internal.ManagementPack.Images.u16x16Icon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.Certificate.Image80.Category" Target="SystemCenterCentral.Utilities.Certificates.Certificate.Image80" Value="System!System.Internal.ManagementPack.Images.DiagramIcon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.CertStore.Image16.Category" Target="SystemCenterCentral.Utilities.Certificates.CertStore.Image16" Value="System!System.Internal.ManagementPack.Images.u16x16Icon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.CertStore.Image80.Category" Target="SystemCenterCentral.Utilities.Certificates.CertStore.Image80" Value="System!System.Internal.ManagementPack.Images.DiagramIcon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.CRL.Image16.Category" Target="SystemCenterCentral.Utilities.Certificates.CRL.Image16" Value="System!System.Internal.ManagementPack.Images.u16x16Icon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.CRL.Image80.Category" Target="SystemCenterCentral.Utilities.Certificates.CRL.Image80" Value="System!System.Internal.ManagementPack.Images.DiagramIcon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.CurrentCRLGroup.Image16.Category" Target="SystemCenterCentral.Utilities.Certificates.CurrentCRLGroup.Image16" Value="System!System.Internal.ManagementPack.Images.u16x16Icon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.CurrentCRLGroup.Image80.Category" Target="SystemCenterCentral.Utilities.Certificates.CurrentCRLGroup.Image80" Value="System!System.Internal.ManagementPack.Images.DiagramIcon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.NotUpdatedCRLGroup.Image16.Category" Target="SystemCenterCentral.Utilities.Certificates.NotUpdatedCRLGroup.Image16" Value="System!System.Internal.ManagementPack.Images.u16x16Icon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.NotUpdatedCRLGroup.Image80.Category" Target="SystemCenterCentral.Utilities.Certificates.NotUpdatedCRLGroup.Image80" Value="System!System.Internal.ManagementPack.Images.DiagramIcon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.RootCertificate.Image16.Category" Target="SystemCenterCentral.Utilities.Certificates.RootCertificate.Image16" Value="System!System.Internal.ManagementPack.Images.u16x16Icon" />
+      <Category ID="SystemCenterCentral.Utilities.Certificates.RootCertificate.Image80.Category" Target="SystemCenterCentral.Utilities.Certificates.RootCertificate.Image80" Value="System!System.Internal.ManagementPack.Images.DiagramIcon" />
+    </Categories>
+  <Presentation>
+    <ImageReferences>
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.ApplicationComponent" ImageID="SystemCenterCentral.Utilities.Certificates.Components.Image16" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.ApplicationComponent" ImageID="SystemCenterCentral.Utilities.Certificates.Components.Image80" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.CertCRLGroup" ImageID="SystemCenterCentral.Utilities.Certificates.CertCRLGroup.Image16" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.CertCRLGroup" ImageID="SystemCenterCentral.Utilities.Certificates.CertCRLGroup.Image80" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" ImageID="SystemCenterCentral.Utilities.Certificates.Certificate.Image80" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" ImageID="SystemCenterCentral.Utilities.Certificates.Certificate.Image16" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" ImageID="SystemCenterCentral.Utilities.Certificates.CertStore.Image16" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" ImageID="SystemCenterCentral.Utilities.Certificates.CertStore.Image80" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.CRL" ImageID="SystemCenterCentral.Utilities.Certificates.CRL.Image16" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.CRL" ImageID="SystemCenterCentral.Utilities.Certificates.CRL.Image80" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.CurrentCRLsGroup" ImageID="SystemCenterCentral.Utilities.Certificates.CurrentCRLGroup.Image16" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.CurrentCRLsGroup" ImageID="SystemCenterCentral.Utilities.Certificates.CurrentCRLGroup.Image80" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.ExpiredCertificatesGroup" ImageID="SystemCenterCentral.Utilities.Certificates.InvalidCertGroup.Image16" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.ExpiredCertificatesGroup" ImageID="SystemCenterCentral.Utilities.Certificates.InvalidCertGroup.Image80" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.InvalidCertificatesGroup" ImageID="SystemCenterCentral.Utilities.Certificates.InvalidCertGroup.Image16" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.InvalidCertificatesGroup" ImageID="SystemCenterCentral.Utilities.Certificates.InvalidCertGroup.Image80" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.NonRootCertificate" ImageID="SystemCenterCentral.Utilities.Certificates.Certificate.Image16" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.NonRootCertificate" ImageID="SystemCenterCentral.Utilities.Certificates.Certificate.Image80" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.NotUpdatedCRLsGroup" ImageID="SystemCenterCentral.Utilities.Certificates.NotUpdatedCRLGroup.Image16" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.NotUpdatedCRLsGroup" ImageID="SystemCenterCentral.Utilities.Certificates.NotUpdatedCRLGroup.Image80" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.RootCertificate" ImageID="SystemCenterCentral.Utilities.Certificates.RootCertificate.Image16" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.RootCertificate" ImageID="SystemCenterCentral.Utilities.Certificates.RootCertificate.Image80" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.SoonToExpireCertificatesGroup" ImageID="SystemCenterCentral.Utilities.Certificates.SoonToExpireCertGroup.Image16" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.SoonToExpireCertificatesGroup" ImageID="SystemCenterCentral.Utilities.Certificates.SoonToExpireCertGroup.Image80" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.ValidCertificatesGroup" ImageID="SystemCenterCentral.Utilities.Certificates.ValidCertGroup.Image16" />
+      <ImageReference ElementID="SystemCenterCentral.Utilities.Certificates.ValidCertificatesGroup" ImageID="SystemCenterCentral.Utilities.Certificates.ValidCertGroup.Image80" />
+    </ImageReferences>
+  </Presentation>
+    <Resources>
+      <Image ID="SystemCenterCentral.Utilities.Certificates.CertCRLGroup.Image16" Accessibility="Internal" FileName="Cert_and_CRL_Group_16.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.CertCRLGroup.Image80" Accessibility="Internal" FileName="Cert_and_CRL_Group_80.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.Components.Image16" Accessibility="Internal" FileName="Cert_Component_16.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.Components.Image80" Accessibility="Internal" FileName="Cert_Component_80.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.SoonToExpireCertGroup.Image16" Accessibility="Internal" FileName="Cert_Expire_Group_16.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.SoonToExpireCertGroup.Image80" Accessibility="Internal" FileName="Cert_Expire_Group_80.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.InvalidCertGroup.Image16" Accessibility="Internal" FileName="Cert_Invalid_Group_16.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.InvalidCertGroup.Image80" Accessibility="Internal" FileName="Cert_Invalid_Group_80.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.ValidCertGroup.Image16" Accessibility="Internal" FileName="Cert_Valid_Group_16.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.ValidCertGroup.Image80" Accessibility="Internal" FileName="Cert_Valid_Group_80.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.Certificate.Image16" Accessibility="Internal" FileName="Certificate_16.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.Certificate.Image80" Accessibility="Internal" FileName="Certificate_80.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.CRL.Image16" Accessibility="Internal" FileName="CRL_16.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.CRL.Image80" Accessibility="Internal" FileName="CRL_80.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.CertStore.Image16" Accessibility="Internal" FileName="Certificate_Store_16.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.CertStore.Image80" Accessibility="Internal" FileName="Certificate_Store_80.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.CurrentCRLGroup.Image16" Accessibility="Internal" FileName="CRL_Current_Group_16.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.CurrentCRLGroup.Image80" Accessibility="Internal" FileName="CRL_Current_Group_80.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.NotUpdatedCRLGroup.Image16" Accessibility="Internal" FileName="CRL_NotCurrent_Group_16.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.NotUpdatedCRLGroup.Image80" Accessibility="Internal" FileName="CRL_NotCurrent_Group_80.png" HasNullStream="false" />
+    <Image ID="SystemCenterCentral.Utilities.Certificates.RootCertificate.Image16" Accessibility="Internal" FileName="Root_Certificate_16.png" HasNullStream="false" />
+      <Image ID="SystemCenterCentral.Utilities.Certificates.RootCertificate.Image80" Accessibility="Internal" FileName="Root_Certificate_80.png" HasNullStream="false" />
+    </Resources>
+</ManagementPackFragment>

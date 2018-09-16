@@ -1,0 +1,153 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+            <ClassType ID="SystemCenterCentral.Utilities.Certificates.Certificate" Accessibility="Public" Abstract="false" Base="SystemCenterCentral.Utilities.Certificates.ApplicationComponent" Hosted="true" Singleton="false">
+          <Property ID="CertIssuedTo" Type="string" Key="false" CaseSensitive="false" MinLength="0" MaxLength="512"/>
+          <Property ID="SubjectAlternativeNameList" Type="string" Key="false" CaseSensitive="false" MinLength="0" MaxLength="4096"/>
+          <Property ID="CertIssuedBy" Type="string" Key="false" CaseSensitive="false" MinLength="0" MaxLength="512"/>
+          <Property ID="CertValidFrom" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="CertValidTo" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="CertVersion" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+			<!-- 1.0.1.0: changing property name to break upgrade path                                          -->
+			<!--          need to make sure people don't upgrade directly as there might be issues causing the -->
+			<!--          env to become stale                                                                   -->
+			<!--          choosing a property that hopefully no one has used to build groups or the like        -->
+			<!-- <Property ID="CertSigAlg" Type="string" Key="false" CaseSensitive="false" Length="256" MinLength="0" />  -->
+			    <Property ID="CertSignatureAlgo" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="CertPublicKey" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="CertPrivateKey" Type="bool" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="CertFriendlyName" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="CertThumbprint" Type="string" Key="true" CaseSensitive="false" MinLength="0" />
+          <Property ID="CertSerial" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="CertStatus" Type="string" Key="false" CaseSensitive="false" MinLength="0" MaxLength="4096"/>
+              <!--    1.2.0.0: added to make it easier to build valid groups -->
+              <Property ID="CertTimeStatus" Type="string" Key="false" CaseSensitive="false" MinLength="0" MaxLength="4096"/>
+              <Property ID="CertStore" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="CertExpiresWithin31Days" Type="bool" Key="false" CaseSensitive="false" MinLength="0" />
+			<!-- 1.0.1.0: Adding property CA Version -->
+			<!--     if it has a value, indicates, that this certificate has 2.5.29.19 - Basic Constraints set to True -->
+			<!--     This extension consist of two values: CA Certificate Index and CA Key Index                       -->
+			    <Property ID="CAVersion" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+			<!-- 1.0.1.0: set to true if this certificate is the latest (by CA Version) CA certificate in store        -->
+			<!--     will be used to group previous certificates and disable expiry monitoring for them                -->
+			<!--
+			    <Property ID="CACertIsCurrent" Type="bool" Key="false" />
+			-->
+          <!-- 1.2.2.0: added Microsoft template name as a property (used on autoenrollment certificates) -->
+          <Property ID="TemplateName" Type="string" Key="false" CaseSensitive="false" MinLength="0" MaxLength="1024"/>
+          <!-- 1.4.0.0: added -->
+          <Property ID="EnhancedKeyUsageList" Type="string" Key="false" CaseSensitive="false" MinLength="0" MaxLength="4096"/>
+          
+              
+		</ClassType>
+        <!-- this is used for "normal", CA issued certificates -->
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.NonRootCertificate" Accessibility="Public" Abstract="false" Base="SystemCenterCentral.Utilities.Certificates.Certificate" Hosted="true" Singleton="false" />
+        <!-- class for CA certificates (note: ID RootCertificate is due to backward compatibility -->
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.RootCertificate" Accessibility="Public" Abstract="false" Base="SystemCenterCentral.Utilities.Certificates.Certificate" Hosted="true" Singleton="false" />
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.SelfSignedCertificate" Accessibility="Public" Abstract="false" Base="SystemCenterCentral.Utilities.Certificates.Certificate" Hosted="true" Singleton="false" />
+
+      </ClassTypes>
+      <RelationshipTypes>
+        <RelationshipType ID="SystemCenterCentral.Utilities.Certificates.CertificateStore.Hosts.SystemCenterCentral.Utilities.Certificates.Certificate" Accessibility="Public" Abstract="false" Base="System!System.Hosting">
+          <Source ID="Source" MinCardinality="0" MaxCardinality="2147483647" Type="SystemCenterCentral.Utilities.Certificates.CertificateStore" />
+          <Target ID="Target" MinCardinality="0" MaxCardinality="2147483647" Type="SystemCenterCentral.Utilities.Certificates.Certificate" />
+        </RelationshipType>
+      </RelationshipTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate">
+          <Name>Certificate</Name>
+          <Description>Certificate class</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="CAVersion">
+          <Name>CA Certificate Version</Name>
+          <Description>CA Certificate Index &amp; CA Certificate Key Index</Description>
+        </DisplayString>
+        <!--
+		  <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="CACertIsCurrent">
+			  <Name>Is Current CA Certificate</Name>
+		  </DisplayString>
+		  -->
+
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="CertExpiresWithin31Days">
+          <Name>Expires Soon Flag</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="CertFriendlyName">
+          <Name>Friendly Name</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="CertIssuedBy">
+          <Name>Issuer</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="CertIssuedTo">
+          <Name>Subject</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="CertPrivateKey">
+          <Name>Private Key present</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="CertPublicKey">
+          <Name>Public Key Type</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="CertSerial">
+          <Name>Serial N°</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="CertSignatureAlgo">
+          <Name>Signature Algorithm</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="CertStatus">
+          <Name>Status (Validity)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="CertTimeStatus">
+          <Name>Status (Time)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="CertStore">
+          <Name>Certificate Store</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="CertThumbprint">
+          <Name>Thumbprint</Name>
+          <Description>Key property</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="CertValidFrom">
+          <Name>Valid from (UTC)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="CertValidTo">
+          <Name>Valid to (UTC)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="CertVersion">
+          <Name>Version</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="TemplateName">
+          <Name>Template Name</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="EnhancedKeyUsageList">
+          <Name>EKU List</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate" SubElementID="SubjectAlternativeNameList">
+          <Name>SAN List</Name>
+        </DisplayString>
+
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.NonRootCertificate">
+          <Name>Certificate (CA signed)</Name>
+          <Description>Specialized class (non-root certificate)</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.RootCertificate">
+          <Name>Certificate (CA cert)</Name>
+          <Description>Specialized class (CertificateAuthority extension set)</Description>
+        </DisplayString>
+
+         <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.SelfSignedCertificate">
+          <Name>Certificate (self signed)</Name>
+          <Description>Specialized class (Subject and Issuer are identical, yet it is no CA certificate)</Description>
+        </DisplayString>
+
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore.Hosts.SystemCenterCentral.Utilities.Certificates.Certificate">
+          <Name>Certificate store hosts Certificate</Name>
+        </DisplayString>
+        
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

@@ -1,0 +1,7 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Resources>
+      <ReportResource ID="Res.CustomConfigurationReport" Accessibility="Internal" FileName="CustomConfigurationReport.rdl" HasNullStream="false" MIMEType="text/rdl" />
+      <ReportResource ID="Res.CustomGroupConfigurationReport" Accessibility="Internal" FileName="CustomGroupConfigurationReport.rdl" HasNullStream="false" MIMEType="text/rdl" />
+      <ReportResource ID="Res.CustomTwoGroupConfigurationReport" Accessibility="Internal" FileName="CustomTwoGroupConfigurationReport.rdl" HasNullStream="false" MIMEType="text/rdl" />
+    </Resources>
+</ManagementPackFragment>

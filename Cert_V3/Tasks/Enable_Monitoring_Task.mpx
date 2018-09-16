@@ -1,0 +1,63 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Tasks>
+      <Task ID="SystemCenterCentral.Utilities.Certificates.EnableNonRootCertificate.Task" Accessibility="Internal" Enabled="true" Target="SystemCenterCentral.Utilities.Certificates.NonRootCertificate" Timeout="300" Remotable="false">
+        <Category>Maintenance</Category>
+        <WriteAction ID="Probe" TypeID="SystemCenterCentral.Utilities.Certificates.HandlingScriptWA">
+          <TimeoutSeconds>300</TimeoutSeconds>
+          <ComputerName>$Target/Host/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+          <CertStoreID>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+          <StoreProvider>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+          <Operation>ENABLE</Operation>
+          <Thumbprint>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertThumbprint$</Thumbprint>
+          <TaskId>SystemCenterCentral.Utilities.Certificates.ArchiveNonRootCertificate.Task</TaskId>
+        </WriteAction>
+      </Task>
+      <Task ID="SystemCenterCentral.Utilities.Certificates.EnableRootCertificate.Task" Accessibility="Internal" Enabled="true" Target="SystemCenterCentral.Utilities.Certificates.RootCertificate" Timeout="300" Remotable="false">
+        <Category>Maintenance</Category>
+        <WriteAction ID="Probe" TypeID="SystemCenterCentral.Utilities.Certificates.HandlingScriptWA">
+          <TimeoutSeconds>300</TimeoutSeconds>
+          <ComputerName>$Target/Host/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+          <CertStoreID>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+          <StoreProvider>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+          <Operation>ENABLE</Operation>
+          <Thumbprint>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertThumbprint$</Thumbprint>
+          <TaskId>SystemCenterCentral.Utilities.Certificates.ArchiveRootCertificate.Task</TaskId>
+        </WriteAction>
+      </Task>
+      <Task ID="SystemCenterCentral.Utilities.Certificates.EnableSelfSignedCertificate.Task" Accessibility="Internal" Enabled="true" Target="SystemCenterCentral.Utilities.Certificates.SelfSignedCertificate" Timeout="300" Remotable="false">
+        <Category>Maintenance</Category>
+        <WriteAction ID="Probe" TypeID="SystemCenterCentral.Utilities.Certificates.HandlingScriptWA">
+          <TimeoutSeconds>300</TimeoutSeconds>
+          <ComputerName>$Target/Host/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+          <CertStoreID>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+          <StoreProvider>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+          <Operation>ENABLE</Operation>
+          <Thumbprint>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertThumbprint$</Thumbprint>
+          <TaskId>SystemCenterCentral.Utilities.Certificates.ArchiveSelfSignedCertificate.Task</TaskId>
+        </WriteAction>
+      </Task>
+    </Tasks>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.EnableNonRootCertificate.Task">
+          <Name>ENABLE Certificate for Monitoring</Name>
+          <Description>Set the "Friendly Name" given certificate in the store on the agent machine and runs discovery. Removes the disabled flag.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.EnableRootCertificate.Task">
+          <Name>ENABLE CA Certificate for Monitoring</Name>
+          <Description>Set the "Friendly Name" given certificate in the store on the agent machine and runs discovery. Removes the disabled flag.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.EnableSelfSignedCertificate.Task">
+          <Name>ENABLE Self-Signed Certificate for Monitoring</Name>
+          <Description>Set the "Friendly Name" given certificate in the store on the agent machine and runs discovery. Removes the disabled flag.</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

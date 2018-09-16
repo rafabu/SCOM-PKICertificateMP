@@ -1,0 +1,1086 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Presentation>
+      <ComponentTypes>
+      <ComponentType ID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard" Accessibility="Internal" Base="Visualization!Microsoft.SystemCenter.Visualization.GridLayout" Lifetime="ReferenceCount" />
+      <ComponentType ID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.AboutToExpireState" Accessibility="Internal" Base="Visualization!Microsoft.SystemCenter.Visualization.StateWidget" Lifetime="ReferenceCount" />
+      <ComponentType ID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.ExpiredState" Accessibility="Internal" Base="Visualization!Microsoft.SystemCenter.Visualization.StateWidget" Lifetime="ReferenceCount" />
+      <ComponentType ID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.InvalidState" Accessibility="Internal" Base="Visualization!Microsoft.SystemCenter.Visualization.StateWidget" Lifetime="ReferenceCount" />
+      <ComponentType ID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.CRLNotUpdatedState" Accessibility="Internal" Base="Visualization!Microsoft.SystemCenter.Visualization.StateWidget" Lifetime="ReferenceCount" />
+    </ComponentTypes>
+    <ComponentReferences>
+      <ComponentReference ID="SystemCenterCentral.Utilities.Certificates.Issue_DashboardReference" Accessibility="Internal" TypeID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard" Parent="SystemCenterCentral.Utilities.Certificates.ViewFolder" />
+      <ComponentReference ID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.AboutToExpireStateReference" Accessibility="Internal" TypeID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.AboutToExpireState" Parent="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard" />
+      <ComponentReference ID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.ExpiredStateReference" Accessibility="Internal" TypeID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.ExpiredState" Parent="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard" />
+      <ComponentReference ID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.InvalidStateReference" Accessibility="Internal" TypeID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.InvalidState" Parent="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard" />
+      <ComponentReference ID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.CRLNotUpdatedStateReference" Accessibility="Internal" TypeID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.CRLNotUpdatedState" Parent="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard" />
+    </ComponentReferences>
+   <ComponentOverrides>
+      <ComponentOverride ID="SystemCenterCentral.Utilities.Certificates.Issue_DashboardOverride" TypeID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard">
+        <Bindings>
+          <Binding PropertyId="ConfigType">
+            <SimpleValue Type="xsd://string" Value="Microsoft.SystemCenter.Visualization.Library!GridLayout04CellTiledConfig" />
+          </Binding>
+          <Binding PropertyId="CellRegionMappings">
+            <ComplexValueCollection Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.LayoutConfig/CellRegionMapping[]">
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.LayoutConfig/CellRegionMapping">
+                <Binding PropertyId="RegionContent">
+                  <SimpleValue Type="xsd://string" Value="SystemCenterCentral.Utilities.Certificates!SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.AboutToExpireStateReference" />
+                </Binding>
+                <Binding PropertyId="RegionId">
+                  <SimpleValue Type="xsd://string" Value="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.Region0" />
+                </Binding>
+                <Binding PropertyId="RegionParameters" />
+                <Binding PropertyId="CellIndex">
+                  <SimpleValue Type="xsd://int" Value="0" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.LayoutConfig/CellRegionMapping">
+                <Binding PropertyId="RegionContent">
+                  <SimpleValue Type="xsd://string" Value="SystemCenterCentral.Utilities.Certificates!SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.ExpiredStateReference" />
+                </Binding>
+                <Binding PropertyId="RegionId">
+                  <SimpleValue Type="xsd://string" Value="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.Region1" />
+                </Binding>
+                <Binding PropertyId="RegionParameters" />
+                <Binding PropertyId="CellIndex">
+                  <SimpleValue Type="xsd://int" Value="1" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.LayoutConfig/CellRegionMapping">
+                <Binding PropertyId="RegionContent">
+                  <SimpleValue Type="xsd://string" Value="SystemCenterCentral.Utilities.Certificates!SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.InvalidStateReference" />
+                </Binding>
+                <Binding PropertyId="RegionId">
+                  <SimpleValue Type="xsd://string" Value="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.Region2" />
+                </Binding>
+                <Binding PropertyId="RegionParameters" />
+                <Binding PropertyId="CellIndex">
+                  <SimpleValue Type="xsd://int" Value="2" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.LayoutConfig/CellRegionMapping">
+                <Binding PropertyId="RegionContent">
+                   <SimpleValue Type="xsd://string" Value="SystemCenterCentral.Utilities.Certificates!SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.CRLNotUpdatedStateReference" />
+               </Binding>
+                <Binding PropertyId="RegionId">
+                  <SimpleValue Type="xsd://string" Value="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.Region3" />
+                </Binding>
+                <Binding PropertyId="RegionParameters" />
+                <Binding PropertyId="CellIndex">
+                  <SimpleValue Type="xsd://int" Value="3" />
+                </Binding>
+              </ComplexValue>
+            </ComplexValueCollection>
+          </Binding>
+        </Bindings>
+      </ComponentOverride>
+      <ComponentOverride ID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.AboutToExpireStateOverride" TypeID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.AboutToExpireState" Context="/SystemCenterCentral.Utilities.Certificates!SystemCenterCentral.Utilities.Certificates.Issue_Dashboard/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.GridLayout/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.GridLayout/SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.Region0/Microsoft.SystemCenter.Visualization.Library!ComposedRegion/SystemCenterCentral.Utilities.Certificates!SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.AboutToExpireState/">
+        <Bindings>
+          <Binding PropertyId="TargetIds">
+            <ComplexValueCollection Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.DataProvider/MPInstanceWithRecursionLevel[]">
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.DataProvider/MPInstanceWithRecursionLevel">
+                <Binding PropertyId="MPInstance">
+                  <ComplexValue Type="mpinstance://System.Library!System.Entity">
+                    <Binding PropertyId="Id">
+                      <!-- _MPElement[Name='SystemCenterCentral.Utilities.Certificates.SoonToExpireCertificatesGroup']_ -->
+                      <SimpleValue Type="xsd://string" Value="6590696b-0908-5b54-c3c7-9dc5c394f01c" />
+                    </Binding>
+                  </ComplexValue>
+                </Binding>
+                <Binding PropertyId="RecursionLevel">
+                  <!-- 
+                  <SimpleValue Type="xsd://int" Value="-1" />
+                  -->
+                  <SimpleValue Type="xsd://int" Value="1" />
+                </Binding>
+              </ComplexValue>
+            </ComplexValueCollection>
+          </Binding>
+          <Binding PropertyId="BaseManagementPackTypes">
+            <ComplexValueCollection Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.OperationalDataTypes/BaseManagementPackType[]">
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.OperationalDataTypes/BaseManagementPackType">
+                <Binding PropertyId="FullyQualifiedName">
+                  <SimpleValue Type="xsd://string" Value="SystemCenterCentral.Utilities.Certificates!SystemCenterCentral.Utilities.Certificates.Certificate" />
+                </Binding>
+              </ComplexValue>
+            </ComplexValueCollection>
+          </Binding>
+          <Binding PropertyId="ShowSearchBar">
+            <SimpleValue Type="xsd://boolean" Value="True" />
+          </Binding>
+           <Binding PropertyId="Columns">
+            <ComplexValueCollection Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn[]">
+              <!--
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="$MPReference/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.TypeWithIcon/DisplayName$" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="False" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="False" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="TypeWithIcon" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/Property[Name='TypeWithIcon']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+              </ComplexValue> -->
+                <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="$MPReference/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.HealthState/DisplayName$" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="HealthState" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/Property[Name='HealthState']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="$MPReference/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.Path/DisplayName$" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="Path" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/Property[Name='Path']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+              </ComplexValue>
+             
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CertIssuedTo" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Issued to" />
+                </Binding>
+                <Binding PropertyId="CellComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CertIssuedTo']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+                <Binding PropertyId="HeaderComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CertIssuedBy" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Issued by" />
+                </Binding>
+                <Binding PropertyId="CellComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CertIssuedBy']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+                <Binding PropertyId="HeaderComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CertValidFrom" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Valid from" />
+                </Binding>
+                <Binding PropertyId="CellComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CertValidFrom']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+                <Binding PropertyId="HeaderComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CertValidTo" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Valid to" />
+                </Binding>
+                <Binding PropertyId="CellComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CertValidTo']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+                <Binding PropertyId="HeaderComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+              </ComplexValue>
+            </ComplexValueCollection>
+          </Binding>
+          <Binding PropertyId="SortedColumns">
+            <ComplexValueCollection Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataCollectionViewColumn[]">
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataCollectionViewColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="Path" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="$MPReference/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.Path/DisplayName$" />
+                </Binding>
+                <Binding PropertyId="SortDirection">
+                  <SimpleValue Type="xsd://string" Value="Ascending" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/Property[Name='Path']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataCollectionViewColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CertIssuedTo" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Issued to" />
+                </Binding>
+                <Binding PropertyId="SortDirection">
+                  <SimpleValue Type="xsd://string" Value="Ascending" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CertIssuedTo']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+              </ComplexValue>
+            </ComplexValueCollection>
+          </Binding>
+        </Bindings>
+      </ComponentOverride>
+      <ComponentOverride ID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.ExpiredStateOverride" TypeID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.ExpiredState" Context="/SystemCenterCentral.Utilities.Certificates!SystemCenterCentral.Utilities.Certificates.Issue_Dashboard/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.GridLayout/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.GridLayout/SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.Region1/Microsoft.SystemCenter.Visualization.Library!ComposedRegion/SystemCenterCentral.Utilities.Certificates!SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.ExpiredState/">
+        <Bindings>
+          <Binding PropertyId="TargetIds">
+            <ComplexValueCollection Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.DataProvider/MPInstanceWithRecursionLevel[]">
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.DataProvider/MPInstanceWithRecursionLevel">
+                <Binding PropertyId="MPInstance">
+                  <ComplexValue Type="mpinstance://System.Library!System.Entity">
+                    <Binding PropertyId="Id">
+                      <SimpleValue Type="xsd://string" Value="d10c886a-7de7-d57f-0a28-a2d77b2027a4" />
+                    </Binding>
+                  </ComplexValue>
+                </Binding>
+                <Binding PropertyId="RecursionLevel">
+                  <SimpleValue Type="xsd://int" Value="1" />
+                </Binding>
+              </ComplexValue>
+            </ComplexValueCollection>
+          </Binding>
+          <Binding PropertyId="BaseManagementPackTypes">
+            <ComplexValueCollection Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.OperationalDataTypes/BaseManagementPackType[]">
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.OperationalDataTypes/BaseManagementPackType">
+                <Binding PropertyId="FullyQualifiedName">
+                  <SimpleValue Type="xsd://string" Value="SystemCenterCentral.Utilities.Certificates!SystemCenterCentral.Utilities.Certificates.Certificate" />
+                </Binding>
+              </ComplexValue>
+            </ComplexValueCollection>
+          </Binding>
+          <Binding PropertyId="ShowSearchBar">
+            <SimpleValue Type="xsd://boolean" Value="True" />
+          </Binding>
+  <Binding PropertyId="Columns">
+            <ComplexValueCollection Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn[]">
+                <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="$MPReference/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.HealthState/DisplayName$" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="HealthState" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/Property[Name='HealthState']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="$MPReference/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.Path/DisplayName$" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="Path" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/Property[Name='Path']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+              </ComplexValue>
+             
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CertIssuedTo" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Issued to" />
+                </Binding>
+                <Binding PropertyId="CellComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CertIssuedTo']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+                <Binding PropertyId="HeaderComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CertIssuedBy" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Issued by" />
+                </Binding>
+                <Binding PropertyId="CellComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CertIssuedBy']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+                <Binding PropertyId="HeaderComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CertValidFrom" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Valid from" />
+                </Binding>
+                <Binding PropertyId="CellComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CertValidFrom']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+                <Binding PropertyId="HeaderComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CertValidTo" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Valid to" />
+                </Binding>
+                <Binding PropertyId="CellComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CertValidTo']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+                <Binding PropertyId="HeaderComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+              </ComplexValue>
+            </ComplexValueCollection>
+          </Binding>
+          <Binding PropertyId="SortedColumns">
+            <ComplexValueCollection Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataCollectionViewColumn[]">
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataCollectionViewColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="Path" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="$MPReference/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.Path/DisplayName$" />
+                </Binding>
+                <Binding PropertyId="SortDirection">
+                  <SimpleValue Type="xsd://string" Value="Ascending" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/Property[Name='Path']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataCollectionViewColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CertIssuedTo" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Issued to" />
+                </Binding>
+                <Binding PropertyId="SortDirection">
+                  <SimpleValue Type="xsd://string" Value="Ascending" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CertIssuedTo']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+              </ComplexValue>
+            </ComplexValueCollection>
+          </Binding>       </Bindings>
+      </ComponentOverride>
+      <ComponentOverride ID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.InvalidStateOverride" TypeID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.InvalidState" Context="/SystemCenterCentral.Utilities.Certificates!SystemCenterCentral.Utilities.Certificates.Issue_Dashboard/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.GridLayout/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.GridLayout/SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.Region2/Microsoft.SystemCenter.Visualization.Library!ComposedRegion/SystemCenterCentral.Utilities.Certificates!SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.InvalidState/">
+        <Bindings>
+          <Binding PropertyId="TargetIds">
+            <ComplexValueCollection Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.DataProvider/MPInstanceWithRecursionLevel[]">
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.DataProvider/MPInstanceWithRecursionLevel">
+                <Binding PropertyId="MPInstance">
+                  <ComplexValue Type="mpinstance://System.Library!System.Entity">
+                    <Binding PropertyId="Id">
+                      <SimpleValue Type="xsd://string" Value="e42d40ba-a935-6b6b-e2fb-f3bd7753879e" />
+                    </Binding>
+                  </ComplexValue>
+                </Binding>
+                <Binding PropertyId="RecursionLevel">
+                  <SimpleValue Type="xsd://int" Value="1" />
+                </Binding>
+              </ComplexValue>
+            </ComplexValueCollection>
+          </Binding>
+          <Binding PropertyId="BaseManagementPackTypes">
+            <ComplexValueCollection Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.OperationalDataTypes/BaseManagementPackType[]">
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.OperationalDataTypes/BaseManagementPackType">
+                <Binding PropertyId="FullyQualifiedName">
+                  <SimpleValue Type="xsd://string" Value="SystemCenterCentral.Utilities.Certificates!SystemCenterCentral.Utilities.Certificates.Certificate" />
+                </Binding>
+              </ComplexValue>
+            </ComplexValueCollection>
+          </Binding>
+          <Binding PropertyId="ShowSearchBar">
+            <SimpleValue Type="xsd://boolean" Value="True" />
+          </Binding>
+    <Binding PropertyId="Columns">
+            <ComplexValueCollection Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn[]">
+                <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="$MPReference/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.HealthState/DisplayName$" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="HealthState" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/Property[Name='HealthState']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="$MPReference/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.Path/DisplayName$" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="Path" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/Property[Name='Path']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+              </ComplexValue>
+             
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CertIssuedTo" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Issued to" />
+                </Binding>
+                <Binding PropertyId="CellComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CertIssuedTo']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+                <Binding PropertyId="HeaderComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CertIssuedBy" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Issued by" />
+                </Binding>
+                <Binding PropertyId="CellComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CertIssuedBy']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+                <Binding PropertyId="HeaderComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CertValidFrom" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Valid from" />
+                </Binding>
+                <Binding PropertyId="CellComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CertValidFrom']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+                <Binding PropertyId="HeaderComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CertValidTo" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Valid to" />
+                </Binding>
+                <Binding PropertyId="CellComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CertValidTo']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+                <Binding PropertyId="HeaderComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+              </ComplexValue>
+            </ComplexValueCollection>
+          </Binding>
+          <Binding PropertyId="SortedColumns">
+            <ComplexValueCollection Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataCollectionViewColumn[]">
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataCollectionViewColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="Path" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="$MPReference/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.Path/DisplayName$" />
+                </Binding>
+                <Binding PropertyId="SortDirection">
+                  <SimpleValue Type="xsd://string" Value="Ascending" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/Property[Name='Path']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataCollectionViewColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CertIssuedTo" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Issued to" />
+                </Binding>
+                <Binding PropertyId="SortDirection">
+                  <SimpleValue Type="xsd://string" Value="Ascending" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CertIssuedTo']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+              </ComplexValue>
+            </ComplexValueCollection>
+          </Binding>    </Bindings>
+      </ComponentOverride>
+      <ComponentOverride ID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.CRLNotUpdatedStateOverride" TypeID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.CRLNotUpdatedState" Context="/SystemCenterCentral.Utilities.Certificates!SystemCenterCentral.Utilities.Certificates.Issue_Dashboard/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.GridLayout/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.GridLayout/SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.Region3/Microsoft.SystemCenter.Visualization.Library!ComposedRegion/SystemCenterCentral.Utilities.Certificates!SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.CRLNotUpdatedState/">
+        <Bindings>
+          <Binding PropertyId="TargetIds">
+            <ComplexValueCollection Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.DataProvider/MPInstanceWithRecursionLevel[]">
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.DataProvider/MPInstanceWithRecursionLevel">
+                <Binding PropertyId="MPInstance">
+                  <ComplexValue Type="mpinstance://System.Library!System.Entity">
+                    <Binding PropertyId="Id">
+                      <SimpleValue Type="xsd://string" Value="dad56948-0746-5aed-3a11-606e01e7bf49" />
+                    </Binding>
+                  </ComplexValue>
+                </Binding>
+                <Binding PropertyId="RecursionLevel">
+                  <SimpleValue Type="xsd://int" Value="1" />
+                </Binding>
+              </ComplexValue>
+            </ComplexValueCollection>
+          </Binding>
+          <Binding PropertyId="BaseManagementPackTypes">
+            <ComplexValueCollection Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.OperationalDataTypes/BaseManagementPackType[]">
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.OperationalDataTypes/BaseManagementPackType">
+                <Binding PropertyId="FullyQualifiedName">
+                  <SimpleValue Type="xsd://string" Value="SystemCenterCentral.Utilities.Certificates!SystemCenterCentral.Utilities.Certificates.CRL" />
+                </Binding>
+              </ComplexValue>
+            </ComplexValueCollection>
+          </Binding>
+          <Binding PropertyId="ShowSearchBar">
+            <SimpleValue Type="xsd://boolean" Value="True" />
+          </Binding>
+          <Binding PropertyId="Columns">
+            <ComplexValueCollection Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn[]">
+                      <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="$MPReference/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.HealthState/DisplayName$" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="HealthState" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/Property[Name='HealthState']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="$MPReference/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.Path/DisplayName$" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="Path" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/Property[Name='Path']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+              </ComplexValue>
+         <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CRLIssuer" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Issuer" />
+                </Binding>
+                <Binding PropertyId="CellComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CRLIssuer']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+                <Binding PropertyId="HeaderComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CRLThisUpdate" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="This Update" />
+                </Binding>
+                <Binding PropertyId="CellComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CRLThisUpdate']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+                <Binding PropertyId="HeaderComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataGridColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CRLNextUpdate" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Next Update" />
+                </Binding>
+                <Binding PropertyId="CellComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CRLNextUpdate']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+                <Binding PropertyId="HeaderComponentType">
+                  <SimpleValue Type="xsd://string" Value="" />
+                </Binding>
+                <Binding PropertyId="SortableGroupable">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="CanResize">
+                  <SimpleValue Type="xsd://boolean" Value="True" />
+                </Binding>
+                <Binding PropertyId="Width">
+                  <SimpleValue Type="xsd://string" Value="Auto" />
+                </Binding>
+              </ComplexValue>
+            </ComplexValueCollection>
+          </Binding>
+          <Binding PropertyId="SortedColumns">
+            <ComplexValueCollection Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataCollectionViewColumn[]">
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataCollectionViewColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="Path" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="$MPReference/Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.Path/DisplayName$" />
+                </Binding>
+                <Binding PropertyId="SortDirection">
+                  <SimpleValue Type="xsd://string" Value="Ascending" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/Property[Name='Path']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+              </ComplexValue>
+              <ComplexValue Type="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnType/DataCollectionViewColumn">
+                <Binding PropertyId="PropertyName">
+                  <SimpleValue Type="xsd://string" Value="CRLIssuer" />
+                </Binding>
+                <Binding PropertyId="HeaderDisplayObject">
+                  <SimpleValue Type="xsd://string" Value="Issuer" />
+                </Binding>
+                <Binding PropertyId="SortDirection">
+                  <SimpleValue Type="xsd://string" Value="Ascending" />
+                </Binding>
+                <Binding PropertyId="XPath">
+                  <SimpleValue Type="xsd://string" Value="$Object/PropertyCollection[Name='CRLIssuer']$" />
+                </Binding>
+                <Binding PropertyId="SourceType">
+                  <SimpleValue Type="xsd://string" Value="ManagedEntity" />
+                </Binding>
+              </ComplexValue>
+            </ComplexValueCollection>
+          </Binding>
+        </Bindings>
+      </ComponentOverride>
+    </ComponentOverrides>
+    <ComponentImplementations>
+      <ComponentImplementation ID="SystemCenterCentral.Utilities.Certificates.Issue_DashboardImplementation" Accessibility="Internal" TypeId="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard" Platform="Wpf, Silverlight">
+        <Composite>
+          <Base />
+        </Composite>
+      </ComponentImplementation>
+      <ComponentImplementation ID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.AboutToExpireStateImplementation" Accessibility="Internal" TypeId="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.AboutToExpireState" Platform="Wpf, Silverlight">
+        <Composite>
+          <Base />
+        </Composite>
+      </ComponentImplementation>
+      <ComponentImplementation ID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.ExpiredStateImplementation" Accessibility="Internal" TypeId="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.ExpiredState" Platform="Wpf, Silverlight">
+        <Composite>
+          <Base />
+        </Composite>
+      </ComponentImplementation>
+      <ComponentImplementation ID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.InvalidStateImplementation" Accessibility="Internal" TypeId="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.InvalidState" Platform="Wpf, Silverlight">
+        <Composite>
+          <Base />
+        </Composite>
+      </ComponentImplementation>
+      <ComponentImplementation ID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.CRLNotUpdatedStateImplementation" Accessibility="Internal" TypeId="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.CRLNotUpdatedState" Platform="Wpf, Silverlight">
+        <Composite>
+          <Base />
+        </Composite>
+      </ComponentImplementation>
+    </ComponentImplementations>
+  </Presentation>
+  <LanguagePacks>
+    <LanguagePack  ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard">
+          <Name>Certificate and CRL Issues</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Issue_DashboardOverride">
+          <Name>Certificate and CRL Issues</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.AboutToExpireState">
+          <Name>Certificates - About to expire</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.AboutToExpireStateOverride">
+          <Name>Certificates - About to expire</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.ExpiredState">
+          <Name>Certificates - Expired</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.ExpiredStateOverride">
+          <Name>Certificates - Expired</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.InvalidState">
+          <Name>Certificates - Invalid</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.InvalidStateOverride">
+          <Name>Certificates - Invalid</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.CRLNotUpdatedState">
+          <Name>CRLs - Not updated</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Issue_Dashboard.CRLNotUpdatedStateOverride">
+          <Name>CRLs - Not updated</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

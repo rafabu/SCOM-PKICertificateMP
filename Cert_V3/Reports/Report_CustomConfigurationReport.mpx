@@ -1,0 +1,96 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Reporting>
+    <Reports>
+      <Report ID="SystemCenterCentral.Utilities.Certificates.CustomConfigurationReport" Accessibility="Public" Visible="false">
+        <Dependencies>
+          <DataWarehouseScript>ReportLibrary!Microsoft.SystemCenter.DataWarehouse.Report.Script.CustomConfiguration</DataWarehouseScript>
+          <DataWarehouseScript>ReportLibrary!Microsoft.SystemCenter.DataWarehouse.Report.Script.CustomConfigurationColumn</DataWarehouseScript>
+          <DataWarehouseScript>ReportLibrary!Microsoft.SystemCenter.DataWarehouse.Report.Script.ObjectList</DataWarehouseScript>
+          <DataWarehouseScript>ReportLibrary!Microsoft.SystemCenter.DataWarehouse.Report.Script.ObjectListParse</DataWarehouseScript>
+          
+          <ReportResource>SCC_banner_landscape.jpg</ReportResource>
+          
+          <ReportParameterControl>ReportLibrary!Microsoft.SystemCenter.DataWarehouse.Report.ParameterControl.MonitoringObjectXmlPicker</ReportParameterControl>
+          <ReportParameterControl>ReportLibrary!Microsoft.SystemCenter.DataWarehouse.Report.ParameterControl.RelativeDateTimePicker</ReportParameterControl>
+          <ReportParameterControl>ReportLibrary!Microsoft.SystemCenter.DataWarehouse.Report.ParameterControl.TextBox</ReportParameterControl>
+        </Dependencies>
+        <ParameterBlock columns="6" xmlns="http://schemas.microsoft.com/mom/reporting/2007/ReportParameterSettings">
+          <Controls>
+            <Control columnSpan="1" type="Microsoft.SystemCenter.DataWarehouse.Report.ParameterControl.RelativeDateTimePicker">
+              <ReportParameters>
+                <ReportParameter name="TimeZone" binding="TimeZone">
+                  <Prompt>Microsoft.SystemCenter.DataWarehouse.Report.Library!Microsoft.SystemCenter.DataWarehouse.Report.ParameterPrompt.TimeZone</Prompt>
+                </ReportParameter>
+                <ReportParameter name="TimeZoneName" binding="TimeZoneName" />
+                <ReportParameter name="StartDate_BaseType" binding="StartDate_BaseType" />
+                <ReportParameter name="StartDate_BaseValue" binding="StartDate_BaseValue">
+                  <Prompt>Microsoft.SystemCenter.DataWarehouse.Report.Library!Microsoft.SystemCenter.DataWarehouse.Report.ParameterPrompt.StartDateTime</Prompt>
+                </ReportParameter>
+                <ReportParameter name="StartDate_OffsetType" binding="StartDate_OffsetType" />
+                <ReportParameter name="StartDate_OffsetValue" binding="StartDate_OffsetValue" />
+                <ReportParameter name="EndDate_BaseType" binding="EndDate_BaseType" />
+                <ReportParameter name="EndDate_BaseValue" binding="EndDate_BaseValue">
+                  <Prompt>Microsoft.SystemCenter.DataWarehouse.Report.Library!Microsoft.SystemCenter.DataWarehouse.Report.ParameterPrompt.EndDateTime</Prompt>
+                </ReportParameter>
+                <ReportParameter name="EndDate_OffsetType" binding="EndDate_OffsetType" />
+                <ReportParameter name="EndDate_OffsetValue" binding="EndDate_OffsetValue" />
+              </ReportParameters>
+            </Control>
+            <Control columnSpan="3" type="Microsoft.SystemCenter.DataWarehouse.Report.ParameterControl.MonitoringObjectXmlPicker">
+              <ReportParameters>
+                <ReportParameter name="ObjectList">
+                  <Prompt>Microsoft.SystemCenter.DataWarehouse.Report.Library!Microsoft.SystemCenter.DataWarehouse.Report.ParameterPrompt.ObjectList</Prompt>
+                </ReportParameter>
+                <ReportParameter name="ManagementGroupId" binding="GroupList" />
+              </ReportParameters>
+            </Control>
+            <Control columnSpan="2" type="Microsoft.SystemCenter.DataWarehouse.Report.ParameterControl.ReportColumnPicker">
+              <ReportParameters>
+                <ReportParameter name="Properties" />
+                <ReportParameter name="ColumnList" binding="ColumnList" />
+              </ReportParameters>
+            </Control>
+          </Controls>
+        </ParameterBlock>
+        <ReportDefinition>Res.CustomConfigurationReport</ReportDefinition>
+        <ReportStrings>
+          <ReportString ID="R.Title" />
+          <ReportString ID="R.Description" />
+          <ReportString ID="R.DescriptionTitle" />
+          <ReportString ID="R.PageFormat" />
+          <ReportString ID="R.TimeZoneFormat" />
+          <ReportString ID="R.GeneratedTimeLabel" />
+          <ReportString ID="R.StartEndTimeLabel" />
+          <ReportString ID="R.StartEndTimeFormat" />
+          <ReportString ID="R.BusinessTimeFormat" />
+          <ReportString ID="R.ObjectsLabel" />
+          <ReportString ID="R.ObjectsFormat" />
+          <ReportString ID="R.ObjectFormatLine1" />
+          <ReportString ID="R.ObjectFormatLine2" />
+          <ReportString ID="R.ObjectFormatLine2Path" />
+          <ReportString ID="R.ObjectUseContainment" />
+          <ReportString ID="R.ObjectFilterLabel" />
+          <ReportString ID="R.GroupByLabel" />
+          <ReportString ID="R.ActionsLabel" />
+          <ReportString ID="R.AllLabel" />
+          <ReportString ID="RT.Column.ObjectLabel" />
+          <ReportString ID="RT.Detail.ViewTitle" />
+          <ReportString ID="RT.Detail.AttributesViewLabel" />
+          <ReportString ID="RT.Detail.ReportTitle" />
+          <ReportString ID="RT.Detail.ConfigurationChangeReportLabel" />
+        </ReportStrings>
+      </Report>
+
+    </Reports>
+  </Reporting>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CustomConfigurationReport">
+          <Name>SCC Custom Configuration</Name>
+          <Description>System Center Central Custom Configuration Report</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

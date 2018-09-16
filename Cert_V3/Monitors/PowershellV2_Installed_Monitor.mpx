@@ -1,0 +1,72 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Monitors>
+      <UnitMonitor ID="SystemCenterCentral.Utilities.Certificates.PowerShellV2.Installed.Monitor" Accessibility="Public" Enabled="false" Target="Windows!Microsoft.Windows.OperatingSystem" ParentMonitorID="Health!System.Health.ConfigurationState" Remotable="true" Priority="Normal" TypeID="SystemCenterCentral.Utilities.Certificates.PowerShellV2.Installed.MonitorType" ConfirmDelivery="true">
+        <Category>ConfigurationHealth</Category>
+        <AlertSettings AlertMessage="SystemCenterCentral.Utilities.Certificates.PowerShellV2.Installed.Monitor_AlertMessageResourceID">
+          <AlertOnState>Warning</AlertOnState>
+          <AutoResolve>true</AutoResolve>
+          <AlertPriority>Normal</AlertPriority>
+          <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        </AlertSettings>
+        <OperationalStates>
+          <OperationalState ID="Warning" MonitorTypeStateID="Warning" HealthState="Warning" />
+          <OperationalState ID="Healthy" MonitorTypeStateID="Healthy" HealthState="Success" />
+        </OperationalStates>
+        <Configuration>
+          <IntervalSeconds>43200</IntervalSeconds>
+          <TimeoutSeconds>120</TimeoutSeconds>
+          <SpreadInitializationOverInterval>300</SpreadInitializationOverInterval>
+          <RequiredVersion>2.0</RequiredVersion>
+        </Configuration>
+      </UnitMonitor>
+    </Monitors>
+  </Monitoring>
+  <Presentation>
+    <StringResources>
+      <StringResource ID="SystemCenterCentral.Utilities.Certificates.PowerShellV2.Installed.Monitor_AlertMessageResourceID" />
+    </StringResources>
+  </Presentation>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.PowerShellV2.Installed.Monitor">
+          <Name>Certificate Monitoring compatibility</Name>
+          <Description>The "PKI Certificate Validation" management pack uses PowerShell to discover and monitor PKI Certificates
+If this Powershell not installed, the management pack will fail to discover the certificates.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.PowerShellV2.Installed.Monitor" SubElementID="Healthy">
+          <Name>Success Event</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.PowerShellV2.Installed.Monitor" SubElementID="Warning">
+          <Name>Failure Event</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.PowerShellV2.Installed.Monitor_AlertMessageResourceID">
+          <Name>PKI Certificate Monitoring is not possible</Name>
+          <Description>PowerShell is not installed on this computer or the installed version is not compatible with PowerShell 2.0.
+
+In order to monitor PKI Certificates, install the appropriate PowerShell environment (>= Version 2.0).</Description>
+        </DisplayString>
+      </DisplayStrings>
+      <KnowledgeArticles>
+        <KnowledgeArticle ElementID="SystemCenterCentral.Utilities.Certificates.PowerShellV2.Installed.Monitor" Visible="true">
+          <MamlContent>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Summary</maml:title>
+              <maml:para>PowerShell Version >= 2.0 is required for PKI certificate monitoring.</maml:para>
+              <maml:para />
+            </maml:section>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Resolutions</maml:title>
+              <maml:para>Download and install PowerShell on this agent computer from <maml:navigationLink>
+                  <maml:linkText>www.microsoft.com</maml:linkText>
+                  <maml:uri href="http://www.microsoft.com" />
+                </maml:navigationLink>
+              </maml:para>
+            </maml:section>
+          </MamlContent>
+        </KnowledgeArticle>
+      </KnowledgeArticles>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

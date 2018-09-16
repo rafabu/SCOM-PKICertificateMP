@@ -1,0 +1,65 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.CertCRLGroup" Accessibility="Public" Abstract="false" Base="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" />
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.CurrentCRLsGroup" Accessibility="Public" Abstract="false" Base="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" />
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.ExpiredCertificatesGroup" Accessibility="Public" Abstract="false" Base="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" />
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.InvalidCertificatesGroup" Accessibility="Public" Abstract="false" Base="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" />
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.RequiredWindowsCertificatesGroup" Accessibility="Public" Abstract="false" Base="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" />
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.ValidCertificatesGroup" Accessibility="Public" Abstract="false" Base="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" />
+        <!-- group that contains certificate stores which would contain root certificates (Trusted Root & Third Party) -->
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.RootCertificateStoreGroup" Accessibility="Public" Abstract="false" Base="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" />
+        <!-- 1.0.1.0000: group with CA certificates -->
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.CAGroup" Accessibility="Public" Abstract="false" Base="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" />
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.NotUpdatedCRLsGroup" Accessibility="Public" Abstract="false" Base="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" />
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.SoonToExpireCertificatesGroup" Accessibility="Public" Abstract="false" Base="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" />
+        <!-- friendly name that ends with _DoNotMonitor  -->
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.MonitoringDisabledGroup" Accessibility="Internal" Abstract="false" Base="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" />
+
+        
+      </ClassTypes>
+     
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertCRLGroup">
+          <Name>PKI Certificates and CRLs Group</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CurrentCRLsGroup">
+          <Name>Current CRLs Group</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.RequiredWindowsCertificatesGroup">
+          <Name>Certificates and CRLs required by Windows Group</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ExpiredCertificatesGroup">
+          <Name>Expired Certificates Group</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.InvalidCertificatesGroup">
+          <Name>Invalid Certificates Group</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.NotUpdatedCRLsGroup">
+          <Name>Not Updated CRLs Group</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CAGroup">
+          <Name>CA Certificates Group</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.SoonToExpireCertificatesGroup">
+          <Name>Expiring Certificates Group</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ValidCertificatesGroup">
+          <Name>Valid Certificates Group</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.RootCertificateStoreGroup">
+          <Name>CA Certificate Stores Group</Name>
+          <Description><![CDATA[Certificate stores which contain CA certificate types (Trusted Root & Third Party)]]></Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.MonitoringDisabledGroup">
+          <Name>Monitoring Disabled Certificate Group</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

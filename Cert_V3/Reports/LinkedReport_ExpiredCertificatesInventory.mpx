@@ -1,0 +1,150 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Reporting>
+    <LinkedReports>
+      <LinkedReport ID="SystemCenterCentral.Utilities.Certificates.ExpiredCertificates.InventoryReport" Accessibility="Public" Base="SystemCenterCentral.Utilities.Certificates.CustomTwoGroupConfigurationReport" Visible="true" Target="SystemCenterCentral.Utilities.Certificates.ExpiredCertificatesGroup">
+        <ParameterBlock columns="6" xmlns="http://schemas.microsoft.com/mom/reporting/2007/ReportParameterSettings">
+          <Controls>
+            <Control columnSpan="1" type="Microsoft.SystemCenter.DataWarehouse.Report.ParameterControl.RelativeDateTimePicker">
+              <ReportParameters>
+                <ReportParameter name="TimeZone" binding="TimeZone">
+                  <Prompt>Microsoft.SystemCenter.DataWarehouse.Report.Library!Microsoft.SystemCenter.DataWarehouse.Report.ParameterPrompt.TimeZone</Prompt>
+                </ReportParameter>
+                <ReportParameter name="TimeZoneName" binding="TimeZoneName" />
+                <ReportParameter name="StartDate_BaseType" binding="StartDate_BaseType" />
+                <ReportParameter name="StartDate_BaseValue" binding="StartDate_BaseValue">
+                  <Prompt>Microsoft.SystemCenter.DataWarehouse.Report.Library!Microsoft.SystemCenter.DataWarehouse.Report.ParameterPrompt.StartDateTime</Prompt>
+                </ReportParameter>
+                <ReportParameter name="StartDate_OffsetType" binding="StartDate_OffsetType" />
+                <ReportParameter name="StartDate_OffsetValue" binding="StartDate_OffsetValue" />
+                <ReportParameter name="EndDate_BaseType" binding="EndDate_BaseType" />
+                <ReportParameter name="EndDate_BaseValue" binding="EndDate_BaseValue">
+                  <Prompt>Microsoft.SystemCenter.DataWarehouse.Report.Library!Microsoft.SystemCenter.DataWarehouse.Report.ParameterPrompt.EndDateTime</Prompt>
+                </ReportParameter>
+                <ReportParameter name="EndDate_OffsetType" binding="EndDate_OffsetType" />
+                <ReportParameter name="EndDate_OffsetValue" binding="EndDate_OffsetValue" />
+              </ReportParameters>
+            </Control>
+            <Control columnSpan="3" type="Microsoft.SystemCenter.DataWarehouse.Report.ParameterControl.MonitoringObjectXmlPicker">
+              <ReportParameters>
+                <ReportParameter name="ComputerList">
+                  <Prompt>Microsoft.SystemCenter.DataWarehouse.Report.Library!Microsoft.SystemCenter.DataWarehouse.Report.ParameterPrompt.ObjectList</Prompt>
+                </ReportParameter>
+                <ReportParameter name="ManagementGroupId" binding="GroupList" />
+              </ReportParameters>
+            </Control>
+          </Controls>
+        </ParameterBlock>
+        <Parameters>
+          <Parameter Name="StartDate_BaseType">
+            <Value>Today</Value>
+          </Parameter>
+          <Parameter Name="StartDate_OffsetType">
+            <Value>Day</Value>
+          </Parameter>
+          <Parameter Name="StartDate_OffsetValue">
+            <Value>-7</Value>
+          </Parameter>
+          <Parameter Name="EndDate_BaseType">
+            <Value>Today</Value>
+          </Parameter>
+          <Parameter Name="EndDate_OffsetType">
+            <Value>None</Value>
+          </Parameter>
+          <Parameter Name="EndDate_OffsetValue">
+            <Value>0</Value>
+          </Parameter>
+          <Parameter Name="ObjectGroupName">
+            <Value>SystemCenterCentral.Utilities.Certificates.ExpiredCertificatesGroup</Value>
+          </Parameter>
+          <Parameter Name="Properties">
+            <Value>
+              <![CDATA[
+					<Data>
+						<Columns>
+							<Column Visible ="False">
+								<ID>$MPElement[Name="System!System.Entity"]/DisplayName$</ID>
+							</Column>
+							<Column Visible ="True">
+								<ID>$MPElement[Name="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ID>
+							</Column>
+							<Column Visible ="True">
+								<ID>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreName$</ID>
+							</Column>
+							<Column Visible ="False">
+								<ID>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertFriendlyName$</ID>
+							</Column>
+							<Column Visible ="True">
+								<ID>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedTo$</ID>
+							</Column>
+							<Column Visible ="True">
+								<ID>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedBy$</ID>
+							</Column>
+							<Column Visible ="False">
+								<ID>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertValidFrom$</ID>
+							</Column>
+							<Column Visible ="True">
+								<ID>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertValidTo$</ID>
+							</Column>
+							<Column Visible ="True">
+								<ID>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertStatus$</ID>
+							</Column>
+							<Column Visible ="True">
+								<ID>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CAVersion$</ID>
+							</Column>
+							<Column Visible ="False">
+								<ID>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertVersion$</ID>
+							</Column>
+							<Column Visible ="True">
+								<ID>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertSignatureAlgo$</ID>
+							</Column>
+							<Column Visible ="False">
+								<ID>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertPublicKey$</ID>
+							</Column>
+							<Column Visible ="True">
+								<ID>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertPrivateKey$</ID>
+							</Column>
+							<Column Visible ="False">
+								<ID>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertThumbprint$</ID>
+							</Column>
+              <Column Visible ="True">
+								<ID>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/TemplateName$</ID>
+							</Column> 
+						</Columns>
+					</Data>
+					]]>
+            </Value>
+          </Parameter>
+          <Parameter Name="Interactive">
+            <Value>True</Value>
+          </Parameter>
+          <Parameter Name="ReportTitle">
+            <Value>Expired Certificate Report</Value>
+          </Parameter>
+        </Parameters>
+      </LinkedReport>
+    </LinkedReports>
+  </Reporting>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ExpiredCertificates.InventoryReport">
+          <Name>Expired Certificates Report</Name>
+        </DisplayString>
+      </DisplayStrings>
+      <KnowledgeArticles>
+        <KnowledgeArticle ElementID="SystemCenterCentral.Utilities.Certificates.ExpiredCertificates.InventoryReport" Visible="true">
+          <MamlContent>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Summary</maml:title>
+              <maml:para>Lists all expired certificates in the management group.</maml:para>
+            </maml:section>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Configuration</maml:title>
+              <maml:para>This report is preconfigured to only show certificates that have expired. Optionally the report scope can be controlled by specifying a group containing computer or certificate store objects.</maml:para>
+            </maml:section>
+          </MamlContent>
+        </KnowledgeArticle>
+      </KnowledgeArticles>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

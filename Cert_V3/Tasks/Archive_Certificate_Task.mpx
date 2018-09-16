@@ -1,0 +1,63 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Tasks>
+      <Task ID="SystemCenterCentral.Utilities.Certificates.ArchiveNonRootCertificate.Task" Accessibility="Internal" Enabled="true" Target="SystemCenterCentral.Utilities.Certificates.NonRootCertificate" Timeout="300" Remotable="false">
+        <Category>Maintenance</Category>
+        <WriteAction ID="Probe" TypeID="SystemCenterCentral.Utilities.Certificates.HandlingScriptWA">
+          <TimeoutSeconds>300</TimeoutSeconds>
+          <ComputerName>$Target/Host/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+          <CertStoreID>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+          <StoreProvider>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+          <Operation>ARCHIVE</Operation>
+          <Thumbprint>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertThumbprint$</Thumbprint>
+          <TaskId>SystemCenterCentral.Utilities.Certificates.ArchiveNonRootCertificate.Task</TaskId>
+        </WriteAction>
+      </Task>
+      <Task ID="SystemCenterCentral.Utilities.Certificates.ArchiveRootCertificate.Task" Accessibility="Internal" Enabled="true" Target="SystemCenterCentral.Utilities.Certificates.RootCertificate" Timeout="300" Remotable="false">
+        <Category>Maintenance</Category>
+        <WriteAction ID="Probe" TypeID="SystemCenterCentral.Utilities.Certificates.HandlingScriptWA">
+          <TimeoutSeconds>300</TimeoutSeconds>
+          <ComputerName>$Target/Host/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+          <CertStoreID>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+          <StoreProvider>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+          <Operation>ARCHIVE</Operation>
+          <Thumbprint>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertThumbprint$</Thumbprint>
+          <TaskId>SystemCenterCentral.Utilities.Certificates.ArchiveRootCertificate.Task</TaskId>
+           </WriteAction>
+      </Task>
+      <Task ID="SystemCenterCentral.Utilities.Certificates.ArchiveSelfSignedCertificate.Task" Accessibility="Internal" Enabled="true" Target="SystemCenterCentral.Utilities.Certificates.SelfSignedCertificate" Timeout="300" Remotable="false">
+        <Category>Maintenance</Category>
+        <WriteAction ID="Probe" TypeID="SystemCenterCentral.Utilities.Certificates.HandlingScriptWA">
+          <TimeoutSeconds>300</TimeoutSeconds>
+          <ComputerName>$Target/Host/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+          <CertStoreID>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+          <StoreProvider>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+          <Operation>ARCHIVE</Operation>
+          <Thumbprint>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertThumbprint$</Thumbprint>
+          <TaskId>SystemCenterCentral.Utilities.Certificates.ArchiveSelfSignedCertificate.Task</TaskId>
+          </WriteAction>
+      </Task>
+    </Tasks>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ArchiveNonRootCertificate.Task">
+          <Name>ARCHIVE Certificate</Name>
+          <Description>Set the "Archived" flag on a given certificate in the store on the agent machine and runs discovery. Archived certificates will no longer be monitored by the management pack.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ArchiveRootCertificate.Task">
+          <Name>ARCHIVE CA Certificate</Name>
+          <Description>Set the "Archived" flag on a given certificate in the store on the agent machine and runs discovery. Archived certificates will no longer be monitored by the management pack.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ArchiveSelfSignedCertificate.Task">
+          <Name>ARCHIVE Self-Signed Certificate</Name>
+          <Description>Set the "Archived" flag on a given certificate in the store on the agent machine and runs discovery. Archived certificates will no longer be monitored by the management pack.</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

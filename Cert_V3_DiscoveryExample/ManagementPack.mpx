@@ -1,0 +1,12 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenter.Utilities.Certificates.Discovery.AddOn">
+          <Name>PKI Certificate Validation - Additional Certificate Store discoveries example</Name>
+          <Description>Example MP showing how to discover additional, registry based certifciate stores</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

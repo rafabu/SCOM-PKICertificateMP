@@ -1,0 +1,8 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Resources>
+      <Resource ID="Res.TwoGroupCustomConfigurationReportDataGet_Install" Accessibility="Internal" FileName="TwoGroupCustomConfigurationReportDataGet-Install.sql" HasNullStream="false" />
+      <Resource ID="Res.TwoGroupCustomConfigurationReportDataGet_Uninstall" Accessibility="Internal" FileName="TwoGroupCustomConfigurationReportDataGet-Uninstall.sql" HasNullStream="false" />
+      <Resource ID="Res.TwoGroupCustomConfigurationReportDataGet_Upgrade" Accessibility="Internal" FileName="TwoGroupCustomConfigurationReportDataGet-Upgrade.sql" HasNullStream="false" />
+    </Resources>
+
+</ManagementPackFragment>

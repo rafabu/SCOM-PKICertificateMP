@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{2adc4e06-daf7-4f73-8e4f-e1b36edae99e}</ProjectGuid>
+    <RootNamespace>SystemCenterCentral.Utilities.Certificates.ReDiscoveryTasks</RootNamespace>
+    <Name>PKI Certificate Validation V3 (Rediscovery Tasks)</Name>
+    <ManagementPackName>SystemCenterCentral.Utilities.Certificates.ReDiscoveryTasks</ManagementPackName>
+    <Version>1.4.1.0</Version>
+    <MpFrameworkVersion>v7.0</MpFrameworkVersion>
+    <MpFrameworkProfile>OM</MpFrameworkProfile>
+    <ProductVersion>1.1.0.0</ProductVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <GenerateSealed>True</GenerateSealed>
+    <Company>Raphael Burri</Company>
+    <Copyright>Copyright (c) Raphael Burri. All rights reserved.</Copyright>
+    <DelaySigning>False</DelaySigning>
+    <AssemblyOriginatorKeyFile>C:\temp\Custom_Raphael_Burri.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\Release\</OutputPath>
+    <DelaySigning>false</DelaySigning>
+    <Company>MyCompany</Company>
+    <Copyright>Copyright (c) MyCompany. All rights reserved.</Copyright>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <ManagementPackReference Include="Microsoft.SystemCenter.Library">
+      <Alias>SC</Alias>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.Windows.Library">
+      <Alias>Windows</Alias>
+      <PackageToBundle>false</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.Health.Library">
+      <Alias>Health</Alias>
+      <PackageToBundle>false</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.Library">
+      <Alias>System</Alias>
+      <PackageToBundle>false</PackageToBundle>
+    </ManagementPackReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cert_V3\Cert_V3.mpproj">
+      <Name>Cert_V3</Name>
+      <Project>{0d03afa0-c0b2-40b6-92ef-b4842cba3546}</Project>
+      <Private>True</Private>
+      <Alias>Certificate</Alias>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ModuleTypes" />
+    <Folder Include="Recoveries" />
+    <Folder Include="Tasks" />
+    <Folder Include="Scripts" />
+    <Folder Include="Rules" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ManagementPack.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ModuleTypes\DS_Repeated_Event.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ModuleTypes\WA_Certificate_DiscoveryDemand_Script.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ModuleTypes\WA_Certificate_DiscoveryTrigger.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Recoveries\Rediscover_Certificate_Recovery.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Rules\Trigger_Certificate_Discovery_Rule.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tasks\Rediscover_Certificate_Store_Task.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tasks\Rediscover_Certificate_Task.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Certificate_Discovery_Trigger_V1.ps1" />
+    <EmbeddedResource Include="Scripts\Certificate_DiscoveryDemand_Script_V1.ps1" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VSAC\Microsoft.SystemCenter.OperationsManager.targets" />
+</Project>

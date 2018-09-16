@@ -1,0 +1,117 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Monitors>
+      <UnitMonitor ID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.Monitor" Accessibility="Public" Enabled="true" Target="SystemCenterCentral.Utilities.Certificates.CRL" ParentMonitorID="Health!System.Health.ConfigurationState" Remotable="false" Priority="Normal" TypeID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.MonitorType" ConfirmDelivery="true">
+        <Category>ConfigurationHealth</Category>
+        <AlertSettings AlertMessage="SystemCenterCentral.Utilities.Certificates.CRLUpdate.Monitor_AlertMessageResourceID">
+          <AlertOnState>Warning</AlertOnState>
+          <AutoResolve>true</AutoResolve>
+          <AlertPriority>Low</AlertPriority>
+          <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+          <AlertParameters>
+            <!-- add default to overcome potential replacement issues -->
+            <AlertParameter1>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CRL"]/CRLIssuer$</AlertParameter1>
+            <AlertParameter2>$Data[Default='_no_CRLNextUpdate']/Context/Property[@Name='CRLNextUpdate']$</AlertParameter2>
+            <AlertParameter3>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreName$</AlertParameter3>
+            <AlertParameter4>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</AlertParameter4>
+            <AlertParameter5>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</AlertParameter5>
+            <AlertParameter6>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</AlertParameter6>
+            <AlertParameter7>$Data[Default='']/Context/Property[@Name='UserContext']$</AlertParameter7>
+          </AlertParameters>
+        </AlertSettings>
+        <OperationalStates>
+          <OperationalState ID="CRLIsCurrent" MonitorTypeStateID="Current" HealthState="Success" />
+          <OperationalState ID="CRLRequiresUpdate" MonitorTypeStateID="UpdateRequired" HealthState="Warning" />
+        </OperationalStates>
+        <Configuration>
+          <CertStoreID>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+         <StoreProvider>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+           <CRLThumbprint>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CRL"]/CRLThumbprint$</CRLThumbprint>
+          <!--  take values from HOST to guarantee coockdown -->
+          <RevocationFlag>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/RevocationFlag$</RevocationFlag>
+          <RevocationMode>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/RevocationMode$</RevocationMode>
+          <VerificationFlags>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/VerificationFlags$</VerificationFlags>
+          <!-- include / exclude certificates (from store properties - assure to keep cookdown) -->
+          <SubjectIncludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/SubjectIncludeRegEx$</SubjectIncludeRegEx>
+          <IssuerIncludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IssuerIncludeRegEx$</IssuerIncludeRegEx>
+          <SubjectExcludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/SubjectExcludeRegEx$</SubjectExcludeRegEx>
+          <IssuerExcludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IssuerExcludeRegEx$</IssuerExcludeRegEx>
+          <EnhKeyUseExcludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/EnhKeyUseExcludeRegEx$</EnhKeyUseExcludeRegEx>
+          <TemplateIncludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateIncludeRegEx$</TemplateIncludeRegEx>
+          <TemplateExcludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateExcludeRegEx$</TemplateExcludeRegEx>
+
+          <IntervalSeconds>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildMonitorInterval$</IntervalSeconds>
+          <SyncTime>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/Sync$</SyncTime>
+          <SpreadInitializationOverInterval>900</SpreadInitializationOverInterval>
+          <TimeoutSeconds>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildScriptTimeout$</TimeoutSeconds>
+          <NextUpdateThreshold>0</NextUpdateThreshold>
+          <Debug>false</Debug>
+
+        </Configuration>
+      </UnitMonitor>
+    </Monitors>
+    <Overrides>
+      <!-- disable monitoring of CRLs that are required by windows to work properly. Not to make people think they pose an issue! -->
+      <MonitorPropertyOverride ID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.Monitor.RequiredWindowsCertificates.Override" Context="SystemCenterCentral.Utilities.Certificates.RequiredWindowsCertificatesGroup" Enforced="false" Monitor="SystemCenterCentral.Utilities.Certificates.CRLUpdate.Monitor" Property="Enabled">
+        <Value>false</Value>
+      </MonitorPropertyOverride>
+    </Overrides>
+  </Monitoring>
+  <Presentation>
+    <StringResources>
+          <StringResource ID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.Monitor_AlertMessageResourceID" />
+    </StringResources>
+  </Presentation>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.Monitor">
+          <Name>CRL Update</Name>
+          <Description>Checks if a Certificate Revocation List was updated in a timely manner</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.Monitor" SubElementID="CRLIsCurrent">
+          <Name>Is current</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.Monitor" SubElementID="CRLRequiresUpdate">
+          <Name>Requires update</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.Monitor_AlertMessageResourceID">
+          <Name>CRL update required</Name>
+          <Description>The certificate revocation list {0} has not been updated.
+
+Update is/was required by: {1}
+Store Name: {2}
+
+Store Key: {3}
+Store Provider: {4}
+Store Type: {5}
+Monitoring User: {6}</Description>
+        </DisplayString>
+      </DisplayStrings>
+      <KnowledgeArticles>
+         <KnowledgeArticle ElementID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.Monitor" Visible="true">
+          <MamlContent>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Summary</maml:title>
+              <maml:para>A Certificate Revocation List (CRL) has an effective date. It is referred to as the "next update". Often a CRL is being automatically renewed when the effective date is reached. Should this not happen, the monitor alerts that the CRL should be renewed.</maml:para>
+            </maml:section>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Causes</maml:title>
+              <maml:para>CRLs are updated using ldap, http or file access. If these automatic methods are unsucessful, the update might fail and the CRL expire. </maml:para>
+            </maml:section>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Resolutions</maml:title>
+              <maml:para>Review the CRL’s distribution points. The machine hosting the certificate store where the CRL is held, needs to have access to at least one of the distribution points in oder to be automatically updated.</maml:para>
+              <maml:para>Alternatively, request an updated CRL from the issuer. Often it can be downloaded from a web site. </maml:para>
+            </maml:section>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Configuration</maml:title>
+              <maml:para>The default threshold of 0 days can be changed by overriding the parameter ‘NextUpdateThreshold’</maml:para>
+            </maml:section>
+          </MamlContent>
+        </KnowledgeArticle>
+      </KnowledgeArticles>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

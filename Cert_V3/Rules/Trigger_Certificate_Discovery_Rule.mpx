@@ -1,0 +1,97 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Rules>
+      <Rule ID="SystemCenterCentral.Utilities.Certificates.TriggerCertificateDiscovery.Rule" Target="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry" ConfirmDelivery="false" Enabled="true" Remotable="false">
+        <Category>EventCollection</Category>
+        <DataSources>
+          <DataSource ID="RepeatedEventCollection" TypeID="SystemCenterCentral.Utilities.Certificates.RepeatedEvent.DataSource">
+            <ComputerName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+            <LogName>Operations Manager</LogName>
+            <Expression>
+              <And>
+                <Expression>
+                  <SimpleExpression>
+                    <ValueExpression>
+                      <XPathQuery Type="String">PublisherName</XPathQuery>
+                    </ValueExpression>
+                    <Operator>Equal</Operator>
+                    <ValueExpression>
+                      <Value Type="String">Health Service Script</Value>
+                    </ValueExpression>
+                  </SimpleExpression>
+                </Expression>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="UnsignedInteger">EventDisplayNumber</XPathQuery>
+                  </ValueExpression>
+                  <Operator>MatchesRegularExpression</Operator>
+                  <Pattern>^(121|122|123|124|127)$</Pattern>
+                </RegExExpression>
+              </Expression>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Params/Param[2]</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="String">Certificate_Handling_Script_V2.ps1</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Params/Param[4]</XPathQuery>
+                  </ValueExpression>
+                  <Operator>MatchesRegularExpression</Operator>
+                  <Pattern>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</Pattern>
+                </RegExExpression>
+              </Expression>
+              </And>
+            </Expression>
+            <Consolidator>
+              <ConsolidationProperties />
+              <TimeControl>
+                <!-- wait for delayed events -->
+                <Latency>10</Latency>
+                <!-- don't wait for backlogged items -->
+                <DrainWait>0</DrainWait>
+                <WithinTimeSchedule>
+                  <!-- don't call script more than once every 1 minutes -->
+                  <!--    even if several trigger events were observed in that timeframe -->
+                  <Interval>60</Interval>
+                </WithinTimeSchedule>
+              </TimeControl>
+              <!-- output only after the latency has passed -->
+              <!--     will output any input item (if any) that has happened -->
+              <CountingCondition>
+                <CountMode>OnNewItemNOP_OnTimerOutputRestart</CountMode>
+              </CountingCondition>
+            </Consolidator>
+          </DataSource>
+        </DataSources>
+        <WriteActions>
+          <WriteAction ID ="TriggerDiscovery" TypeID="SystemCenterCentral.Utilities.Certificates.DiscoveryTriggerScriptWA" Target="SC!Microsoft.SystemCenter.AllManagementServersPool">
+            <OriginatorComputerName>$Data/Context/DataItem/Params/Param[3]$</OriginatorComputerName>
+            <OriginatorStoreName>$Data/Context/DataItem/Params/Param[4]$</OriginatorStoreName>
+            <TimeoutSeconds>300</TimeoutSeconds>
+            <Debug>false</Debug>
+          </WriteAction>
+        </WriteActions>
+      </Rule>
+    </Rules>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.TriggerCertificateDiscovery.Rule">
+          <Name>Trigger certificate discovery after certificate task was performed</Name>
+          <Description>Rule will trigger an out-of-schedule certificate discovery following certificate handling tasks.</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+  
+</ManagementPackFragment>

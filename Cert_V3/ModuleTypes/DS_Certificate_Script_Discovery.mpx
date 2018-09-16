@@ -1,0 +1,203 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <ModuleTypes>
+      <DataSourceModuleType ID="SystemCenterCentral.Utilities.Certificates.Certificate.LocalScriptDiscovery.DataSource" Accessibility="Internal" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>System!System.Discovery.MapperSchema</SchemaType>
+            <SchemaType>System!System.ExpressionEvaluatorSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element minOccurs="1" name="CertStoreID" type="xsd:string" />
+          <xsd:element minOccurs="0" name="StoreProvider" type="xsd:string" default="System"/>
+          <xsd:element minOccurs="0" name="StoreType" type="xsd:string" default="LocalMachine"/>
+          <xsd:element minOccurs="0" name="RevocationFlag" type="xsd:string" default="EntireChain"/>
+          <xsd:element minOccurs="0" name="RevocationMode" type="xsd:string" default="Online"/>
+          <xsd:element minOccurs="0" name="VerificationFlags" type="xsd:string" default="IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown" />
+       
+          <xsd:element minOccurs="0" name="SubjectIncludeRegEx" type="xsd:string" default="^.*$"/>
+          <xsd:element minOccurs="0" name="IssuerIncludeRegEx" type="xsd:string" default="^.*$"/>
+          <xsd:element minOccurs="0" name="SubjectExcludeRegEx" type="xsd:string" default="^$"/>
+          <xsd:element minOccurs="0" name="IssuerExcludeRegEx" type="xsd:string" default="^$"/>
+          <xsd:element minOccurs="0" name="EnhKeyUseIncludeRegEx" type="xsd:string" default="^$"/>
+          <xsd:element minOccurs="0" name="EnhKeyUseExcludeRegEx" type="xsd:string" default="\n"/>
+          <xsd:element minOccurs="0" name="TemplateIncludeRegEx" type="xsd:string" default="^(|.+)$"/>
+          <xsd:element minOccurs="0" name="TemplateExcludeRegEx" type="xsd:string" default="\n"/>
+          <xsd:element minOccurs="0" name="ExpiryThresholdDays" type="xsd:integer" default="31"/>
+
+          <xsd:element minOccurs="1" name="DiscoverSupersededCACertificates" type="xsd:boolean" />
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean" />
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer" />
+          <xsd:element minOccurs="0" name="SyncTime" type="xsd:string" />
+          <xsd:element minOccurs="0" name="SpreadInitializationOverInterval" type="xsd:integer" default="900"/>
+          <xsd:element minOccurs="1" name="TimeoutSeconds" type="xsd:integer" />
+          <xsd:element minOccurs="1" name="ClassId" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="InstanceSettings" type="SettingsType" />
+          <xsd:element minOccurs="1" name="Expression" type="ExpressionType" />
+        </Configuration>
+        <OverrideableParameters>
+           <OverrideableParameter ID="DiscoverSupersededCACertificates" Selector="$Config/DiscoverSupersededCACertificates$" ParameterType="bool" />
+          <OverrideableParameter ID="ExpiryThresholdDays" Selector="$Config/ExpiryThresholdDays$" ParameterType="int" />
+          <OverrideableParameter ID="SpreadInitializationOverInterval" Selector="$Config/SpreadInitializationOverInterval$" ParameterType="int" />
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool" />
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules> 
+              <!--
+               <DataSource ID="ScriptDS" TypeID="SystemCenterCentral.Utilities.Certificates.ScriptDataSource">
+              <CertStoreID>$Config/CertStoreID$</CertStoreID>
+              <StoreProvider>$Config/StoreProvider$</StoreProvider>
+              <StoreType>$Config/StoreType$</StoreType>
+              <RevocationFlag>$Config/RevocationFlag$</RevocationFlag>
+              <RevocationMode>$Config/RevocationMode$</RevocationMode>
+              <VerificationFlags>$Config/VerificationFlags$</VerificationFlags>
+                 
+              <SubjectIncludeRegEx>$Config/SubjectIncludeRegEx$</SubjectIncludeRegEx>
+              <IssuerIncludeRegEx>$Config/IssuerIncludeRegEx$</IssuerIncludeRegEx>
+              <SubjectExcludeRegEx>$Config/SubjectExcludeRegEx$</SubjectExcludeRegEx>
+              <IssuerExcludeRegEx>$Config/IssuerExcludeRegEx$</IssuerExcludeRegEx>
+              <EnhKeyUseIncludeRegEx>$Config/EnhKeyUseIncludeRegEx$</EnhKeyUseIncludeRegEx>
+              <EnhKeyUseExcludeRegEx>$Config/EnhKeyUseExcludeRegEx$</EnhKeyUseExcludeRegEx>
+              <TemplateIncludeRegEx>$Config/TemplateIncludeRegEx$</TemplateIncludeRegEx>
+              <TemplateExcludeRegEx>$Config/TemplateExcludeRegEx$</TemplateExcludeRegEx>
+              <ExpiryThresholdDays>$Config/ExpiryThresholdDays$</ExpiryThresholdDays>
+                 
+              <Debug>$Config/Debug$</Debug>
+              <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+              <SyncTime>$Config/SyncTime$</SyncTime>
+              <SpreadInitializationOverInterval>$Config/SpreadInitializationOverInterval$</SpreadInitializationOverInterval>
+              <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+            </DataSource>
+-->
+              
+              <!-- test to trigger interactiverly -->
+              <!--     backporting to Discovery Scheduler -->
+              <DataSource ID="DiscoveryScheduler" TypeID="System!System.Discovery.Scheduler">
+                <Scheduler>
+                  <SimpleReccuringSchedule>
+                    <Interval Unit="Seconds">$Config/IntervalSeconds$</Interval>
+                    <!--<SpreadInitializationOverInterval>$Config/SpreadInitializationOverInterval$</SpreadInitializationOverInterval>-->
+                  </SimpleReccuringSchedule>
+                  <ExcludeDates />
+                </Scheduler>
+              </DataSource>
+              <ProbeAction ID="ScriptProbe" TypeID="SystemCenterCentral.Utilities.Certificates.ScriptProbe">
+                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+                <CertStoreID>$Config/CertStoreID$</CertStoreID>
+                <StoreProvider>$Config/StoreProvider$</StoreProvider>
+                <StoreType>$Config/StoreType$</StoreType>
+                <RevocationFlag>$Config/RevocationFlag$</RevocationFlag>
+                <RevocationMode>$Config/RevocationMode$</RevocationMode>
+                <VerificationFlags>$Config/VerificationFlags$</VerificationFlags>
+                <SubjectIncludeRegEx>$Config/SubjectIncludeRegEx$</SubjectIncludeRegEx>
+                <IssuerIncludeRegEx>$Config/IssuerIncludeRegEx$</IssuerIncludeRegEx>
+                <SubjectExcludeRegEx>$Config/SubjectExcludeRegEx$</SubjectExcludeRegEx>
+                <IssuerExcludeRegEx>$Config/IssuerExcludeRegEx$</IssuerExcludeRegEx>
+                <EnhKeyUseIncludeRegEx>$Config/EnhKeyUseIncludeRegEx$</EnhKeyUseIncludeRegEx>
+                <EnhKeyUseExcludeRegEx>$Config/EnhKeyUseExcludeRegEx$</EnhKeyUseExcludeRegEx>
+                <TemplateIncludeRegEx>$Config/TemplateIncludeRegEx$</TemplateIncludeRegEx>
+                <TemplateExcludeRegEx>$Config/TemplateExcludeRegEx$</TemplateExcludeRegEx>
+                <ExpiryThresholdDays>$Config/ExpiryThresholdDays$</ExpiryThresholdDays>
+                <Debug>$Config/Debug$</Debug>
+              </ProbeAction>
+              
+              
+              
+              <ConditionDetection ID="CertificateInstance" TypeID="System!System.ExpressionFilter">
+                <Expression>
+                  <And>
+                    <Expression>
+                      <SimpleExpression>
+                        <ValueExpression>
+                          <XPathQuery Type="String">Property[@Name='InstanceType']</XPathQuery>
+                        </ValueExpression>
+                        <Operator>Equal</Operator>
+                        <ValueExpression>
+                          <Value Type="String">Certificate</Value>
+                        </ValueExpression>
+                      </SimpleExpression>
+                    </Expression>
+                    <Expression>
+                      <Or>
+                        <!-- filter to disable discovery of superseded CA certificates -->
+                        <Expression>
+                          <And>
+                            <Expression>
+                              <SimpleExpression>
+                                <ValueExpression>
+                                  <Value Type="Boolean">$Config/DiscoverSupersededCACertificates$</Value>
+                                </ValueExpression>
+                                <Operator>Equal</Operator>
+                                <ValueExpression>
+                                  <Value Type="Boolean">false</Value>
+                                </ValueExpression>
+                              </SimpleExpression>
+                            </Expression>
+                            <Expression>
+                              <RegExExpression>
+                                <ValueExpression>
+                                  <XPathQuery Type="String">Property[@Name='CAVersion']</XPathQuery>
+                                </ValueExpression>
+                                <Operator>DoesNotMatchRegularExpression</Operator>
+                                <Pattern>superseded</Pattern>
+                              </RegExExpression>
+                            </Expression>
+                          </And>
+                        </Expression>
+                        <Expression>
+                          <SimpleExpression>
+                            <ValueExpression>
+                              <Value Type="Boolean">$Config/DiscoverSupersededCACertificates$</Value>
+                            </ValueExpression>
+                            <Operator>Equal</Operator>
+                            <ValueExpression>
+                              <Value Type="Boolean">true</Value>
+                            </ValueExpression>
+                          </SimpleExpression>
+                        </Expression>
+                      </Or>
+                    </Expression>
+                  </And>
+                </Expression>
+              </ConditionDetection>
+              <ConditionDetection ID="ClassMapper" TypeID="System!System.Discovery.FilteredClassSnapshotDataMapper">
+                <Expression>$Config/Expression$</Expression>
+                <ClassId>$Config/ClassId$</ClassId>
+                <InstanceSettings>$Config/InstanceSettings$</InstanceSettings>
+              </ConditionDetection>
+            </MemberModules>
+            <Composition>
+              <Node ID="ClassMapper">
+                <Node ID="CertificateInstance">
+                  <!--
+                    <Node ID="ScriptDS" />
+                    -->
+
+                  <Node ID="ScriptProbe">
+                  <Node ID="DiscoveryScheduler" />
+                  </Node>
+                </Node>
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.Discovery.Data</OutputType>
+      </DataSourceModuleType>
+
+    </ModuleTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate.LocalScriptDiscovery.DataSource">
+          <Name>SystemCenterCentral.Utilities.Certificates.Certificate.LocalScriptDiscovery.DataSource</Name>
+          <Description>Script Discovery DS</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate.LocalScriptDiscovery.DataSource" SubElementID="ExpiryThresholdDays">
+          <Name>Expires Soon Threshold Days (Views/Reports)</Name>
+          <Description></Description>
+        </DisplayString>
+       </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

@@ -1,0 +1,20 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Presentation>
+    <Folders>
+      <Folder ID="SystemCenterCentral.Utilities.Certificates.CertAndCRLViewFolder" Accessibility="Public" ParentFolder="SystemCenterCentral.Utilities.Certificates.ViewFolder" />
+      <Folder ID="SystemCenterCentral.Utilities.Certificates.ViewFolder" Accessibility="Public" ParentFolder="SC!Microsoft.SystemCenter.Monitoring.ViewFolder.Root" />
+    </Folders>
+  </Presentation>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ViewFolder">
+          <Name>PKI Certificate Validation</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertAndCRLViewFolder">
+          <Name>Certificates and CRLs</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>
