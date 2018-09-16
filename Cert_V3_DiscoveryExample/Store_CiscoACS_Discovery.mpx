@@ -1,0 +1,87 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <Monitoring>
+    <Discoveries>
+      <!-- Sample - how to discover an additional registry based certificate store -->
+      <!-- discovers Cisco ACS certificate store -->
+      <Discovery ID="SystemCenter.Utilities.Certificates.Discovery.AddOn.Registry.ACSCertStore.Discovery" Enabled="true" Target="SC!Microsoft.SystemCenter.HealthService" ConfirmDelivery="false" Remotable="false" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="Certificate!SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry">
+            <Property TypeID="Certificate!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="CertStoreName" />
+            <Property TypeID="Certificate!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="CertStoreID" />
+            <Property TypeID="Certificate!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="Sync" />
+            <Property TypeID="Certificate!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="ChildMonitorInterval" />
+            <Property TypeID="Certificate!SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="ChildDiscoveryInterval" />
+            <Property TypeID="System!System.Entity" PropertyID="DisplayName" />
+          </DiscoveryClass>
+          <DiscoveryRelationship TypeID="Certificate!Microsoft.Windows.Computer.Hosts.SystemCenterCentral.Utilities.Certificates.CertificateStore" />
+        </DiscoveryTypes>
+        <DataSource ID="DS" TypeID="Certificate!SystemCenterCentral.Utilities.Certificates.CertificateStoreDiscoveryProvider">
+          <ComputerName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/NetworkName$</ComputerName>
+          <!-- how often should the discovery run (every 24 hours) -->
+          <Frequency>86400</Frequency>
+
+
+          <!-- registry key name of the store -->
+          <!-- as seen in HKLM\SOFTWARE\Microsoft\SystemCertificates -->
+          <CertStoreID>ACSCertStore</CertStoreID>
+
+          <!-- SystemRegistry / LocalMachine are the correct values for a registry based computer store -->
+          <!--     do not change these                                                          -->
+          <StoreProvider>SystemRegistry</StoreProvider>
+          <StoreType>LocalMachine</StoreType>
+
+          <ComputerPrincipalName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerPrincipalName>
+
+          <!-- friendly name of the store -->
+          <CertStoreName>Cisco ACS Certificate Store</CertStoreName>
+
+          <!-- sync time - is no longer used by the MP (it's using SpreadInitializationOverInterval) -->
+          <ChildMonitorSync> - </ChildMonitorSync>
+          
+          <!-- how often should the certificates be checked for vaildity -->
+          <!-- defaults to every 4 hours -->
+          <ChildMonitorInterval>14110</ChildMonitorInterval>
+          <!-- how often should new certificates be discovered -->
+          <!-- defaults to every 12 hours -->
+          <ChildDiscoveryInterval>42330</ChildDiscoveryInterval>
+          <!-- discovery and monitoring script timeout value -->
+          <!-- defaults to 5 minutes -->
+          <ChildScriptTimeout>300</ChildScriptTimeout>
+
+          <!-- certificate verification settings                                                                     -->
+          <!--     EntireChain / Online / IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown     -->
+          <!--     are the default values                                                                            -->
+          <RevocationFlag>EntireChain</RevocationFlag>
+          <RevocationMode>Online</RevocationMode>
+          <VerificationFlags>IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown</VerificationFlags>
+          
+          <SubjectIncludeRegEx>^.*$</SubjectIncludeRegEx>
+          <IssuerIncludeRegEx>^.*$</IssuerIncludeRegEx>
+          <SubjectExcludeRegEx>^$</SubjectExcludeRegEx>
+          <IssuerExcludeRegEx>^$</IssuerExcludeRegEx>
+          <EnhKeyUseIncludeRegEx>^(|.+)$</EnhKeyUseIncludeRegEx>
+          <EnhKeyUseExcludeRegEx>^$</EnhKeyUseExcludeRegEx>
+          <!-- ACS certificates will not typically have been issued by an MS CA; hence no template information -->
+          <TemplateIncludeRegEx>^(|.+)$</TemplateIncludeRegEx>
+          <TemplateExcludeRegEx>\s+</TemplateExcludeRegEx>
+
+          <!-- Certificate Store display name in OpsMgr -->
+          <DisplayName>Cisco ACS Certificate Store</DisplayName>
+
+        </DataSource>
+      </Discovery>
+    </Discoveries>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenter.Utilities.Certificates.Discovery.AddOn.Registry.ACSCertStore.Discovery">
+          <Name>Cisco ACS Certificate Store Discovery (Example)</Name>
+          <Description></Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

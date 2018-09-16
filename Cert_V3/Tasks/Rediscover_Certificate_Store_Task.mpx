@@ -1,0 +1,35 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Tasks>
+      <Task ID="SystemCenterCentral.Utilities.Certificates.RediscoverStoreCertificates.Task" Accessibility="Internal" Enabled="true" Target="SystemCenterCentral.Utilities.Certificates.CertificateStore" Timeout="300" Remotable="false">
+        <Category>Maintenance</Category>
+        <WriteAction ID="Probe" TypeID="SystemCenterCentral.Utilities.Certificates.HandlingScriptWA">
+          <TimeoutSeconds>300</TimeoutSeconds>
+          <ComputerName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+          <CertStoreID>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+          <StoreProvider>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+          <RevocationFlag>EntireChain</RevocationFlag>
+          <RevocationMode>Offline</RevocationMode>
+          <VerificationFlags>IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown</VerificationFlags>
+          <Operation>REDISCOVER</Operation>
+          <Verify>true</Verify>
+          <IncludeArchived>false</IncludeArchived>
+          <WideOutput>false</WideOutput>
+          <Thumbprint>.</Thumbprint>
+          <TaskId>SystemCenterCentral.Utilities.Certificates.ListStoreCertificateProperties.Task</TaskId>
+        </WriteAction>
+      </Task>
+    </Tasks>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.RediscoverStoreCertificates.Task">
+          <Name>REDISCOVER Certificates</Name>
+          <Description>Triggers a re-discovery of the certificates in the store. The discovery will run within aproximately 2 minutes after the task.</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

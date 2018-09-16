@@ -1,0 +1,20 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!-- Re-Written PKI Certificate MP -->
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <ClassType ID="SystemCenterCentral.Utilities.Certificates.ApplicationComponent" Accessibility="Internal" Abstract="true" Base="Windows!Microsoft.Windows.ApplicationComponent" Hosted="false" Singleton="false" />
+      </ClassTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ApplicationComponent">
+          <Name>Certificate Services Component</Name>
+          <Description>Abstract base class for all certificate components</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+      </ManagementPackFragment>

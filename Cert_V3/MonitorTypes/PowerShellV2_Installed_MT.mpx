@@ -1,0 +1,82 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <MonitorTypes>
+          <UnitMonitorType ID="SystemCenterCentral.Utilities.Certificates.PowerShellV2.Installed.MonitorType" Accessibility="Internal">
+        <MonitorTypeStates>
+          <MonitorTypeState ID="Healthy" NoDetection="false" />
+          <MonitorTypeState ID="Warning" NoDetection="false" />
+        </MonitorTypeStates>
+        <Configuration>
+          <xsd:element name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="TimeoutSeconds" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="SpreadInitializationOverInterval" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="RequiredVersion" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="TimeoutSeconds" Selector="$Config/TimeoutSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="SpreadInitializationOverInterval" Selector="$Config/SpreadInitializationOverInterval$" ParameterType="int" />
+        </OverrideableParameters>
+        <MonitorImplementation>
+          <MemberModules>
+            <DataSource ID="Schedule" TypeID="System!System.Scheduler">
+              <Scheduler>
+                <SimpleReccuringSchedule>
+                  <Interval>$Config/IntervalSeconds$</Interval>
+                  <SpreadInitializationOverInterval>$Config/SpreadInitializationOverInterval$</SpreadInitializationOverInterval>
+                </SimpleReccuringSchedule>
+                <ExcludeDates />
+              </Scheduler>
+            </DataSource>
+            <ProbeAction ID="Script" TypeID="Windows!Microsoft.Windows.ScriptPropertyBagProbe">
+              <ScriptName>SystemCenterCentral.Utililities.Certificates.CheckPowerShellVersion.vbs</ScriptName>
+              <Arguments />
+              <ScriptBody>$IncludeFileContent/Scripts/CheckPowerShellVersion.vbs$</ScriptBody>
+              <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+            </ProbeAction>
+            <ConditionDetection ID="CDHealthy" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Property[@Name='PowerShell_Compatibility']</XPathQuery>
+                </ValueExpression>
+                  <Operator>ContainsSubstring</Operator>
+                  <Pattern>$Config/RequiredVersion$</Pattern>
+                </RegExExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="CDWarning" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Property[@Name='PowerShell_Compatibility']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>DoesNotContainSubstring</Operator>
+                  <Pattern>$Config/RequiredVersion$</Pattern>
+                </RegExExpression>
+              </Expression>
+            </ConditionDetection>
+          </MemberModules>
+          <RegularDetections>
+            <RegularDetection MonitorTypeStateID="Healthy">
+              <Node ID="CDHealthy">
+                <Node ID="Script">
+                  <Node ID="Schedule" />
+                </Node>
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="Warning">
+              <Node ID="CDWarning">
+                <Node ID="Script">
+                  <Node ID="Schedule" />
+                </Node>
+              </Node>
+            </RegularDetection>
+          </RegularDetections>
+        </MonitorImplementation>
+      </UnitMonitorType>
+  
+    </MonitorTypes>
+  </TypeDefinitions>
+  
+</ManagementPackFragment>

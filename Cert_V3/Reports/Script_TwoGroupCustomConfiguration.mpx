@@ -1,0 +1,11 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Reporting>
+    <DataWarehouseScripts>
+      <DataWarehouseScript ID="SystemCenterCentral.Utilities.Certificates.Report.Script.TwoGroupCustomConfiguration" Accessibility="Internal">
+        <InstallScript>Res.TwoGroupCustomConfigurationReportDataGet_Install</InstallScript>
+        <UninstallScript>Res.TwoGroupCustomConfigurationReportDataGet_Uninstall</UninstallScript>
+        <UpgradeScript>Res.TwoGroupCustomConfigurationReportDataGet_Upgrade</UpgradeScript>
+      </DataWarehouseScript>
+    </DataWarehouseScripts>
+  </Reporting>
+</ManagementPackFragment>

@@ -1,0 +1,10 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <!-- disable monitor on Cluster Virtual Servers -->
+    <Overrides>
+      <MonitorPropertyOverride ID="SystemCenterCentral.Utilities.Certificates.PowerShellV2.Installed.Monitor_DisableClusterVirtualServer_Override" Context="ClusterLib!Microsoft.Windows.Cluster.VirtualServer" Enforced="false" Monitor="SystemCenterCentral.Utilities.Certificates.PowerShellV2.Installed.Monitor" Property="Enabled">
+        <Value>false</Value>
+      </MonitorPropertyOverride>
+    </Overrides>
+  </Monitoring>
+</ManagementPackFragment>

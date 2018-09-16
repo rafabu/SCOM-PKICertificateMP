@@ -1,0 +1,217 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Discoveries>
+      <Discovery ID="SystemCenterCentral.Utilities.Certificates.LocalScriptProbe.SelfSignedCertificate.Discovery" Enabled="false" Target="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry" ConfirmDelivery="false" Remotable="false" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="SystemCenterCentral.Utilities.Certificates.SelfSignedCertificate">
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertIssuedTo" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertIssuedBy" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertValidFrom" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertValidTo" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertVersion" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertSignatureAlgo" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertPublicKey" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertPrivateKey" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertFriendlyName" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertSerial" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertStatus" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertTimeStatus" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertStore" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertThumbprint" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CertExpiresWithin31Days" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="CAVersion" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="TemplateName" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="EnhancedKeyUsageList" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.Certificate" PropertyID="SubjectAlternativeNameList" />
+            <Property TypeID="System!System.Entity" PropertyID="DisplayName" />
+          </DiscoveryClass>
+          <DiscoveryRelationship TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore.Hosts.SystemCenterCentral.Utilities.Certificates.Certificate" />
+        </DiscoveryTypes>
+        <DataSource ID="DataSource" TypeID="SystemCenterCentral.Utilities.Certificates.Certificate.LocalScriptDiscovery.DataSource">
+          <CertStoreID>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+          <StoreProvider>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+          <!--  take values from TARGET to guarantee coockdown -->
+          <RevocationFlag>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/RevocationFlag$</RevocationFlag>
+          <RevocationMode>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/RevocationMode$</RevocationMode>
+          <VerificationFlags>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/VerificationFlags$</VerificationFlags>
+         
+          <!-- include / exclude certificates (from store properties) -->
+          <SubjectIncludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/SubjectIncludeRegEx$</SubjectIncludeRegEx>
+          <IssuerIncludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IssuerIncludeRegEx$</IssuerIncludeRegEx>
+          <SubjectExcludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/SubjectExcludeRegEx$</SubjectExcludeRegEx>
+          <IssuerExcludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IssuerExcludeRegEx$</IssuerExcludeRegEx>
+          <EnhKeyUseExcludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/EnhKeyUseExcludeRegEx$</EnhKeyUseExcludeRegEx>
+          <TemplateIncludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateIncludeRegEx$</TemplateIncludeRegEx>
+          <TemplateExcludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateExcludeRegEx$</TemplateExcludeRegEx>
+          <ExpiryThresholdDays>31</ExpiryThresholdDays>
+          
+          <DiscoverSupersededCACertificates>false</DiscoverSupersededCACertificates>
+          <!-- self-signed: ignore 'UntrustedRoot' state (e.g. in My store instead of Root) -->
+          <Debug>false</Debug>
+          <IntervalSeconds>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildDiscoveryInterval$</IntervalSeconds>
+          <SyncTime>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/Sync$</SyncTime>
+          <SpreadInitializationOverInterval>900</SpreadInitializationOverInterval>
+          <TimeoutSeconds>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildScriptTimeout$</TimeoutSeconds>
+          <ClassId>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.SelfSignedCertificate"]$</ClassId>
+          <InstanceSettings>
+            <Settings>
+              <Setting>
+                <Name>$MPElement[Name="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Name>
+                <Value>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</Name>
+                <Value>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertSerial$</Name>
+                <Value>$Data/Property[@Name='CertSerial']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertThumbprint$</Name>
+                <Value>$Data/Property[@Name='CertThumbprint']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertVersion$</Name>
+                <Value>$Data/Property[@Name='CertVersion']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertSignatureAlgo$</Name>
+                <Value>$Data/Property[@Name='CertSignatureAlgo']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedBy$</Name>
+                <Value>$Data/Property[@Name='CertIssuedBy']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertValidFrom$</Name>
+                <Value>$Data/Property[@Name='CertValidFrom']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertValidTo$</Name>
+                <Value>$Data/Property[@Name='CertValidTo']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedTo$</Name>
+                <Value>$Data/Property[@Name='CertIssuedTo']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertPublicKey$</Name>
+                <Value>$Data/Property[@Name='CertPublicKey']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertFriendlyName$</Name>
+                <Value>$Data/Property[@Name='CertFriendlyName']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertPrivateKey$</Name>
+                <Value>$Data/Property[@Name='CertPrivateKey']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertStatus$</Name>
+                <!-- use CertStatusIgnoreUntrustedRoot -->
+                <Value>$Data/Property[@Name='CertStatusIgnoreUntrustedRoot']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertTimeStatus$</Name>
+                <Value>$Data/Property[@Name='CertTimeStatus']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertExpiresWithin31Days$</Name>
+                <Value>$Data/Property[@Name='CertExpiresSoon']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CAVersion$</Name>
+                <Value>$Data/Property[@Name='CAVersion']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertStore$</Name>
+                <Value>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/TemplateName$</Name>
+                <Value>$Data/Property[@Name='TemplateName']$</Value>
+              </Setting>
+               <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/EnhancedKeyUsageList$</Name>
+                <Value>$Data/Property[@Name='EnhancedKeyUsageList']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/SubjectAlternativeNameList$</Name>
+                <Value>$Data/Property[@Name='CertSAN']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="System!System.Entity"]/DisplayName$</Name>
+                <Value>SelfSigned Cert $Data/Property[@Name='CertIssuedTo']$</Value>
+              </Setting>
+            </Settings>
+          </InstanceSettings>
+          <Expression>
+            <And>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Property[@Name='CertThumbprint']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>NotEqual</Operator>
+                  <ValueExpression>
+                    <Value Type="String" />
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Property[@Name='CertIsCertificateAuthority']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="String">False</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Property[@Name='CertIsSelfSigned']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="String">True</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </And>
+          </Expression>
+        </DataSource>
+      </Discovery>
+
+    </Discoveries>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.LocalScriptProbe.SelfSignedCertificate.Discovery">
+          <Name>Discover Self-Signed Certificates (locally)</Name>
+          <Description>Discovers self signed certificates. This discovery is disabled by default.</Description>
+        </DisplayString>
+      </DisplayStrings>
+      <KnowledgeArticles>
+        <KnowledgeArticle ElementID="SystemCenterCentral.Utilities.Certificates.LocalScriptProbe.SelfSignedCertificate.Discovery" Visible="true">
+          <MamlContent>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Summary</maml:title>
+              <maml:para>Discovers self-signed certificates. This discovery is disabled by default.</maml:para>
+            </maml:section>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Configuration</maml:title>
+              <maml:para>Use overrides to enable the discovery if you need monitoring of self-signed certificates.</maml:para>
+            </maml:section>
+          </MamlContent>
+        </KnowledgeArticle>
+      </KnowledgeArticles>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

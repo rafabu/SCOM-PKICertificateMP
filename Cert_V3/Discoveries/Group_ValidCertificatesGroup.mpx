@@ -1,0 +1,82 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Discoveries>
+      <Discovery ID="SystemCenterCentral.Utilities.Certificates.ValidCertificatesGroup.Discovery" Enabled="true" Target="SystemCenterCentral.Utilities.Certificates.ValidCertificatesGroup" ConfirmDelivery="true" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="Microsoft.SystemCenter.GroupPolulator" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.ValidCertificatesGroup"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <And>
+                  <Expression>
+                    <Or>
+                      <Expression>
+                    <RegExExpression>
+                      <ValueExpression>
+                        <Property>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertStatus$</Property>
+                      </ValueExpression>
+                      <Operator>MatchesRegularExpression</Operator>
+                      <Pattern>^IsVerified</Pattern>
+                    </RegExExpression>
+                  </Expression>
+                      <!-- also include superseded CA certificates -->
+                      <Expression>
+                        <RegExExpression>
+                          <ValueExpression>
+                            <Property>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertStatus$</Property>
+                          </ValueExpression>
+                          <Operator>MatchesRegularExpression</Operator>
+                          <Pattern>^This CA certificate has been superseded by a more current one</Pattern>
+                        </RegExExpression>
+                      </Expression>
+                    </Or>
+                  </Expression>
+                  <!-- certificates that will expire soon are in seperate view -->
+                  <Expression>
+                    <SimpleExpression>
+                      <ValueExpression>
+                        <Property>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertExpiresWithin31Days$</Property>
+                      </ValueExpression>
+                      <Operator>Equal</Operator>
+                      <ValueExpression>
+                        <Value>False</Value>
+                      </ValueExpression>
+                    </SimpleExpression>
+                  </Expression>
+                  <Expression>
+                    <RegExExpression>
+                      <ValueExpression>
+                        <Property>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertTimeStatus$</Property>
+                      </ValueExpression>
+                      <Operator>MatchesRegularExpression</Operator>
+                      <Pattern>^IsTimeValid</Pattern>
+                    </RegExExpression>
+                  </Expression>
+
+                </And>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+
+    </Discoveries>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ValidCertificatesGroup.Discovery">
+          <Name>Containment discovery of the Certificates (valid) group</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+  
+</ManagementPackFragment>

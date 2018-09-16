@@ -1,0 +1,153 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Monitors>
+          <UnitMonitor ID="SystemCenterCentral.Utilities.Certificates.StoreOverridesValid.Monitor" Accessibility="Public" Enabled="true" Target="SystemCenterCentral.Utilities.Certificates.CertificateStore" ParentMonitorID="Health!System.Health.ConfigurationState" Remotable="true" Priority="Normal" TypeID="Windows!Microsoft.Windows.2SingleEventLog2StateMonitorType" ConfirmDelivery="true">
+        <Category>ConfigurationHealth</Category>
+        <AlertSettings AlertMessage="SystemCenterCentral.Utilities.Certificates.StoreOverridesValid.Monitor_AlertMessageResourceID">
+          <AlertOnState>Warning</AlertOnState>
+          <AutoResolve>true</AutoResolve>
+          <AlertPriority>Normal</AlertPriority>
+          <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        </AlertSettings>
+        <OperationalStates>
+          <OperationalState ID="FirstEventRaised" MonitorTypeStateID="FirstEventRaised" HealthState="Warning" />
+          <OperationalState ID="SecondEventRaised" MonitorTypeStateID="SecondEventRaised" HealthState="Success" />
+        </OperationalStates>
+        <Configuration>
+          <FirstComputerName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/NetworkName$</FirstComputerName>
+          <FirstLogName>Operations Manager</FirstLogName>
+          <FirstExpression>
+            <And>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="UnsignedInteger">EventDisplayNumber</XPathQuery>
+                  </ValueExpression>
+                  <Operator>MatchesRegularExpression</Operator>
+                  <Pattern>^111$</Pattern>
+                </RegExExpression>
+              </Expression>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">PublisherName</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="String">Health Service Script</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Params/Param[1]</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="String">Certificate_Verify_Script_V5.ps1</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Params/Param[2]</XPathQuery>
+                  </ValueExpression>
+                  <Operator>ContainsSubstring</Operator>
+                  <Pattern>Store ID: '$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$'</Pattern>
+                </RegExExpression>
+              </Expression>
+            </And>
+          </FirstExpression>
+          <SecondComputerName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/NetworkName$</SecondComputerName>
+          <SecondLogName>Operations Manager</SecondLogName>
+          <SecondExpression>
+            <And>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="UnsignedInteger">EventDisplayNumber</XPathQuery>
+                  </ValueExpression>
+                  <Operator>MatchesRegularExpression</Operator>
+                  <Pattern>^110$</Pattern>
+                </RegExExpression>
+              </Expression>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">PublisherName</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="String">Health Service Script</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Params/Param[1]</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="String">Certificate_Verify_Script_V5.ps1</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+              <Expression>
+                <RegExExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Params/Param[2]</XPathQuery>
+                  </ValueExpression>
+                  <Operator>ContainsSubstring</Operator>
+                  <Pattern>Store ID: '$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$'</Pattern>
+                </RegExExpression>
+              </Expression>
+            </And>
+          </SecondExpression>
+        </Configuration>
+      </UnitMonitor>
+    </Monitors>
+  </Monitoring>
+  <Presentation>
+    <StringResources>
+      <StringResource ID="SystemCenterCentral.Utilities.Certificates.StoreOverridesValid.Monitor_AlertMessageResourceID" />
+    </StringResources>
+  </Presentation>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.StoreOverridesValid.Monitor">
+          <Name>Certificate Verification Overrides</Name>
+          <Description>This monitor checks if overrides set for certificate validation are valid.</Description>
+        </DisplayString>
+         <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.StoreOverridesValid.Monitor_AlertMessageResourceID">
+          <Name>Invalid PKI certificate monitoring override(s) configured</Name>
+          <Description>PKI certificate monitoring and discovery overridable parameters RevocationFlag, RevocationMode or VerificationFlags in the context of this certificate store are not valid.
+ 
+Default values are being used instead.</Description>
+        </DisplayString>
+      </DisplayStrings>
+      <KnowledgeArticles>
+        <KnowledgeArticle ElementID="SystemCenterCentral.Utilities.Certificates.StoreOverridesValid.Monitor" Visible="true">
+          <MamlContent>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Summary</maml:title>
+              <maml:para>At least on of the overridable parameters RevocationFlag, RevocationMode or VerificationFlags as been set to an onvalid string.</maml:para>
+              <maml:para />
+            </maml:section>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Resolutions</maml:title>
+              <maml:para>Check the alert's context for possible values of the parameters. Then correct the override.</maml:para>
+              <maml:para>Value enumeration and explanation is found on msdn:</maml:para>
+              <maml:para>System.Security.Cryptography.X509Certificates.X509RevocationFlag</maml:para>
+              <maml:para>System.Security.Cryptography.X509Certificates.X509RevocationMode</maml:para>
+              <maml:para>System.Security.Cryptography.X509Certificates.X509VerificationFlags</maml:para>
+            </maml:section>
+          </MamlContent>
+        </KnowledgeArticle>
+      </KnowledgeArticles>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

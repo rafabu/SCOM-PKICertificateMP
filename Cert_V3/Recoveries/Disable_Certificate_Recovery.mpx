@@ -1,0 +1,51 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Recoveries>
+      <!--SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor-->
+      <Recovery ID="SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.DisableCertificate.Recovery" Accessibility="Internal" Enabled="false" Target="SystemCenterCentral.Utilities.Certificates.Certificate" Monitor="SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" ExecuteOnState="Error" ResetMonitor="false" Remotable="false" Timeout="300">
+        <Category>Maintenance</Category>
+        <WriteAction ID="WA" TypeID="SystemCenterCentral.Utilities.Certificates.HandlingScriptWA">
+          <TimeoutSeconds>300</TimeoutSeconds>
+          <ComputerName>$Target/Host/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+          <CertStoreID>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+          <StoreProvider>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+          <Operation>DISABLE</Operation>
+          <Thumbprint>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertThumbprint$</Thumbprint>
+          <TaskId>SystemCenterCentral.Utilities.Certificates.ArchiveNonRootCertificate.Recovery</TaskId>
+        </WriteAction>
+      </Recovery>
+
+      <!--SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor-->
+      <Recovery ID="SystemCenterCentral.Utilities.Certificates.CertificateValidity.DisableCertificate.Recovery" Accessibility="Internal" Enabled="false" Target="SystemCenterCentral.Utilities.Certificates.Certificate" Monitor="SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" ExecuteOnState="Warning" ResetMonitor="false" Remotable="false" Timeout="300">
+        <Category>Maintenance</Category>
+        <WriteAction ID="WA" TypeID="SystemCenterCentral.Utilities.Certificates.HandlingScriptWA">
+          <TimeoutSeconds>300</TimeoutSeconds>
+          <ComputerName>$Target/Host/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+          <CertStoreID>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+          <StoreProvider>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+          <Operation>DISABLE</Operation>
+          <Thumbprint>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertThumbprint$</Thumbprint>
+          <TaskId>SystemCenterCentral.Utilities.Certificates.ArchiveNonRootCertificate.Recovery</TaskId>
+        </WriteAction>
+      </Recovery>
+      
+    </Recoveries>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.DisableCertificate.Recovery">
+          <Name>DISABLE Certificate for Monitoring</Name>
+          <Description>Set the "Friendly Name" given certificate in the store on the agent machine. Appends the disabled flag.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateValidity.DisableCertificate.Recovery">
+          <Name>DISABLE Certificate for Monitoring</Name>
+          <Description>Set the "Friendly Name" given certificate in the store on the agent machine. Appends the disabled flag.</Description>
+        </DisplayString>
+     
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

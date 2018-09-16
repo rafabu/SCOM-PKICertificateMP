@@ -1,0 +1,142 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <ModuleTypes>
+      <ProbeActionModuleType ID="SystemCenterCentral.Utilities.Certificates.ScriptProbe" Accessibility="Internal" RunAs="SystemCenterCentral.Utilities.Certificates.HighPrivilege.SecureReference" Batching="false" PassThrough="false">
+        <Configuration>
+          <xsd:element minOccurs="1" name="TimeoutSeconds" type="xsd:integer" />
+          <xsd:element minOccurs="1" name="CertStoreID" type="xsd:string" />
+           <xsd:element minOccurs="0" name="StoreProvider" type="xsd:string" default="System"/>
+          <xsd:element minOccurs="0" name="StoreType" type="xsd:string" default="LocalMachine"/>
+          <xsd:element minOccurs="0" name="RevocationFlag" type="xsd:string" default="EntireChain"/>
+          <xsd:element minOccurs="0" name="RevocationMode" type="xsd:string" default="Online"/>
+          <xsd:element minOccurs="0" name="VerificationFlags" type="xsd:string" default="IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown" />
+
+          <xsd:element minOccurs="0" name="SubjectIncludeRegEx" type="xsd:string" default="^.*$"/>
+          <xsd:element minOccurs="0" name="IssuerIncludeRegEx" type="xsd:string" default="^.*$"/>
+          <xsd:element minOccurs="0" name="SubjectExcludeRegEx" type="xsd:string" default="^$"/>
+          <xsd:element minOccurs="0" name="IssuerExcludeRegEx" type="xsd:string" default="^$"/>
+          <xsd:element minOccurs="0" name="EnhKeyUseIncludeRegEx" type="xsd:string" default="^$"/>
+          <xsd:element minOccurs="0" name="EnhKeyUseExcludeRegEx" type="xsd:string" default="\n"/>
+          <xsd:element minOccurs="0" name="TemplateIncludeRegEx" type="xsd:string" default="^(|.+)$"/>
+          <xsd:element minOccurs="0" name="TemplateExcludeRegEx" type="xsd:string" default="\n"/>
+          <xsd:element minOccurs="0" name="ExpiryThresholdDays" type="xsd:integer" default="31"/>
+
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool" />
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="CertificateBagProbe" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+                <ScriptName>SystemCenterCentral.Utilities.Certificates.Certificate_Verify_Script_V6.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scripts/Certificate_Verify_Script_V6.ps1$</ScriptBody>
+                <Parameters>
+                  <Parameter>
+                    <Name>storeName</Name>
+                    <Value>$Config/CertStoreID$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>storeProvider</Name>
+                    <Value>$Config/StoreProvider$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>storeType</Name>
+                    <Value>$Config/StoreType$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>revocationFlag</Name>
+                    <Value>$Config/RevocationFlag$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>revocationMode</Name>
+                    <Value>$Config/RevocationMode$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>verificationFlags</Name>
+                    <Value>$Config/VerificationFlags$</Value>
+                  </Parameter>
+
+                  <Parameter>
+                    <Name>subjectIncludeRegEx</Name>
+                    <Value>$Config/SubjectIncludeRegEx$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>issuerIncludeRegEx</Name>
+                    <Value>$Config/IssuerIncludeRegEx$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>subjectExcludeRegEx</Name>
+                    <Value>$Config/SubjectExcludeRegEx$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>issuerExcludeRegEx</Name>
+                    <Value>$Config/IssuerExcludeRegEx$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>enhKeyUseIncludeRegEx</Name>
+                    <Value>$Config/EnhKeyUseIncludeRegEx$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>enhKeyUseExcludeRegEx</Name>
+                    <Value>$Config/EnhKeyUseExcludeRegEx$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>templateIncludeRegEx</Name>
+                    <Value>$Config/TemplateIncludeRegEx$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>templateExcludeRegEx</Name>
+                    <Value>$Config/TemplateExcludeRegEx$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>expiryThresholdDays</Name>
+                    <Value>$Config/ExpiryThresholdDays$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>debugParam</Name>
+                    <Value>$Config/Debug$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+              </ProbeAction>
+              
+              <!-- force using PoSh 2.0; not anything higher -->
+              <!--    not used as script is PoSh 2,3,4 tested as of V3) -->
+              <!--<ProbeAction ID="CommandExecuterProbe" TypeID="System!System.CommandExecuterProbePropertyBagBase">
+              <ApplicationName>%windir%\System32\WindowsPowerShell\v1.0\powershell.exe</ApplicationName>
+              <WorkingDirectory></WorkingDirectory>-->
+                <!-- escape the command line to overcome potential issues with characters e.g. in the pattern matching string (pipe caret etc.) -->
+                <!--     using "&{    }" method                                                                                                 -->
+              <!--<CommandLine><![CDATA[-Version 2 -NoProfile -Noninteractive "&{ $ep = get-executionpolicy; if ($ep -gt 'RemoteSigned') {set-executionpolicy -Scope Process remotesigned} & '$file/SystemCenterCentral.Utilities.Certificates.Certificate_Verify_Script_V4.ps1$' -storeName '$Config/CertStoreID$' -storeProvider '$Config/StoreProvider$' -storeType '$Config/StoreType$' -revocationFlag '$Config/RevocationFlag$' -revocationMode '$Config/RevocationMode$' -verificationFlags '$Config/VerificationFlags$' -debugParam '$Config/Debug$'}"]]></CommandLine>
+                <SecureInput></SecureInput>
+              <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+              <RequireOutput>true</RequireOutput>
+              <Files>
+                <File>
+                  <Name>SystemCenterCentral.Utilities.Certificates.Certificate_Verify_Script_V4.ps1</Name>
+                  <Contents>__IncludeFileContent/Scripts/Certificate_Verify_Script_V4.ps1__</Contents>
+                  <Unicode>true</Unicode>
+                </File>
+              </Files>
+                <OutputType>System.PropertyBagData</OutputType>
+              </ProbeAction>
+              -->
+              
+            </MemberModules>
+            <Composition>
+              <Node ID="CertificateBagProbe" />
+              <!--  <Node ID="CommandExecuterProbe" /> -->
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+        <TriggerOnly>true</TriggerOnly>
+       <!--<InputType>System!System.BaseData</InputType>-->
+      </ProbeActionModuleType>
+
+    </ModuleTypes>
+  </TypeDefinitions>
+  
+</ManagementPackFragment>

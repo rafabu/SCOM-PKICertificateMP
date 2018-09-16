@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D4B43EB3-688B-4EEE-86BD-088F0B28ABB3}") = "Cert_V3", "Cert_V3\Cert_V3.mpproj", "{0D03AFA0-C0B2-40B6-92EF-B4842CBA3546}"
+EndProject
+Project("{D4B43EB3-688B-4EEE-86BD-088F0B28ABB3}") = "Cert_V3_QuickStart_OR", "Cert_V3_QuickStart_OR\Cert_V3_QuickStart_OR.mpproj", "{C303FC6F-3553-47E1-8CD5-D853204ED68C}"
+EndProject
+Project("{D4B43EB3-688B-4EEE-86BD-088F0B28ABB3}") = "Cert_V3_DiscoveryExample", "Cert_V3_DiscoveryExample\Cert_V3_DiscoveryExample.mpproj", "{FA00E568-289B-4792-9DA3-3F0966B06F11}"
+EndProject
+Project("{D4B43EB3-688B-4EEE-86BD-088F0B28ABB3}") = "Cert_V3_ReDiscoveryTasks", "Cert_V3_Tasks\Cert_V3_ReDiscoveryTasks.mpproj", "{2ADC4E06-DAF7-4F73-8E4F-E1B36EDAE99E}"
+EndProject
+#Project("{D4B43EB3-688B-4EEE-86BD-088F0B28ABB3}") = "ServerSideResponseTest", "ServerSideResponseTest\ServerSideResponseTest.mpproj", "{D892EE9B-664C-492D-8EC9-F728DA5AE353}"
+#EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D03AFA0-C0B2-40B6-92EF-B4842CBA3546}.Debug|x86.ActiveCfg = Debug|x86
+		{0D03AFA0-C0B2-40B6-92EF-B4842CBA3546}.Debug|x86.Build.0 = Debug|x86
+		{0D03AFA0-C0B2-40B6-92EF-B4842CBA3546}.Release|x86.ActiveCfg = Release|x86
+		{0D03AFA0-C0B2-40B6-92EF-B4842CBA3546}.Release|x86.Build.0 = Release|x86
+		{C303FC6F-3553-47E1-8CD5-D853204ED68C}.Debug|x86.ActiveCfg = Debug|x86
+		{C303FC6F-3553-47E1-8CD5-D853204ED68C}.Debug|x86.Build.0 = Debug|x86
+		{C303FC6F-3553-47E1-8CD5-D853204ED68C}.Release|x86.ActiveCfg = Release|x86
+		{C303FC6F-3553-47E1-8CD5-D853204ED68C}.Release|x86.Build.0 = Release|x86
+		{FA00E568-289B-4792-9DA3-3F0966B06F11}.Debug|x86.ActiveCfg = Debug|x86
+		{FA00E568-289B-4792-9DA3-3F0966B06F11}.Debug|x86.Build.0 = Debug|x86
+		{FA00E568-289B-4792-9DA3-3F0966B06F11}.Release|x86.ActiveCfg = Release|x86
+		{FA00E568-289B-4792-9DA3-3F0966B06F11}.Release|x86.Build.0 = Release|x86
+		{2ADC4E06-DAF7-4F73-8E4F-E1B36EDAE99E}.Debug|x86.ActiveCfg = Debug|x86
+		{2ADC4E06-DAF7-4F73-8E4F-E1B36EDAE99E}.Debug|x86.Build.0 = Debug|x86
+		{2ADC4E06-DAF7-4F73-8E4F-E1B36EDAE99E}.Release|x86.ActiveCfg = Release|x86
+		{2ADC4E06-DAF7-4F73-8E4F-E1B36EDAE99E}.Release|x86.Build.0 = Release|x86
+		{D892EE9B-664C-492D-8EC9-F728DA5AE353}.Debug|x86.ActiveCfg = Debug|x86
+		{D892EE9B-664C-492D-8EC9-F728DA5AE353}.Debug|x86.Build.0 = Debug|x86
+		{D892EE9B-664C-492D-8EC9-F728DA5AE353}.Release|x86.ActiveCfg = Release|x86
+		{D892EE9B-664C-492D-8EC9-F728DA5AE353}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

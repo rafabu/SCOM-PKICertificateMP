@@ -1,0 +1,27 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Tasks>
+      <Task ID="SystemCenterCentral.Utilities.Certificates.ReDiscoveryTasks.RediscoverStoreCertificates.Task" Accessibility="Internal" Enabled="true" Target="Certificate!SystemCenterCentral.Utilities.Certificates.CertificateStore" Timeout="300" Remotable="false">
+        <Category>Maintenance</Category>
+        <WriteAction ID="Probe" TypeID="SystemCenterCentral.Utilities.Certificates.ReDiscoveryTasks.DemandDiscoveryScriptWA">
+          <TimeoutSeconds>300</TimeoutSeconds>
+          <ComputerName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+          <CertStoreID>$Target/Property[Type="Certificate!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+          <StoreProvider>$Target/Property[Type="Certificate!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Property[Type="Certificate!SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+         
+        </WriteAction>
+      </Task>
+    </Tasks>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ReDiscoveryTasks.RediscoverStoreCertificates.Task">
+          <Name>REDISCOVER Certificates</Name>
+          <Description>Triggers a re-discovery of the certificates in the store. The discovery will run within aproximately 1 minute after the task.</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

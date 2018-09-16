@@ -1,0 +1,36 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Monitors>
+       <DependencyMonitor ID="SystemCenterCentral.Utilities.Certificates.Certificate.RollUp.Monitor" Accessibility="Public" Enabled="true" Target="SystemCenterCentral.Utilities.Certificates.CertificateStore" ParentMonitorID="Health!System.Health.ConfigurationState" Remotable="false" Priority="Normal" RelationshipType="SystemCenterCentral.Utilities.Certificates.CertificateStore.Hosts.SystemCenterCentral.Utilities.Certificates.Certificate" MemberMonitor="Health!System.Health.ConfigurationState">
+        <Category>ConfigurationHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+        <MemberUnAvailable>Error</MemberUnAvailable>
+      </DependencyMonitor>
+      <DependencyMonitor ID="SystemCenterCentral.Utilities.Certificates.CRL.RollUp.Monitor" Accessibility="Public" Enabled="true" Target="SystemCenterCentral.Utilities.Certificates.CertificateStore" ParentMonitorID="Health!System.Health.ConfigurationState" Remotable="false" Priority="Normal" RelationshipType="SystemCenterCentral.Utilities.Certificates.CertificateStore.Hosts.SystemCenterCentral.Utilities.Certificates.CRL" MemberMonitor="Health!System.Health.ConfigurationState">
+        <Category>ConfigurationHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+        <MemberUnAvailable>Error</MemberUnAvailable>
+      </DependencyMonitor>
+      <DependencyMonitor ID="SystemCenterCentral.Utilities.Certificates.CertificateStore.RollUp.Monitor" Accessibility="Public" Enabled="true" Target="Windows!Microsoft.Windows.Computer" ParentMonitorID="Health!System.Health.ConfigurationState" Remotable="false" Priority="Normal" RelationshipType="Microsoft.Windows.Computer.Hosts.SystemCenterCentral.Utilities.Certificates.CertificateStore" MemberMonitor="Health!System.Health.ConfigurationState">
+        <Category>ConfigurationHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+        <MemberUnAvailable>Error</MemberUnAvailable>
+      </DependencyMonitor>
+    </Monitors>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+         <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.Certificate.RollUp.Monitor">
+          <Name>Certificates Roll Up</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRL.RollUp.Monitor">
+          <Name>CRL Roll Up</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore.RollUp.Monitor">
+          <Name>Certificate Store Roll Up</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>
