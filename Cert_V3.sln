@@ -11,8 +11,8 @@ Project("{D4B43EB3-688B-4EEE-86BD-088F0B28ABB3}") = "Cert_V3_DiscoveryExample", 
 EndProject
 Project("{D4B43EB3-688B-4EEE-86BD-088F0B28ABB3}") = "Cert_V3_ReDiscoveryTasks", "Cert_V3_Tasks\Cert_V3_ReDiscoveryTasks.mpproj", "{2ADC4E06-DAF7-4F73-8E4F-E1B36EDAE99E}"
 EndProject
-Project("{D4B43EB3-688B-4EEE-86BD-088F0B28ABB3}") = "ServerSideResponseTest", "ServerSideResponseTest\ServerSideResponseTest.mpproj", "{D892EE9B-664C-492D-8EC9-F728DA5AE353}"
-EndProject
+#Project("{D4B43EB3-688B-4EEE-86BD-088F0B28ABB3}") = "ServerSideResponseTest", "ServerSideResponseTest\ServerSideResponseTest.mpproj", "{D892EE9B-664C-492D-8EC9-F728DA5AE353}"
+#EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
