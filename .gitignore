@@ -154,11 +154,12 @@ $RECYCLE.BIN/
 
 # rafabu's stuff
 #
-ServerSideResponseTests/
+ServerSideResponseTest/
 _includes/
 _TestPlan/
 _artwork/
 _MPGuide/
+_Binary/
 
 
 # Mac desktop service store files
