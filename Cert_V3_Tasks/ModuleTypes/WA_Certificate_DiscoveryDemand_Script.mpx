@@ -1,0 +1,50 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <ModuleTypes>
+      <WriteActionModuleType ID="SystemCenterCentral.Utilities.Certificates.ReDiscoveryTasks.DemandDiscoveryScriptWA" Accessibility="Internal" RunAs="Certificate!SystemCenterCentral.Utilities.Certificates.HighPrivilege.SecureReference" Batching="false">
+        <Configuration>
+          <xsd:element minOccurs="1" name="TimeoutSeconds" type="xsd:integer" />
+          <xsd:element minOccurs="1" name="ComputerName" type="xsd:string" />
+          <xsd:element minOccurs="1" name="CertStoreID" type="xsd:string" />
+          <xsd:element minOccurs="0" name="StoreProvider" type="xsd:string" default="System"/>
+          <xsd:element minOccurs="0" name="StoreType" type="xsd:string" default="LocalMachine"/>
+        </Configuration>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <WriteAction ID="DemandDiscoveryScript" TypeID="Windows!Microsoft.Windows.PowerShellWriteAction">
+                <ScriptName>SystemCenterCentral.Utilities.Certificates.Certificate_DiscoveryDemand_Script_V1.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scripts/Certificate_DiscoveryDemand_Script_V1.ps1$</ScriptBody>
+                <Parameters>
+                  <Parameter>
+                    <Name>computerName</Name>
+                    <Value>$Config/ComputerName$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>storeName</Name>
+                    <Value>$Config/CertStoreID$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>storeProvider</Name>
+                    <Value>$Config/StoreProvider$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>storeType</Name>
+                    <Value>$Config/StoreType$</Value>
+                  </Parameter>
+                 
+                </Parameters>
+                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+              </WriteAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="DemandDiscoveryScript" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>Windows!Microsoft.Windows.SerializedObjectData</OutputType>
+        <InputType>System!System.BaseData</InputType>
+      </WriteActionModuleType>
+    </ModuleTypes>
+  </TypeDefinitions>
+</ManagementPackFragment>

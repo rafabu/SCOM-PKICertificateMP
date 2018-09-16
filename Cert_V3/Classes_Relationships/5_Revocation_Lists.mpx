@@ -1,0 +1,77 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+       <ClassType ID="SystemCenterCentral.Utilities.Certificates.CRL" Accessibility="Public" Abstract="false" Base="SystemCenterCentral.Utilities.Certificates.ApplicationComponent" Hosted="true" Singleton="false">
+          <Property ID="CRLVersion" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+			<!-- 1.0.1.0: changing property name to break upgrade path                                          -->
+			<!--          need to make sure people don't upgrade directly as there might be issues causing the -->
+			<!--          env to become stale                                                                   -->
+          <!--  <Property ID="CRLSigAlgo" Type="string" Key="false" CaseSensitive="false" MinLength="0" />  -->
+			    <Property ID="CRLSignatureAlgo" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="CRLIssuer" Type="string" Key="false" CaseSensitive="false" MinLength="0" MaxLength="512"/>
+          <Property ID="CRLThisUpdate" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="CRLNextUpdate" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="CRLEntries" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="CRLThumbprint" Type="string" Key="true" CaseSensitive="false" MinLength="0" />
+         <!-- 1.2.0.0: Adding property CA Version -->
+         <Property ID="CRLCAVersion" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+
+         <Property ID="CertStore" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
+          <Property ID="CRLNeedsUpdate" Type="bool" Key="false" CaseSensitive="false" MinLength="0" />
+        </ClassType> </ClassTypes>
+      <RelationshipTypes>
+        <RelationshipType ID="SystemCenterCentral.Utilities.Certificates.CertificateStore.Hosts.SystemCenterCentral.Utilities.Certificates.CRL" Accessibility="Public" Abstract="false" Base="System!System.Hosting">
+          <Source ID="Source" MinCardinality="0" MaxCardinality="2147483647" Type="SystemCenterCentral.Utilities.Certificates.CertificateStore" />
+          <Target ID="Target" MinCardinality="0" MaxCardinality="2147483647" Type="SystemCenterCentral.Utilities.Certificates.CRL" />
+        </RelationshipType>
+      </RelationshipTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRL">
+          <Name>Certificate Revocation List</Name>
+          <Description>Certificate Revocation List class</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRL" SubElementID="CertStore">
+          <Name>Certificate Store</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRL" SubElementID="CRLEntries">
+          <Name>Entries in CRL</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRL" SubElementID="CRLIssuer">
+          <Name>Issuer</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRL" SubElementID="CRLNeedsUpdate">
+          <Name>Needs Update</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRL" SubElementID="CRLNextUpdate">
+          <Name>Next Update (UTC)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRL" SubElementID="CRLSignatureAlgo">
+          <Name>Signature Algorithm</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRL" SubElementID="CRLThisUpdate">
+          <Name>This Update (UTC)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRL" SubElementID="CRLThumbprint">
+          <Name>Hash (Key)</Name>
+          <Description>Key property</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRL" SubElementID="CRLVersion">
+          <Name>Version</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CRL" SubElementID="CRLCAVersion">
+          <Name>CA Version</Name>
+        </DisplayString>
+        
+
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore.Hosts.SystemCenterCentral.Utilities.Certificates.CRL">
+          <Name>Certificate store hosts CRL</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

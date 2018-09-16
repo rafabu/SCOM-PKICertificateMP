@@ -1,0 +1,48 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <ModuleTypes>
+      <WriteActionModuleType ID="SystemCenterCentral.Utilities.Certificates.ReDiscoveryTasks.DiscoveryTriggerScriptWA" Accessibility="Internal" Batching="false">
+        <Configuration>
+          <xsd:element minOccurs="1" name="OriginatorComputerName" type="xsd:string" />
+          <xsd:element minOccurs="1" name="OriginatorStoreName" type="xsd:string" />
+          <xsd:element minOccurs="1" name="TimeoutSeconds" type="xsd:integer" />
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="TimeoutSeconds" Selector="$Config/TimeoutSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool" />
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <WriteAction ID="DisocveryTriggerScript" TypeID="Windows!Microsoft.Windows.PowerShellWriteAction">
+                <ScriptName>SystemCenterCentral.Utilities.Certificates.Certificate_Discovery_Trigger_V1.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scripts/Certificate_Discovery_Trigger_V1.ps1$</ScriptBody>
+                <Parameters>
+                  <Parameter>
+                    <Name>wfOriginatorComputerName</Name>
+                    <Value>$Config/OriginatorComputerName$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>wfOriginatorStoreName</Name>
+                    <Value>$Config/OriginatorStoreName$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>debug</Name>
+                    <Value>$Config/Debug$</Value>
+                  </Parameter>
+                 </Parameters>
+                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+              </WriteAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="DisocveryTriggerScript" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>Windows!Microsoft.Windows.SerializedObjectData</OutputType>
+        <InputType>System!System.BaseData</InputType>
+      </WriteActionModuleType>
+    </ModuleTypes>
+  </TypeDefinitions>
+</ManagementPackFragment>

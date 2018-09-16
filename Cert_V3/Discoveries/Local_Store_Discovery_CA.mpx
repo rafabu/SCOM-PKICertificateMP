@@ -1,0 +1,95 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Discoveries>
+      <Discovery ID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry.CA.Discovery" Enabled="false" Target="SC!Microsoft.SystemCenter.HealthService" ConfirmDelivery="false" Remotable="false" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry">
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="CertStoreName" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="CertStoreID" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="StoreProvider" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="StoreType" />
+
+            <Property TypeID="System!System.Entity" PropertyID="DisplayName" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="Sync" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="ChildScriptTimeout" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="ChildMonitorInterval" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="ChildDiscoveryInterval" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="RevocationFlag" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="RevocationMode" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="VerificationFlags" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="SubjectIncludeRegEx" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="IssuerIncludeRegEx" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="SubjectExcludeRegEx" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="IssuerExcludeRegEx" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="EnhKeyUseIncludeRegEx" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="EnhKeyUseExcludeRegEx" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="TemplateIncludeRegEx" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="TemplateExcludeRegEx" />
+      
+
+          </DiscoveryClass>
+          <DiscoveryRelationship TypeID="Microsoft.Windows.Computer.Hosts.SystemCenterCentral.Utilities.Certificates.CertificateStore" />
+        </DiscoveryTypes>
+        <DataSource ID="DS" TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStoreDiscoveryProvider">
+          <ComputerName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/NetworkName$</ComputerName>
+          <Frequency>3600</Frequency>
+
+          <!-- properties of the store -->
+          <CertStoreID>CA</CertStoreID>
+          <StoreProvider>SystemRegistry</StoreProvider>
+          <StoreType>LocalMachine</StoreType>
+          <ComputerPrincipalName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerPrincipalName>
+          <CertStoreName>Intermediate Certification Authorities</CertStoreName>
+          <ChildMonitorSync> - </ChildMonitorSync>
+          <!-- defaults to every 4 hours -->
+          <ChildMonitorInterval>14110</ChildMonitorInterval>
+          <!-- defaults to every 12 hours -->
+          <ChildDiscoveryInterval>42330</ChildDiscoveryInterval>
+          <!-- defaults to 5 minutes -->
+          <ChildScriptTimeout>300</ChildScriptTimeout>
+          <RevocationFlag>EntireChain</RevocationFlag>
+          <RevocationMode>Online</RevocationMode>
+          <VerificationFlags>IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown</VerificationFlags>
+          <SubjectIncludeRegEx>^.*$</SubjectIncludeRegEx>
+          <IssuerIncludeRegEx>^.*$</IssuerIncludeRegEx>
+          <SubjectExcludeRegEx>^$</SubjectExcludeRegEx>
+          <IssuerExcludeRegEx>^$</IssuerExcludeRegEx>
+          <EnhKeyUseIncludeRegEx>^(|.+)$</EnhKeyUseIncludeRegEx>
+          <!-- exclude network access protection certificates -->
+          <EnhKeyUseExcludeRegEx>^1\.3\.6\.1\.4\.1\.311\.47\.1\.(1|3)$</EnhKeyUseExcludeRegEx>
+          <TemplateIncludeRegEx>^(|.+)$</TemplateIncludeRegEx>
+          <TemplateExcludeRegEx>\n</TemplateExcludeRegEx>
+
+          <DisplayName>Intermediate Certification Authorities Computer Certificate Store</DisplayName>
+
+        </DataSource>
+      </Discovery>
+
+    </Discoveries>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry.CA.Discovery">
+          <Name>Discovery of local computer's Intermediate CA certificate store (registry)</Name>
+          <Description>Discovers the certificate store 'Intermediate CA'. This discovery is disabled by default.</Description>
+        </DisplayString>
+      </DisplayStrings>
+      <KnowledgeArticles>
+        <KnowledgeArticle ElementID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry.CA.Discovery" Visible="true">
+          <MamlContent>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Summary</maml:title>
+              <maml:para>Discovers the certificate store 'Intermediate CA'. This discovery is disabled by default.</maml:para>
+            </maml:section>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Configuration</maml:title>
+              <maml:para>Use overrides to enable or configure filters to the discovery if you do not wish monitoring any or only a subset of the certificates present in this store.</maml:para>
+            </maml:section>
+          </MamlContent>
+        </KnowledgeArticle>
+      </KnowledgeArticles>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

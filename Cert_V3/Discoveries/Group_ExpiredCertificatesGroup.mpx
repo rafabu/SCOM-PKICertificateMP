@@ -1,0 +1,54 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Discoveries>
+      <Discovery ID="SystemCenterCentral.Utilities.Certificates.ExpiredCertificatesGroup.Discovery" Enabled="true" Target="SystemCenterCentral.Utilities.Certificates.ExpiredCertificatesGroup" ConfirmDelivery="true" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="Microsoft.SystemCenter.GroupPolulator" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.ExpiredCertificatesGroup"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <And>
+                   <Expression>
+                    <RegExExpression>
+                      <ValueExpression>
+                        <Property>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertTimeStatus$</Property>
+                      </ValueExpression>
+                      <Operator>DoesNotMatchRegularExpression</Operator>
+                      <Pattern>^IsTimeValid</Pattern>
+                    </RegExExpression>
+                  </Expression>
+                  <!-- exclude certificates required by Windows -->
+                  <Expression>
+                    <NotContained maxDepth="1">
+                      <MonitoringClass>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.RequiredWindowsCertificatesGroup"]$</MonitoringClass>
+                    </NotContained>
+                  </Expression>
+                </And>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+
+    </Discoveries>
+  </Monitoring>
+ 
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ExpiredCertificatesGroup.Discovery">
+          <Name>Containment discovery of the Certificates (expired) group</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+ 
+  
+</ManagementPackFragment>

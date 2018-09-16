@@ -1,0 +1,9 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Overrides>
+      <DiscoveryPropertyOverride ID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry.My.Discovery.QuickStartOverride.Server" Context="Windows!Microsoft.Windows.Server.Computer" Enforced="false" Discovery="Certificate!SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry.My.Discovery" Property="Enabled">
+        <Value>true</Value>
+      </DiscoveryPropertyOverride>
+    </Overrides>
+  </Monitoring>
+</ManagementPackFragment>

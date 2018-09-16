@@ -1,0 +1,81 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <ModuleTypes>
+      <DataSourceModuleType ID="SystemCenterCentral.Utilities.Certificates.ScriptDataSource" Accessibility="Internal" Batching="false">
+        <Configuration>
+          <xsd:element minOccurs="1" name="CertStoreID" type="xsd:string" />
+          <xsd:element minOccurs="0" name="StoreProvider" type="xsd:string" default="System"/>
+          <xsd:element minOccurs="0" name="StoreType" type="xsd:string" default="LocalMachine"/>
+          <xsd:element minOccurs="0" name="RevocationFlag" type="xsd:string" default="EntireChain"/>
+          <xsd:element minOccurs="0" name="RevocationMode" type="xsd:string" default="Online"/>
+          <xsd:element minOccurs="0" name="VerificationFlags" type="xsd:string" default="IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown" />
+
+          <xsd:element minOccurs="0" name="SubjectIncludeRegEx" type="xsd:string" default="^.*$"/>
+          <xsd:element minOccurs="0" name="IssuerIncludeRegEx" type="xsd:string" default="^.*$"/>
+          <xsd:element minOccurs="0" name="SubjectExcludeRegEx" type="xsd:string" default="^$"/>
+          <xsd:element minOccurs="0" name="IssuerExcludeRegEx" type="xsd:string" default="^$"/>
+          <xsd:element minOccurs="0" name="EnhKeyUseIncludeRegEx" type="xsd:string" default="^$"/>
+          <xsd:element minOccurs="0" name="EnhKeyUseExcludeRegEx" type="xsd:string" default="\n"/>
+          <xsd:element minOccurs="0" name="TemplateIncludeRegEx" type="xsd:string" default="^(|.+)$"/>
+          <xsd:element minOccurs="0" name="TemplateExcludeRegEx" type="xsd:string" default="\n"/>
+          <xsd:element minOccurs="0" name="ExpiryThresholdDays" type="xsd:integer" default="31"/>
+
+          <xsd:element minOccurs="1" name="Debug" type="xsd:boolean" />
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer" />
+          <xsd:element minOccurs="0" name="SyncTime" type="xsd:string" />
+          <xsd:element minOccurs="0" name="SpreadInitializationOverInterval" type="xsd:integer" default="900"/>
+          <xsd:element minOccurs="1" name="TimeoutSeconds" type="xsd:integer" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="SpreadInitializationOverInterval" Selector="$Config/SpreadInitializationOverInterval$" ParameterType="int" />
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool" />
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <!-- UniquenessScheduler features UniquenessKey to force running just once per store         -->
+              <!--     such both discoveries will cook down into a single script run                       -->
+              <!--     MPBA will complain but this is ok as SpreadInitializationOverInterval is implementd -->
+              <DataSource ID="Scheduler" TypeID="System!System.UniquenessScheduler">
+                <Scheduler>
+                  <SimpleReccuringSchedule>
+                    <Interval Unit="Seconds">$Config/IntervalSeconds$</Interval>
+                    <SpreadInitializationOverInterval>$Config/SpreadInitializationOverInterval$</SpreadInitializationOverInterval>
+                  </SimpleReccuringSchedule>
+                  <ExcludeDates />
+                </Scheduler>
+                <UniquenessKey>$Config/CertStoreID$</UniquenessKey>
+              </DataSource>    
+              <ProbeAction ID="ScriptProbe" TypeID="SystemCenterCentral.Utilities.Certificates.ScriptProbe">
+                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+                <CertStoreID>$Config/CertStoreID$</CertStoreID>
+                <StoreProvider>$Config/StoreProvider$</StoreProvider>
+                <StoreType>$Config/StoreType$</StoreType>
+                <RevocationFlag>$Config/RevocationFlag$</RevocationFlag>
+                <RevocationMode>$Config/RevocationMode$</RevocationMode>
+                <VerificationFlags>$Config/VerificationFlags$</VerificationFlags>
+                <SubjectIncludeRegEx>$Config/SubjectIncludeRegEx$</SubjectIncludeRegEx>
+                <IssuerIncludeRegEx>$Config/IssuerIncludeRegEx$</IssuerIncludeRegEx>
+                <SubjectExcludeRegEx>$Config/SubjectExcludeRegEx$</SubjectExcludeRegEx>
+                <IssuerExcludeRegEx>$Config/IssuerExcludeRegEx$</IssuerExcludeRegEx>
+                <EnhKeyUseIncludeRegEx>$Config/EnhKeyUseIncludeRegEx$</EnhKeyUseIncludeRegEx>
+                <EnhKeyUseExcludeRegEx>$Config/EnhKeyUseExcludeRegEx$</EnhKeyUseExcludeRegEx>
+                <TemplateIncludeRegEx>$Config/TemplateIncludeRegEx$</TemplateIncludeRegEx>
+                <TemplateExcludeRegEx>$Config/TemplateExcludeRegEx$</TemplateExcludeRegEx>
+                <ExpiryThresholdDays>$Config/ExpiryThresholdDays$</ExpiryThresholdDays>         
+                <Debug>$Config/Debug$</Debug>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="ScriptProbe">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+    </ModuleTypes>
+  </TypeDefinitions>
+  
+</ManagementPackFragment>

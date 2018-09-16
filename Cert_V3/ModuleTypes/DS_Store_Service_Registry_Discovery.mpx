@@ -1,0 +1,355 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <ModuleTypes>
+    	<!-- extend service store discovery to allow overrides -->
+		<DataSourceModuleType ID="SystemCenterCentral.Utilities.Certificates.ServiceCertificateStoreDiscoveryProvider" Accessibility="Public">
+			<Configuration>
+				<xsd:element name="Frequency" type="xsd:unsignedInt" />
+				<xsd:element minOccurs="1" name="Debug" type="xsd:boolean" />
+				<!-- properties of the discovered certificate store -->
+				<xsd:element name="ChildMonitorInterval" type="xsd:unsignedInt" />
+				<xsd:element name="ChildDiscoveryInterval" type="xsd:unsignedInt" />
+				<xsd:element name="ChildScriptTimeout" type="xsd:unsignedInt" />
+        <xsd:element minOccurs="0" name="RevocationFlag" type="xsd:string" default="EntireChain"/>
+        <xsd:element minOccurs="0" name="RevocationMode" type="xsd:string" default="Online"/>
+        <xsd:element minOccurs="0" name="VerificationFlags" type="xsd:string" default="IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown" />
+        <xsd:element minOccurs="0" name="SubjectIncludeRegEx" type="xsd:string" default="^.*$"/>
+        <xsd:element minOccurs="0" name="IssuerIncludeRegEx" type="xsd:string" default="^.*$"/>
+        <xsd:element minOccurs="0" name="SubjectExcludeRegEx" type="xsd:string" default="^$"/>
+        <xsd:element minOccurs="0" name="IssuerExcludeRegEx" type="xsd:string" default="^$"/>
+				<xsd:element minOccurs="0" name="EnhKeyUseIncludeRegEx" type="xsd:string" default="^(|.+)$"/>
+        <xsd:element minOccurs="0" name="EnhKeyUseExcludeRegEx" type="xsd:string" default="\n"/>
+        <xsd:element minOccurs="0" name="TemplateIncludeRegEx" type="xsd:string" default="^(|.+)$"/>
+        <xsd:element minOccurs="0" name="TemplateExcludeRegEx" type="xsd:string" default="\n"/>
+
+      </Configuration>
+			<OverrideableParameters>
+				<OverrideableParameter ID="Frequency" Selector="$Config/Frequency$" ParameterType="int" />
+				<OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool" />
+				<OverrideableParameter ID="ChildMonitorInterval" Selector="$Config/ChildMonitorInterval$" ParameterType="int" />
+				<OverrideableParameter ID="ChildDiscoveryInterval" Selector="$Config/ChildDiscoveryInterval$" ParameterType="int" />
+				<OverrideableParameter ID="ChildScriptTimeout" Selector="$Config/ChildScriptTimeout$" ParameterType="int" />
+        <OverrideableParameter ID="RevocationFlag" Selector="$Config/RevocationFlag$" ParameterType="string" />
+        <OverrideableParameter ID="RevocationMode" Selector="$Config/RevocationMode$" ParameterType="string" />
+        <OverrideableParameter ID="VerificationFlags" Selector="$Config/VerificationFlags$" ParameterType="string" />
+        <OverrideableParameter ID="SubjectIncludeRegEx" Selector="$Config/SubjectIncludeRegEx$" ParameterType="string" />
+        <OverrideableParameter ID="IssuerIncludeRegEx" Selector="$Config/IssuerIncludeRegEx$" ParameterType="string" />
+        <OverrideableParameter ID="SubjectExcludeRegEx" Selector="$Config/SubjectExcludeRegEx$" ParameterType="string" />
+        <OverrideableParameter ID="IssuerExcludeRegEx" Selector="$Config/IssuerExcludeRegEx$" ParameterType="string" />
+				<OverrideableParameter ID="EnhKeyUseIncludeRegEx" Selector="$Config/EnhKeyUseIncludeRegEx$" ParameterType="string" />
+        <OverrideableParameter ID="EnhKeyUseExcludeRegEx" Selector="$Config/EnhKeyUseExcludeRegEx$" ParameterType="string" />
+        <OverrideableParameter ID="TemplateIncludeRegEx" Selector="$Config/TemplateIncludeRegEx$" ParameterType="string" />
+        <OverrideableParameter ID="TemplateExcludeRegEx" Selector="$Config/TemplateExcludeRegEx$" ParameterType="string" />
+
+      </OverrideableParameters>
+			<ModuleImplementation>
+				<Composite>
+					<MemberModules>
+						<DataSource ID="DS" TypeID="Windows!Microsoft.Windows.TimedScript.DiscoveryProvider">
+							<IntervalSeconds>$Config/Frequency$</IntervalSeconds>
+							<SyncTime />
+							<ScriptName>SystemCenterCentral.Utilities.Certificates.LocalServiceStore.Discovery.vbs</ScriptName>
+							<Arguments>$MPElement$ $Target/Id$ $Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$ $Config/ChildMonitorInterval$ $Config/ChildDiscoveryInterval$ $Config/ChildScriptTimeout$ "$Config/RevocationFlag$" "$Config/RevocationMode$" "$Config/VerificationFlags$" "$Config/SubjectIncludeRegEx$" "$Config/IssuerIncludeRegEx$" "$Config/SubjectExcludeRegEx$" "$Config/IssuerExcludeRegEx$" "$Config/EnhKeyUseIncludeRegEx$" "$Config/EnhKeyUseExcludeRegEx$" "$Config/TemplateIncludeRegEx$" "$Config/TemplateExcludeRegEx$" $Config/Debug$</Arguments>
+							<ScriptBody>
+								<![CDATA['*************************************************************************
+' Script Name - SystemCenterCentral.Utilities.Certificates.LocalServiceStore.Discovery.vbs
+'
+' Purpose     - Queries certificate stores of windows services in the registry. If any of them have either
+'		certificates or certificate revocation lists (CRLs) installed, the stores are added to SCOM
+'
+' Parameters  	1 - SourceID
+'			2 - ManagedEntityId
+'			3 - TargetComputer
+'			4 - ChildMonitorInterval
+'			5 - iChildDiscoveryInterval
+'			6 - iChildScriptTimeout
+'     7 - strRevocationFlag
+'     8 - strRevocationMode
+'     9 - strVerificationFlags
+'    10 - strSubjectInclude
+'    11 - strIssuerInclude
+'    12 - strSubjectExclude
+'    13 - strIssuerExclude
+'    14 - strEnhKeyUseInclude
+'    15 - strEnhKeyUseExclude
+'    16 - strTemplateInclude
+'    17 - strTemplateExclude
+'
+' 1.0 - 14. July 2009 - Raphael Burri / raburri@bluewin.ch
+' 1.2 - 24. December 2013 - Raphael Burri / raburri@bluewin.ch
+'         added revocation and verification switches
+' 1.3 - 04. July 2014 - Raphael Burri
+'         added include / exclude filters
+' 1.4 - 07. Sept 2018 - Raphael Burri
+'         added include EKU filter
+'*************************************************************************
+
+Option Explicit
+
+Const HKEY_LOCAL_MACHINE = &H80000002
+
+'registry key of the services' certificates
+Const SERVICES_CERTIFICATES_KEY = 	"SOFTWARE\Microsoft\Cryptography\Services"
+Const SERVICE_STORE_KEY = 		"\SystemCertificates\My"
+Const SERVICE_CERT_KEY = 			"\Certificates"
+Const SERVICE_CRL_KEY = 			"\CRLs"
+
+
+Dim objArgs, objAPI, objDiscoveryData
+Dim SourceID, ManagedEntityId, TargetComputer
+Dim aServiceStores
+Dim iChildMonitorInterval, iChildDiscoveryInterval, iChildScriptTimeout
+Dim strRevocationFlag, strRevocationMode, strVerificationFlags
+Dim strSubjectInclude, strIssuerInclude, strSubjectExclude, strIssuerExclude, strEnhKeyUseInclude, strEnhKeyUseExclude , strTemplateInclude, strTemplateExclude
+
+'get the parameters from the management pack
+Set objArgs = WScript.Arguments
+If objArgs.Count < 15 Then
+ 	WScript.Quit -1
+End If
+SourceID = objArgs(0)
+ManagedEntityId = objArgs(1)
+TargetComputer = objArgs(2)
+iChildMonitorInterval = objArgs(3)
+iChildDiscoveryInterval = objArgs(4)
+iChildScriptTimeout = objArgs(5)
+strRevocationFlag = objArgs(6)
+strRevocationMode = objArgs(7)
+strVerificationFlags = objArgs(8)
+strSubjectInclude = objArgs(9)
+strIssuerInclude = objArgs(10)
+strSubjectExclude = objArgs(11)
+strIssuerExclude = objArgs(12)
+strEnhKeyUseInclude = objArgs(13)
+strEnhKeyUseExclude = objArgs(14)
+strTemplateInclude = objArgs(15)
+strTemplateExclude = objArgs(16)
+
+'create the SCOM API object
+Set objAPI = CreateObject("MOM.ScriptAPI")
+'create the discovery data object
+Set objDiscoveryData = objAPI.CreateDiscoveryData(0, SourceId, ManagedEntityId)
+
+'read certificate stores from service registry key
+aServiceStores = ReadCertificates(TargetComputer)
+
+On Error Resume Next
+If UBound(aServiceStores) >= 0 Then
+    If Err.number = 0 Then
+	    'WScript.Echo "Discovering " & UBound(aServiceStores) + 1 & " stores"
+	    Set objDiscoveryData = DiscoverServiceStores(objDiscoveryData, aServiceStores, TargetComputer, iChildMonitorInterval,iChildDiscoveryInterval, strRevocationFlag, strRevocationMode, strVerificationFlags, strSubjectInclude, strIssuerInclude, strSubjectExclude, strIssuerExclude, strEnhKeyUseInclude, strEnhKeyUseExclude,strTemplateInclude, strTemplateExclude)
+	End If
+End If
+On Error Goto 0
+
+'return discovery data
+Call objAPI.Return(objDiscoveryData)
+
+
+Set objDiscoveryData = Nothing
+Set objAPI = Nothing
+
+WScript.Quit(0)
+
+
+Function ReadCertificates (strComputer)
+	
+	'prepares an array of certificate stores that contain service certificates ot CRLs
+	'aCertificateStores
+	Dim objRegistry, objCIMV2, objServices, objService
+	Dim  strServiceName, strServiceDisplayName
+	Dim aServices, aServiceCerts, aServiceCRLs, aCertificateStores
+	Dim bStoreNotEmpty
+	Dim iStore
+	
+	iStore = 0
+		
+	Set objRegistry = GetObject("winmgmts:\\" & strComputer & "\root\default:StdRegProv")
+	Set objCIMV2   = GetObject("winmgmts:\\"& strComputer & "\root\cimv2")
+	
+	'get all the services, listed to have some sort of cryptography configuration
+	objRegistry.EnumKey HKEY_LOCAL_MACHINE, SERVICES_CERTIFICATES_KEY, aServices
+	On Error Resume Next
+	If UBound(aServices) >= 0 Then
+	    'WScript.Echo UBound(aServices)
+		If Err.number <> 0 Then
+			'no services with cryptography configuration - do nothing
+		Else
+			On Error Goto 0
+			'prepare the array to conatin the stores
+			ReDim aCertificateStores(UBound(aServices), 2)
+			bStoreNotEmpty = vbFalse
+			'check if the services have certificates
+			For Each strServiceName In aServices
+			    'WScript.Echo strServiceName
+				objRegistry.EnumKey HKEY_LOCAL_MACHINE, SERVICES_CERTIFICATES_KEY & "\" & strServiceName & SERVICE_STORE_KEY & SERVICE_CERT_KEY, aServiceCerts
+				On Error Resume Next
+				'if service has certificates, process them
+				If UBound(aServiceCerts) >= 0 Then
+					If Err.number <> 0 Then
+						'no certificate - check if CRLs are present
+						objRegistry.EnumKey HKEY_LOCAL_MACHINE, SERVICES_CERTIFICATES_KEY & "\" & strServiceName & SERVICE_STORE_KEY & SERVICE_CRL_KEY, aServiceCRLs
+						'if service has crls, process them
+						If UBound(aServiceCRLs) >= 0 Then
+							If Err.number <> 0 Then
+								'no CLRs either - the store doesn't contain certs nor CRLs so do not discover it
+							Else
+								'CRLs found - set the discovery flag
+								'WScript.Echo "CRLs found in store " & strServiceName & "\My"
+								bStoreNotEmpty = vbTrue
+							End If
+						End If
+					Else
+						'certificates found - set the discovery flag
+						'WScript.Echo "Certificates found in store " & strServiceName & "\My"
+						bStoreNotEmpty = vbTrue
+						On Error Goto 0
+					End If
+				End If
+					
+				If bStoreNotEmpty = vbTrue Then
+					
+				'get display name of the service
+				Set objServices = objCIMV2.ExecQuery("Select DisplayName  from Win32_Service where Name = '" & strServiceName & "'")
+		    		For Each objService In objServices
+					strServiceDisplayName = objService.DisplayName
+	    			Next
+				'add the certificate store's details to the array
+				aCertificateStores(iStore, 0) = strServiceName
+				aCertificateStores(iStore, 1) = strServiceDisplayName
+				
+				'WScript.Echo "Store for Service " & strServiceDisplayName & " will be discovered"
+				   				
+				End If
+				iStore = iStore + 1
+			Next
+		End If
+	End If
+	
+	'return the array with the store data
+	ReadCertificates = aCertificateStores
+					
+End Function
+
+
+Function DiscoverServiceStores (ByVal objDiscoveryData, ByVal aDiscoverData, strComputer, iChildMonitorInterval,iChildDiscoveryInterval, strRevocationFlag, strRevocationMode, strVerificationFlags, strSubjectInclude, strIssuerInclude, strSubjectExclude, strIssuerExclude, strEnhKeyUseInclude, strEnhKeyUseExclude, strTemplateInclude, strTemplateExclude)
+
+	Dim objInst
+	Dim strOutput
+	Dim iStore
+	Dim aStore
+
+	If UBound(aDiscoverData) >= 0 Then
+		For iStore = 0 To UBound(aDiscoverData)
+			'check if the store name contains data
+			If aDiscoverData(iStore,0) = "" Then
+					'store doesn't contain either certificates or CRLs - no deed to discover it
+			Else	
+				Set objInst = objDiscoveryData.CreateClassInstance("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry']$")
+				'set display name
+				Call objInst.AddProperty("$MPElement[Name='System!System.Entity']/DisplayName$", aDiscoverData(iStore,1) + " certificate store")
+				'add the key properties of the hosts
+				Call objInst.AddProperty("$MPElement[Name='Windows!Microsoft.Windows.Computer']/PrincipalName$", strComputer)
+				'add the properties of the store (1st is key)
+				'service stores' key is like "-service -service ServiceName\My"
+				Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/CertStoreID$", aDiscoverData(iStore,0) + "\My")
+    
+         'P/Invoke ready
+         Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/StoreProvider$", "SystemRegistry")
+         Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/StoreType$", "Services")
+       
+				Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/CertStoreName$", "Service " + aDiscoverData(iStore,1))
+				Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/Sync$", " - ")
+				Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/ChildMonitorInterval$", iChildMonitorInterval)
+				Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/ChildDiscoveryInterval$", iChildDiscoveryInterval)
+				Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/ChildScriptTimeout$", iChildScriptTimeout)
+        Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/RevocationFlag$", strRevocationFlag)
+        Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/RevocationMode$", strRevocationMode)
+        Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/VerificationFlags$", strVerificationFlags)
+
+        Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/SubjectIncludeRegEx$", strSubjectInclude)
+        Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/IssuerIncludeRegEx$", strIssuerInclude)
+        Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/SubjectExcludeRegEx$", strSubjectExclude)
+        Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/IssuerExcludeRegEx$", strIssuerExclude)
+				Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/EnhKeyUseIncludeRegEx$", strEnhKeyUseInclude)
+        Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/EnhKeyUseExcludeRegEx$", strEnhKeyUseExclude)
+        Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/TemplateIncludeRegEx$", strTemplateInclude)
+        Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/TemplateExcludeRegEx$", strTemplateExclude)
+
+
+        Call objDiscoveryData.AddInstance(objInst)
+				strOutput = strOutput & vbCrLf & " - " & aDiscoverData(iStore,0)
+			End If
+		Next
+		
+		'write success event - for debugging - if certificates were discovered
+		If Len(strOutput) > 0 Then
+		    Call objAPI.LogScriptEvent("SystemCenterCentral.Utilities.Certificates.LocalServiceStore.Discovery.vbs", 3006, 4, "The WinNT service certificate store discovery script is returning discovery data for the following service stores to SCOM:" & VbCrLf _
+						& strOutput)
+		End If
+		
+		Set DiscoverServiceStores = objDiscoveryData
+		
+		Set objInst = Nothing
+	End If
+
+End Function
+
+]]>
+							</ScriptBody>
+							<TimeoutSeconds>300</TimeoutSeconds>
+						</DataSource>
+
+					</MemberModules>
+					<Composition>
+					
+							<Node ID="DS" />
+					
+					</Composition>
+				</Composite>
+			</ModuleImplementation>
+			<OutputType>System!System.Discovery.Data</OutputType>
+		</DataSourceModuleType>
+
+    </ModuleTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ServiceCertificateStoreDiscoveryProvider" SubElementID="RevocationFlag">
+          <Name>X509RevocationFlag: Default: EntireChain</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ServiceCertificateStoreDiscoveryProvider" SubElementID="RevocationMode">
+          <Name>X509RevocationMode: Default: Online</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ServiceCertificateStoreDiscoveryProvider" SubElementID="VerificationFlags">
+          <Name>X509VerificationFlags: Default: NoFlag</Name>
+        </DisplayString>
+           <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ServiceCertificateStoreDiscoveryProvider" SubElementID="SubjectIncludeRegEx">
+          <Name>Subject Filter - Include (RegEx)</Name>
+        </DisplayString>
+      <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ServiceCertificateStoreDiscoveryProvider" SubElementID="IssuerIncludeRegEx">
+          <Name>Issuer Filter - Include (RegEx)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ServiceCertificateStoreDiscoveryProvider" SubElementID="SubjectExcludeRegEx">
+          <Name>Subject Filter - Exclude (RegEx)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ServiceCertificateStoreDiscoveryProvider" SubElementID="IssuerExcludeRegEx">
+          <Name>Issuer Filter - Exclude (RegEx)</Name>
+        </DisplayString>
+				 <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ServiceCertificateStoreDiscoveryProvider" SubElementID="EnhKeyUseIncludeRegEx">
+          <Name>Enhanced Key Usage OID Filter - Include (RegEx)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ServiceCertificateStoreDiscoveryProvider" SubElementID="EnhKeyUseExcludeRegEx">
+          <Name>Enhanced Key Usage OID Filter - Exclude (RegEx)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ServiceCertificateStoreDiscoveryProvider" SubElementID="TemplateIncludeRegEx">
+          <Name>Certificate Template Filter - Include (RegEx)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.ServiceCertificateStoreDiscoveryProvider" SubElementID="TemplateExcludeRegEx">
+          <Name>Certificate Template Filter - Exclude (RegEx)</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

@@ -1,0 +1,10 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Overrides>
+      <DiscoveryPropertyOverride ID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry.WebHosting.Discovery.QuickStartOverride.MicrosoftWindowsServer62Computer_Enable" Context="WindowsServer!Microsoft.Windows.Server.6.2.Computer" Enforced="false" Discovery="Certificate!SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry.WebHosting.Discovery" Property="Enabled">
+        <Value>true</Value>
+      </DiscoveryPropertyOverride>
+    </Overrides>
+  </Monitoring>
+  
+</ManagementPackFragment>

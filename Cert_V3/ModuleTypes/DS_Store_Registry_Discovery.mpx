@@ -1,0 +1,222 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <ModuleTypes>
+      <!-- extended registry discovery provider that allows overrides -->
+      <!-- this one is set to public to allow discovery of extra certificate stores by extension MPs -->
+      <DataSourceModuleType ID="SystemCenterCentral.Utilities.Certificates.CertificateStoreDiscoveryProvider" Accessibility="Public">
+        <Configuration>
+          <xsd:element name="ComputerName" type="xsd:string" />
+          <xsd:element name="Frequency" type="xsd:unsignedInt" />
+          <!-- properties of the discovered certificate store -->
+          <xsd:element name="CertStoreID" type="xsd:string" />
+          <xsd:element minOccurs="0" name="StoreProvider" type="xsd:string" default="System"/>
+          <xsd:element minOccurs="0" name="StoreType" type="xsd:string" default="LocalMachine"/>
+          <xsd:element name="ComputerPrincipalName" type="xsd:string" />
+          <xsd:element name="CertStoreName" type="xsd:string" />
+          <xsd:element name="ChildMonitorSync" type="xsd:string" />
+          <xsd:element name="ChildMonitorInterval" type="xsd:unsignedInt" />
+          <xsd:element name="ChildDiscoveryInterval" type="xsd:unsignedInt" />
+          <xsd:element name="ChildScriptTimeout" type="xsd:unsignedInt" />
+          <xsd:element minOccurs="0" name="RevocationFlag" type="xsd:string" default="EntireChain"/>
+          <xsd:element minOccurs="0" name="RevocationMode" type="xsd:string" default="Online"/>
+          <xsd:element minOccurs="0" name="VerificationFlags" type="xsd:string" default="IgnoreCertificateAuthorityRevocationUnknown,IgnoreEndRevocationUnknown" />
+          <xsd:element minOccurs="0" name="SubjectIncludeRegEx" type="xsd:string" default="^.*$"/>
+          <xsd:element minOccurs="0" name="IssuerIncludeRegEx" type="xsd:string" default="^.*$"/>
+          <xsd:element minOccurs="0" name="SubjectExcludeRegEx" type="xsd:string" default="^$"/>
+          <xsd:element minOccurs="0" name="IssuerExcludeRegEx" type="xsd:string" default="^$"/>
+          <xsd:element minOccurs="0" name="EnhKeyUseIncludeRegEx" type="xsd:string" default="^$"/>
+          <xsd:element minOccurs="0" name="EnhKeyUseExcludeRegEx" type="xsd:string" default="\n"/>
+          <xsd:element minOccurs="0" name="TemplateIncludeRegEx" type="xsd:string" default="^(|.+)$"/>
+          <xsd:element minOccurs="0" name="TemplateExcludeRegEx" type="xsd:string" default="\n"/>
+          <xsd:element name="DisplayName" type="xsd:string" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="Frequency" Selector="$Config/Frequency$" ParameterType="int" />
+          <OverrideableParameter ID="ChildMonitorSync" Selector="$Config/ChildMonitorSync$" ParameterType="string" />
+          <OverrideableParameter ID="ChildMonitorInterval" Selector="$Config/ChildMonitorInterval$" ParameterType="int" />
+          <OverrideableParameter ID="ChildDiscoveryInterval" Selector="$Config/ChildDiscoveryInterval$" ParameterType="int" />
+          <OverrideableParameter ID="ChildScriptTimeout" Selector="$Config/ChildScriptTimeout$" ParameterType="int" />
+          <OverrideableParameter ID="RevocationFlag" Selector="$Config/RevocationFlag$" ParameterType="string" />
+          <OverrideableParameter ID="RevocationMode" Selector="$Config/RevocationMode$" ParameterType="string" />
+          <OverrideableParameter ID="VerificationFlags" Selector="$Config/VerificationFlags$" ParameterType="string" />
+          <OverrideableParameter ID="SubjectIncludeRegEx" Selector="$Config/SubjectIncludeRegEx$" ParameterType="string" />
+          <OverrideableParameter ID="IssuerIncludeRegEx" Selector="$Config/IssuerIncludeRegEx$" ParameterType="string" />
+          <OverrideableParameter ID="SubjectExcludeRegEx" Selector="$Config/SubjectExcludeRegEx$" ParameterType="string" />
+          <OverrideableParameter ID="IssuerExcludeRegEx" Selector="$Config/IssuerExcludeRegEx$" ParameterType="string" />
+          <OverrideableParameter ID="EnhKeyUseIncludeRegEx" Selector="$Config/EnhKeyUseIncludeRegEx$" ParameterType="string" />
+          <OverrideableParameter ID="EnhKeyUseExcludeRegEx" Selector="$Config/EnhKeyUseExcludeRegEx$" ParameterType="string" />
+          <OverrideableParameter ID="TemplateIncludeRegEx" Selector="$Config/TemplateIncludeRegEx$" ParameterType="string" />
+          <OverrideableParameter ID="TemplateExcludeRegEx" Selector="$Config/TemplateExcludeRegEx$" ParameterType="string" />
+          
+        </OverrideableParameters>
+        <ModuleImplementation>
+          <Composite>
+            <MemberModules>
+              <DataSource ID="DS" TypeID="Windows!Microsoft.Windows.Discovery.RegistryProvider">
+                <ComputerName>$Config/ComputerName$</ComputerName>
+                <RegistryAttributeDefinitions>
+                  <RegistryAttributeDefinition>
+                    <AttributeName>Certificates</AttributeName>
+                    <Path>SOFTWARE\Microsoft\SystemCertificates\$Config/CertStoreID$\Certificates</Path>
+                    <PathType>0</PathType>
+                    <AttributeType>0</AttributeType>
+                  </RegistryAttributeDefinition>
+                </RegistryAttributeDefinitions>
+                <Frequency>$Config/Frequency$</Frequency>
+              </DataSource>
+              <ConditionDetection ID="Mapping" TypeID="System!System.Discovery.FilteredClassSnapshotDataMapper">
+                <Expression>
+                  <SimpleExpression>
+                    <ValueExpression>
+                      <XPathQuery Type="String">Values/Certificates</XPathQuery>
+                    </ValueExpression>
+                    <Operator>Equal</Operator>
+                    <ValueExpression>
+                      <Value Type="String">True</Value>
+                    </ValueExpression>
+                  </SimpleExpression>
+                </Expression>
+                <ClassId>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry"]$</ClassId>
+                <InstanceSettings>
+                  <Settings>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</Name>
+                      <Value>$Config/CertStoreID$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Name>
+                      <Value>$Config/ComputerPrincipalName$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreName$</Name>
+                      <Value>$Config/CertStoreName$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</Name>
+                      <Value>$Config/StoreProvider$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</Name>
+                      <Value>$Config/StoreType$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/Sync$</Name>
+                      <Value>$Config/ChildMonitorSync$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildMonitorInterval$</Name>
+                      <Value>$Config/ChildMonitorInterval$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildDiscoveryInterval$</Name>
+                      <Value>$Config/ChildDiscoveryInterval$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildScriptTimeout$</Name>
+                      <Value>$Config/ChildScriptTimeout$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/RevocationFlag$</Name>
+                      <Value>$Config/RevocationFlag$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/RevocationMode$</Name>
+                      <Value>$Config/RevocationMode$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/VerificationFlags$</Name>
+                      <Value>$Config/VerificationFlags$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/SubjectIncludeRegEx$</Name>
+                      <Value>$Config/SubjectIncludeRegEx$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IssuerIncludeRegEx$</Name>
+                      <Value>$Config/IssuerIncludeRegEx$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/SubjectExcludeRegEx$</Name>
+                      <Value>$Config/SubjectExcludeRegEx$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IssuerExcludeRegEx$</Name>
+                      <Value>$Config/IssuerExcludeRegEx$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/EnhKeyUseIncludeRegEx$</Name>
+                      <Value>$Config/EnhKeyUseIncludeRegEx$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/EnhKeyUseExcludeRegEx$</Name>
+                      <Value>$Config/EnhKeyUseExcludeRegEx$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateIncludeRegEx$</Name>
+                      <Value>$Config/TemplateIncludeRegEx$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateExcludeRegEx$</Name>
+                      <Value>$Config/TemplateExcludeRegEx$</Value>
+                    </Setting>
+                    <Setting>
+                      <Name>$MPElement[Name="System!System.Entity"]/DisplayName$</Name>
+                      <Value>$Config/DisplayName$</Value>
+                    </Setting>
+                  </Settings>
+
+                </InstanceSettings>
+              </ConditionDetection>
+            </MemberModules>
+            <Composition>
+              <Node ID="Mapping">
+                <Node ID="DS" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.Discovery.Data</OutputType>
+      </DataSourceModuleType>
+
+    </ModuleTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+       <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStoreDiscoveryProvider" SubElementID="RevocationFlag">
+          <Name>X509RevocationFlag: Default: EntireChain</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStoreDiscoveryProvider" SubElementID="RevocationMode">
+          <Name>X509RevocationMode: Default: Online</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStoreDiscoveryProvider" SubElementID="VerificationFlags">
+          <Name>X509VerificationFlags: Default: NoFlag</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStoreDiscoveryProvider" SubElementID="SubjectIncludeRegEx">
+          <Name>Subject Filter - Include (RegEx)</Name>
+        </DisplayString>
+      <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStoreDiscoveryProvider" SubElementID="IssuerIncludeRegEx">
+          <Name>Issuer Filter - Include (RegEx)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStoreDiscoveryProvider" SubElementID="SubjectExcludeRegEx">
+          <Name>Subject Filter - Exclude (RegEx)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStoreDiscoveryProvider" SubElementID="IssuerExcludeRegEx">
+          <Name>Issuer Filter - Exclude (RegEx)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStoreDiscoveryProvider" SubElementID="EnhKeyUseIncludeRegEx">
+          <Name>Enhanced Key Usage OID Filter - Include (RegEx)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStoreDiscoveryProvider" SubElementID="EnhKeyUseExcludeRegEx">
+          <Name>Enhanced Key Usage OID Filter - Exclude (RegEx)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStoreDiscoveryProvider" SubElementID="TemplateIncludeRegEx">
+          <Name>Certificate Template Filter - Include (RegEx)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStoreDiscoveryProvider" SubElementID="TemplateExcludeRegEx">
+          <Name>Certificate Template Filter - Exclude (RegEx)</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

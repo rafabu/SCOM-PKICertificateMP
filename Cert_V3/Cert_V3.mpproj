@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{0d03afa0-c0b2-40b6-92ef-b4842cba3546}</ProjectGuid>
+    <RootNamespace>SystemCenterCentral.Utilities.Certificates</RootNamespace>
+    <Name>PKI Certificate Validation V3</Name>
+    <ManagementPackName>SystemCenterCentral.Utilities.Certificates</ManagementPackName>
+    <Version>1.4.1.0</Version>
+    <MpFrameworkVersion>v7.0</MpFrameworkVersion>
+    <MpFrameworkProfile>OM</MpFrameworkProfile>
+    <ProductVersion>1.1.0.0</ProductVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <GenerateSealed>True</GenerateSealed>
+    <Company>Raphael Burri</Company>
+    <Copyright>Copyright (c) Raphael Burri. All rights reserved!</Copyright>
+    <DelaySigning>False</DelaySigning>
+    <AssemblyOriginatorKeyFile>c:\temp\Custom_Raphael_Burri.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\Release\</OutputPath>
+    <DelaySigning>false</DelaySigning>
+    <Company>MyCompany</Company>
+    <Copyright>Copyright (c) MyCompany. All rights reserved.</Copyright>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <ManagementPackReference Include="Microsoft.SystemCenter.DataWarehouse.Report.Library">
+      <HintPath>C:\Program Files (x86)\System Center Visual Studio Authoring Extensions\References\OM2012\Microsoft.SystemCenter.DataWarehouse.Report.Library.mp</HintPath>
+      <Alias>ReportLibrary</Alias>
+      <MinVersion>7.0.8560.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.SystemCenter.InstanceGroup.Library">
+      <HintPath>C:\Program Files (x86)\System Center Visual Studio Authoring Extensions\References\OM2012\Microsoft.SystemCenter.InstanceGroup.Library.mp</HintPath>
+      <Alias>InstanceGroupLibrary</Alias>
+      <MinVersion>7.5.8501.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.SystemCenter.Library">
+      <Alias>SC</Alias>
+      <PackageToBundle>false</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.Windows.Cluster.Library">
+      <HintPath>C:\Program Files (x86)\System Center Visual Studio Authoring Extensions\References\OM2012\Microsoft.Windows.Cluster.Library.mp</HintPath>
+      <Alias>ClusterLib</Alias>
+      <MinVersion>7.0.8427.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.Windows.Library">
+      <Alias>Windows</Alias>
+      <PackageToBundle>false</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.Health.Library">
+      <Alias>Health</Alias>
+      <PackageToBundle>false</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.Library">
+      <Alias>System</Alias>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.SystemCenter.Visualization.Library">
+      <Alias>Visualization</Alias>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes_Relationships" />
+    <Folder Include="ModuleTypes" />
+    <Folder Include="Discoveries" />
+    <Folder Include="MonitorTypes" />
+    <Folder Include="Monitors" />
+    <Folder Include="Rules" />
+    <Folder Include="Recoveries" />
+    <Folder Include="Tasks" />
+    <Folder Include="Overrides" />
+    <Folder Include="Reports" />
+    <Folder Include="Presentation" />
+    <Folder Include="Resources" />
+    <Folder Include="Resources\Icons" />
+    <Folder Include="Resources\DHW_Scripts" />
+    <Folder Include="Resources\SRS_Reports" />
+    <Folder Include="SecureReferences" />
+    <Folder Include="Scripts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes_Relationships\1_Abstract_Classes.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes_Relationships\2_Certificates.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes_Relationships\3_CertificateStores.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes_Relationships\4_Groups.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes_Relationships\5_Revocation_Lists.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Group_CAGroup.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Group_CertCRLGroup.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Group_CurrentCRLsGroup.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Group_ExpiredCertificatesGroup.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Group_InvalidCertificatesGroup.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Group_MonitoringDisabledGroup.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Group_NotUpdatedCRLsGroup.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Group_RequiredWindowsCertificatesGroup.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Group_RootCertificateStoreGroup.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Group_SoonToExpireCertificatesGroup.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Group_ValidCertificatesGroup.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Local_Certificate_Discovery_non-root.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Local_Certificate_Discovery_root.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Local_Certificate_Discovery_selfsigned.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Local_CRL_Discovery.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Local_Store_Discovery_WebHosting.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\_removed_Local_Store_Discovery_AuthRoot.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Local_Store_Discovery_CA.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Local_Store_Discovery_My.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Local_Store_Discovery_Root.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Local_Store_Discovery_Trust.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Discoveries\Local_Store_Discovery_WInNTService.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ManagementPack.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ModuleTypes\DS_Certificate_Script_Discovery.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ModuleTypes\DS_Certificate_Script_Scheduled.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ModuleTypes\DS_CRL_Script_Discovery.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ModuleTypes\DS_Store_Registry_Discovery.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ModuleTypes\DS_Store_Service_Registry_Discovery.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ModuleTypes\PA_Certificate_Script.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ModuleTypes\WA_CertificateHandling_Script.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Monitors\CertificateAboutToExpire_Monitor.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Monitors\CertificateValidity_Monitor.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Monitors\CRLUpdate_Monitor.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Monitors\Dependency_Monitors.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Monitors\PowershellV2_Installed_Monitor.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Monitors\StoreOverridesValid_Monitors.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MonitorTypes\CertificateExpiry_MT.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MonitorTypes\CertificateValidity_MT.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MonitorTypes\CRLUpdate_MT.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MonitorTypes\PowerShellV2_Installed_MT.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Overrides\DisableMonitoring_OnDisableGroup_Overrides.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Overrides\DisablePowerShellMonitor_in_ClusterVirtualServer_Override.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Overrides\IgnoreUntrustedRoot_on_SelfSigned_Override.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Presentation\Issues_Dashboard.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Presentation\Views.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Presentation\View_Folders.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Recoveries\Archive_Expired_Certificate_Recovery.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Recoveries\Disable_Certificate_Recovery.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\LinkedReport_CertificateStoreInventory.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\LinkedReport_CRLInventoryReport.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\LinkedReport_ExpiredCertificatesInventory.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\LinkedReport_InvalidCertificatesInventory.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\LinkedReport_NotUpdatedCRLsInventory.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\LinkedReport_SoonToExpireCertificatesInventory.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\Report_CustomConfigurationReport.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\Report_CustomGroupConfigurationReport_unused.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\Report_CustomTwoGroupConfigurationReport.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\Report_Resources.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\Script_TwoGroupCustomConfiguration.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Resources\DHW_Scripts\DWH_Script_Resources.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Resources\Icons\Icons_Categories-ImageReferences--Images.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Resources\SRS_Reports\Report_Banner_References.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SecureReferences\HighPrivilege_SecureReference.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tasks\Archive_Certificate_Task.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tasks\Delete_Certificate_Task_inactive.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tasks\Disable_Monitoring_Task.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tasks\Enable_Monitoring_Task.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tasks\List_Certificate_Properties_Store_Task.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tasks\List_Certificate_Properties_Task.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\DHW_Scripts\TwoGroupCustomConfigurationReportDataGet-Install.sql" />
+    <EmbeddedResource Include="Resources\DHW_Scripts\TwoGroupCustomConfigurationReportDataGet-Uninstall.sql" />
+    <EmbeddedResource Include="Resources\DHW_Scripts\TwoGroupCustomConfigurationReportDataGet-Upgrade.sql" />
+    <EmbeddedResource Include="Resources\SRS_Reports\SCC_banner_landscape_2012.jpg" />
+    <EmbeddedResource Include="Resources\SRS_Reports\SCC_banner_portrait_2012.jpg" />
+    <EmbeddedResource Include="Scripts\Certificate_Handling_Script_V4.ps1" />
+    <EmbeddedResource Include="Scripts\Certificate_Verify_Script_V6.ps1" />
+    <EmbeddedResource Include="Scripts\CheckPowerShellVersion.vbs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Icons\Certificate_16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\Certificate_80.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\Certificate_Store_16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\Certificate_Store_80.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\Cert_and_CRL_Group_16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\Cert_and_CRL_Group_80.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\Cert_Component_16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\Cert_Component_80.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\Cert_Expire_Group_16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\Cert_Expire_Group_80.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\Cert_Invalid_Group_16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\Cert_Invalid_Group_80.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\Cert_Valid_Group_16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\Cert_Valid_Group_80.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\CRL_16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\CRL_80.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\CRL_Current_Group_16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\CRL_Current_Group_80.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\CRL_NotCurrent_Group_16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\CRL_NotCurrent_Group_80.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\Root_Certificate_16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\Root_Certificate_80.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SRS_Reports\CustomConfigurationReport.rdl">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SRS_Reports\CustomGroupConfigurationReport.rdl">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SRS_Reports\CustomTwoGroupConfigurationReport.rdl">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VSAC\Microsoft.SystemCenter.OperationsManager.targets" />
+</Project>

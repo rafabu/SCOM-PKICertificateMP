@@ -1,0 +1,60 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Discoveries>
+      <Discovery ID="SystemCenterCentral.Utilities.Certificates.CertCRLGroup.Discovery" Enabled="true" Target="SystemCenterCentral.Utilities.Certificates.CertCRLGroup" ConfirmDelivery="true" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="Microsoft.SystemCenter.GroupPolulator" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertCRLGroup"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.ValidCertificatesGroup"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+            </MembershipRule>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.InvalidCertificatesGroup"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+            </MembershipRule>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.ExpiredCertificatesGroup"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+            </MembershipRule>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.SoonToExpireCertificatesGroup"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+            </MembershipRule>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CurrentCRLsGroup"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+            </MembershipRule>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.NotUpdatedCRLsGroup"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+            </MembershipRule>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CAGroup"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+            </MembershipRule>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.RequiredWindowsCertificatesGroup"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="InstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+    </Discoveries>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertCRLGroup.Discovery">
+          <Name>Containment discovery of Certificates and CRLs group</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+
+    </ManagementPackFragment>

@@ -1,0 +1,70 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!-- do not expose delete tasks to SCOM UI -->
+  <!--     deleting certificates could cause havoc -->
+  <!--
+  <Monitoring>
+    <Tasks>
+      <Task ID="SystemCenterCentral.Utilities.Certificates.DeleteNonRootCertificate.Task" Accessibility="Internal" Enabled="false" Target="SystemCenterCentral.Utilities.Certificates.NonRootCertificate" Timeout="300" Remotable="false">
+        <Category>Maintenance</Category>
+        <WriteAction ID="Probe" TypeID="SystemCenterCentral.Utilities.Certificates.HandlingScriptWA">
+        <ComputerName>$Target/Host/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+          <TimeoutSeconds>300</TimeoutSeconds>
+          <CertStoreID>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+          <StoreProvider>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+          <Operation>DELETE</Operation>
+          <Thumbprint>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertThumbprint$</Thumbprint>
+          <TaskId>SystemCenterCentral.Utilities.Certificates.DeleteNonRootCertificate.Task</TaskId>
+         
+        </WriteAction>
+      </Task>
+      <Task ID="SystemCenterCentral.Utilities.Certificates.DeleteRootCertificate.Task" Accessibility="Internal" Enabled="false" Target="SystemCenterCentral.Utilities.Certificates.RootCertificate" Timeout="300" Remotable="false">
+        <Category>Maintenance</Category>
+        <WriteAction ID="Probe" TypeID="SystemCenterCentral.Utilities.Certificates.HandlingScriptWA">
+          <TimeoutSeconds>300</TimeoutSeconds>
+          <ComputerName>$Target/Host/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+          <CertStoreID>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+          <StoreProvider>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+          <Operation>DELETE</Operation>
+          <Thumbprint>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertThumbprint$</Thumbprint>
+          <TaskId>SystemCenterCentral.Utilities.Certificates.DeleteRootCertificate.Task</TaskId>
+        
+        </WriteAction>
+      </Task>
+      <Task ID="SystemCenterCentral.Utilities.Certificates.DeleteSelfSignedCertificate.Task" Accessibility="Internal" Enabled="false" Target="SystemCenterCentral.Utilities.Certificates.SelfSignedCertificate" Timeout="300" Remotable="false">
+        <Category>Maintenance</Category>
+        <WriteAction ID="Probe" TypeID="SystemCenterCentral.Utilities.Certificates.HandlingScriptWA">
+          <TimeoutSeconds>300</TimeoutSeconds>
+          <ComputerName>$Target/Host/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+          <CertStoreID>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+          <StoreProvider>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+          <Operation>DELETE</Operation>
+          <Thumbprint>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertThumbprint$</Thumbprint>
+          <TaskId>SystemCenterCentral.Utilities.Certificates.DeleteSelfSignedCertificate.Task</TaskId>
+         
+        </WriteAction>
+      </Task>
+    </Tasks>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+         <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.DeleteNonRootCertificate.Task">
+          <Name>DELETE Certificate (permanently)</Name>
+          <Description>Deletes a given non-root certificate from the store on the agent machine and triggers re-discovery of the certificate store.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.DeleteRootCertificate.Task">
+          <Name>DELETE CA Certificate (permanently)</Name>
+          <Description>Deletes a given root certificate from the store on the agent machine and triggers re-discovery of the certificate store.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.DeleteSelfSignedCertificate.Task">
+          <Name>DELETE Self-Signed Certificate (permanently)</Name>
+          <Description>Deletes a given self-signed certificate from the store on the agent machine and triggers re-discovery of the certificate store.</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+  -->
+      </ManagementPackFragment>

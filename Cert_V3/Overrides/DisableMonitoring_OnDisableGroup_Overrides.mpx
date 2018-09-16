@@ -1,0 +1,15 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Overrides>
+      <MonitorPropertyOverride ID="SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor_DisableGroup_Override" Context="SystemCenterCentral.Utilities.Certificates.MonitoringDisabledGroup" Enforced="false" Monitor="SystemCenterCentral.Utilities.Certificates.CertificateAboutToExpire.Monitor" Property="Enabled">
+        <Value>false</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor_DisableGroup_Override" Context="SystemCenterCentral.Utilities.Certificates.MonitoringDisabledGroup" Enforced="false" Monitor="SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Property="Enabled">
+        <Value>false</Value>
+      </MonitorPropertyOverride>
+      <MonitorPropertyOverride ID="SystemCenterCentral.Utilities.Certificates.CRLUpdate.Monitor_DisableGroup_Override" Context="SystemCenterCentral.Utilities.Certificates.MonitoringDisabledGroup" Enforced="false" Monitor="SystemCenterCentral.Utilities.Certificates.CRLUpdate.Monitor" Property="Enabled">
+        <Value>false</Value>
+      </MonitorPropertyOverride>
+    </Overrides>
+  </Monitoring>
+</ManagementPackFragment>

@@ -1,0 +1,141 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Discoveries>
+      <Discovery ID="SystemCenterCentral.Utilities.Certificates.LocalScriptProbe.CRL.Discovery" Enabled="false" Target="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry" ConfirmDelivery="false" Remotable="false" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="SystemCenterCentral.Utilities.Certificates.CRL">
+            <Property TypeID="System!System.Entity" PropertyID="DisplayName" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CRL" PropertyID="CRLVersion" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CRL" PropertyID="CRLSignatureAlgo" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CRL" PropertyID="CRLIssuer" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CRL" PropertyID="CRLThisUpdate" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CRL" PropertyID="CRLNextUpdate" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CRL" PropertyID="CRLEntries" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CRL" PropertyID="CRLThumbprint" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CRL" PropertyID="CertStore" />
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CRL" PropertyID="CRLNeedsUpdate" />
+          </DiscoveryClass>
+          <DiscoveryRelationship TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore.Hosts.SystemCenterCentral.Utilities.Certificates.CRL" />
+        </DiscoveryTypes>
+        <DataSource ID="DataSource" TypeID="SystemCenterCentral.Utilities.Certificates.CRL.LocalScriptDiscovery.DataSource">
+          <CertStoreID>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+        <StoreProvider>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+            <!--  take values from TARGET to guarantee coockdown -->
+          <RevocationFlag>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/RevocationFlag$</RevocationFlag>
+          <RevocationMode>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/RevocationMode$</RevocationMode>
+          <VerificationFlags>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/VerificationFlags$</VerificationFlags>
+          <!-- include / exclude certificates (from store properties) -->
+          <SubjectIncludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/SubjectIncludeRegEx$</SubjectIncludeRegEx>
+          <IssuerIncludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IssuerIncludeRegEx$</IssuerIncludeRegEx>
+          <SubjectExcludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/SubjectExcludeRegEx$</SubjectExcludeRegEx>
+          <IssuerExcludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IssuerExcludeRegEx$</IssuerExcludeRegEx>
+          <EnhKeyUseExcludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/EnhKeyUseExcludeRegEx$</EnhKeyUseExcludeRegEx>
+          <TemplateIncludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateIncludeRegEx$</TemplateIncludeRegEx>
+          <TemplateExcludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateExcludeRegEx$</TemplateExcludeRegEx>
+          <ExpiryThresholdDays>31</ExpiryThresholdDays>
+          
+          <Debug>false</Debug>
+          <IntervalSeconds>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildDiscoveryInterval$</IntervalSeconds>
+           <SyncTime>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/Sync$</SyncTime>
+          <SpreadInitializationOverInterval>900</SpreadInitializationOverInterval>
+          <TimeoutSeconds>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildScriptTimeout$</TimeoutSeconds>
+          <ClassId>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CRL"]$</ClassId>
+          <InstanceSettings>
+            <Settings>
+              <Setting>
+                <Name>$MPElement[Name="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Name>
+                <Value>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</Name>
+                <Value>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CRL"]/CRLThumbprint$</Name>
+                <Value>$Data/Property[@Name='CRLHash']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CRL"]/CRLVersion$</Name>
+                <Value>$Data/Property[@Name='CRLVersion']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CRL"]/CRLSignatureAlgo$</Name>
+                <Value>$Data/Property[@Name='CRLSigAlg']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CRL"]/CRLIssuer$</Name>
+                <Value>$Data/Property[@Name='CRLIssuedBy']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CRL"]/CRLThisUpdate$</Name>
+                <Value>$Data/Property[@Name='CRLThisUpdate']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CRL"]/CRLNextUpdate$</Name>
+                <Value>$Data/Property[@Name='CRLNextUpdate']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CRL"]/CRLEntries$</Name>
+                <Value>$Data/Property[@Name='CRLEntries']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CRL"]/CRLNeedsUpdate$</Name>
+                <Value>$Data/Property[@Name='CRLNeedsUpdate']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CRL"]/CRLCAVersion$</Name>
+                <Value>$Data/Property[@Name='CRLCAVersion']$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CRL"]/CertStore$</Name>
+                <Value>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="System!System.Entity"]/DisplayName$</Name>
+                <Value>CRL $Data/Property[@Name='CRLIssuedBy']$</Value>
+              </Setting>
+            </Settings>
+          </InstanceSettings>
+          <Expression>
+            <SimpleExpression>
+              <ValueExpression>
+                <XPathQuery Type="String">Property[@Name='CRLHash']</XPathQuery>
+              </ValueExpression>
+              <Operator>NotEqual</Operator>
+              <ValueExpression>
+                <Value Type="String" />
+              </ValueExpression>
+            </SimpleExpression>
+          </Expression>
+        </DataSource>
+      </Discovery>
+
+    </Discoveries>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.LocalScriptProbe.CRL.Discovery">
+          <Name>Discover Certificate Revocation Lists (locally)</Name>
+          <Description>Discovers Certificate Revocation Lists (CRLs). This discovery is enabled by default.</Description>
+        </DisplayString>
+      </DisplayStrings>
+      <KnowledgeArticles>
+        <KnowledgeArticle ElementID="SystemCenterCentral.Utilities.Certificates.LocalScriptProbe.CRL.Discovery" Visible="true">
+          <MamlContent>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Summary</maml:title>
+              <maml:para>Discovers Certificate Revocation Lists (CRLs). This discovery is enabled by default.</maml:para>
+            </maml:section>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Configuration</maml:title>
+              <maml:para>Use overrides to disable the monitor if you do not need monitoring of CRLs.</maml:para>
+            </maml:section>
+          </MamlContent>
+        </KnowledgeArticle>
+      </KnowledgeArticles>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

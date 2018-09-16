@@ -1,0 +1,7 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <Resources>
+      <ReportResource ID="SCC_banner_landscape.jpg" Accessibility="Internal" FileName="SCC_banner_landscape_2012.jpg" HasNullStream="false" MIMEType="image/jpeg" />
+      <ReportResource ID="SCC_banner_portrait.jpg" Accessibility="Internal" FileName="SCC_banner_portrait_2012.jpg" HasNullStream="false" MIMEType="image/jpeg" />
+    </Resources>
+</ManagementPackFragment>

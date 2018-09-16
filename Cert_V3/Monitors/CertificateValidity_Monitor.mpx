@@ -1,0 +1,138 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Monitors>
+         <UnitMonitor ID="SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Accessibility="Public" Enabled="true" Target="SystemCenterCentral.Utilities.Certificates.Certificate" ParentMonitorID="Health!System.Health.ConfigurationState" Remotable="false" Priority="Normal" TypeID="SystemCenterCentral.Utilities.Certificates.CertificateValidity.MonitorType" ConfirmDelivery="true">
+        <Category>ConfigurationHealth</Category>
+        <AlertSettings AlertMessage="SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor_AlertMessageResourceID">
+          <AlertOnState>Warning</AlertOnState>
+          <AutoResolve>true</AutoResolve>
+          <AlertPriority>Low</AlertPriority>
+          <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+          <AlertParameters>
+            <!-- add default to overcome potential replacement issues -->
+            <AlertParameter1>$Data[Default='_no_CertStatus']/Context/Property[@Name='CertStatus']$</AlertParameter1>
+            <AlertParameter2>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedTo$</AlertParameter2>
+            <AlertParameter3>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedBy$</AlertParameter3>
+            <AlertParameter4>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertSerial$</AlertParameter4>
+            <AlertParameter5>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/TemplateName$</AlertParameter5>
+            <AlertParameter6>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/EnhancedKeyUsageList$</AlertParameter6>
+            <AlertParameter7>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</AlertParameter7>
+            <AlertParameter8>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$\$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</AlertParameter8>
+            <AlertParameter9>$Data[Default='']/Context/Property[@Name='UserContext']$</AlertParameter9>
+            <AlertParameter10>$Data[Default='']/Context/Property[@Name='CertVerboseStatus']$</AlertParameter10>
+          </AlertParameters>
+        </AlertSettings>
+        <OperationalStates>
+          <OperationalState ID="CertValid" MonitorTypeStateID="Good" HealthState="Success" />
+          <OperationalState ID="CertInvalid" MonitorTypeStateID="Bad" HealthState="Warning" />
+        </OperationalStates>
+        <Configuration>
+          <CertStoreID>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</CertStoreID>
+          <StoreProvider>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</StoreProvider>
+          <StoreType>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$</StoreType>
+          <CertThumbprint>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertThumbprint$</CertThumbprint>
+          <!--  take values from HOST to guarantee coockdown -->
+          <RevocationFlag>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/RevocationFlag$</RevocationFlag>
+          <RevocationMode>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/RevocationMode$</RevocationMode>
+          <VerificationFlags>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/VerificationFlags$</VerificationFlags>
+          <!-- include / exclude certificates (from store properties - assure to keep cookdown) -->
+          <SubjectIncludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/SubjectIncludeRegEx$</SubjectIncludeRegEx>
+          <IssuerIncludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IssuerIncludeRegEx$</IssuerIncludeRegEx>
+          <SubjectExcludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/SubjectExcludeRegEx$</SubjectExcludeRegEx>
+          <IssuerExcludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IssuerExcludeRegEx$</IssuerExcludeRegEx>
+          <EnhKeyUseIncludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/EnhKeyUseIncludeRegEx$</EnhKeyUseIncludeRegEx>
+          <EnhKeyUseExcludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/EnhKeyUseExcludeRegEx$</EnhKeyUseExcludeRegEx>
+          <TemplateIncludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateIncludeRegEx$</TemplateIncludeRegEx>
+          <TemplateExcludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateExcludeRegEx$</TemplateExcludeRegEx>
+
+          <IgnoreUntrustedRoot>false</IgnoreUntrustedRoot>
+          <IntervalSeconds>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildMonitorInterval$</IntervalSeconds>
+          <SyncTime>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/Sync$</SyncTime>
+          <SpreadInitializationOverInterval>900</SpreadInitializationOverInterval>
+          <TimeoutSeconds>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildScriptTimeout$</TimeoutSeconds>
+			<Debug>false</Debug>
+        </Configuration>
+      </UnitMonitor>
+   
+    </Monitors>
+    <Overrides>
+      <!-- disable monitoring of certificates that are required by windows to work properly. Not to make people think they should delete them! -->
+      <MonitorPropertyOverride ID="SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor.RequiredWindowsCertificates.Override" Context="SystemCenterCentral.Utilities.Certificates.RequiredWindowsCertificatesGroup" Enforced="false" Monitor="SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Property="Enabled">
+        <Value>false</Value>
+      </MonitorPropertyOverride>
+    </Overrides>
+  </Monitoring>
+  <Presentation>
+    <StringResources>
+      <StringResource ID="SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor_AlertMessageResourceID" />
+    </StringResources>
+  </Presentation>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor">
+          <Name>Certificate validity</Name>
+          <Description>Checks if a certificate is invalid for other reason than having expired</Description>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" SubElementID="CertInvalid">
+          <Name>Invalid</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" SubElementID="CertValid">
+          <Name>Valid</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor_AlertMessageResourceID">
+          <Name>Certificate is invalid</Name>
+          <Description>The certificate is not valid. Reason:
+{0}
+
+Certificate Subject: {1}
+Certificate Issuer: {2}
+Serial number: {3}
+
+Enterpise Template: {4}
+Enhanced Key Usage List: {5}
+
+Store: {6}\{7}
+Monitoring User: {8}
+
+Chain Details:
+{9}</Description>
+        </DisplayString>
+      </DisplayStrings>
+      <KnowledgeArticles>
+        <KnowledgeArticle ElementID="SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Visible="true">
+          <MamlContent>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Summary</maml:title>
+              <maml:para>This monitor warns when a certificate is invalid due to one of the following reasons:</maml:para>
+              <maml:list>
+                <maml:listItem>
+                  <maml:para>Incomplete certificate chain</maml:para>
+                </maml:listItem>
+                <maml:listItem>
+                  <maml:para>Invalid signature</maml:para>
+                </maml:listItem>
+                <maml:listItem>
+                  <maml:para>The issuing CA (Root CA) is not trusted</maml:para>
+                </maml:listItem>
+                <maml:listItem>
+                  <maml:para>Certificate was revoked</maml:para>
+                </maml:listItem>
+              </maml:list>
+              <maml:para />
+              <maml:para />
+            </maml:section>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Resolutions</maml:title>
+              <maml:para>Correct the condition that lead to the certificate becoming invalid.</maml:para>
+            </maml:section>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Additional</maml:title>
+              <maml:para>Note that this monitor is not alerting when a certificate becomes invalid due to its lifetime having expired. The monitor ‘Certificate Lifespan’ is taking care of that. </maml:para>
+            </maml:section>
+          </MamlContent>
+        </KnowledgeArticle>
+      </KnowledgeArticles>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

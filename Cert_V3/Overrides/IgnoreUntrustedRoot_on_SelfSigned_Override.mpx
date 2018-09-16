@@ -1,0 +1,10 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <!-- ignore UntrustedRoot state for self-signed certificates -->
+    <Overrides>
+      <MonitorConfigurationOverride ID="SystemCenterCentral.Utilities.Certificates.SelfSignedCertificate.CertificateValidity.Monitor_IgnoreUntrustedRoot_Override" Context="SystemCenterCentral.Utilities.Certificates.SelfSignedCertificate" Enforced="false" Monitor="SystemCenterCentral.Utilities.Certificates.CertificateValidity.Monitor" Parameter="IgnoreUntrustedRoot">
+        <Value>true</Value>
+      </MonitorConfigurationOverride>
+    </Overrides>
+  </Monitoring>
+</ManagementPackFragment>
