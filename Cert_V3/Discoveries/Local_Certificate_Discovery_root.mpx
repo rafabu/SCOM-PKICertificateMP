@@ -45,6 +45,7 @@
           <EnhKeyUseExcludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/EnhKeyUseExcludeRegEx$</EnhKeyUseExcludeRegEx>
           <TemplateIncludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateIncludeRegEx$</TemplateIncludeRegEx>
           <TemplateExcludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateExcludeRegEx$</TemplateExcludeRegEx>
+          <IgnoreSupersededCert>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IgnoreSupersededCert$</IgnoreSupersededCert>
           <ExpiryThresholdDays>31</ExpiryThresholdDays>
           
           <DiscoverSupersededCACertificates>false</DiscoverSupersededCACertificates>

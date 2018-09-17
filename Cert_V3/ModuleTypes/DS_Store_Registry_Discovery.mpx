@@ -28,6 +28,7 @@
           <xsd:element minOccurs="0" name="EnhKeyUseExcludeRegEx" type="xsd:string" default="\n"/>
           <xsd:element minOccurs="0" name="TemplateIncludeRegEx" type="xsd:string" default="^(|.+)$"/>
           <xsd:element minOccurs="0" name="TemplateExcludeRegEx" type="xsd:string" default="\n"/>
+          <xsd:element minOccurs="1" name="IgnoreSupersededCert" type="xsd:boolean" />
           <xsd:element name="DisplayName" type="xsd:string" />
         </Configuration>
         <OverrideableParameters>
@@ -47,7 +48,7 @@
           <OverrideableParameter ID="EnhKeyUseExcludeRegEx" Selector="$Config/EnhKeyUseExcludeRegEx$" ParameterType="string" />
           <OverrideableParameter ID="TemplateIncludeRegEx" Selector="$Config/TemplateIncludeRegEx$" ParameterType="string" />
           <OverrideableParameter ID="TemplateExcludeRegEx" Selector="$Config/TemplateExcludeRegEx$" ParameterType="string" />
-          
+          <OverrideableParameter ID="IgnoreSupersededCert" Selector="$Config/IgnoreSupersededCert$" ParameterType="bool" />
         </OverrideableParameters>
         <ModuleImplementation>
           <Composite>
@@ -159,6 +160,10 @@
                       <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateExcludeRegEx$</Name>
                       <Value>$Config/TemplateExcludeRegEx$</Value>
                     </Setting>
+                     <Setting>
+                      <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IgnoreSupersededCert$</Name>
+                      <Value>$Config/IgnoreSupersededCert$</Value>
+                    </Setting>
                     <Setting>
                       <Name>$MPElement[Name="System!System.Entity"]/DisplayName$</Name>
                       <Value>$Config/DisplayName$</Value>
@@ -215,6 +220,9 @@
         </DisplayString>
         <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStoreDiscoveryProvider" SubElementID="TemplateExcludeRegEx">
           <Name>Certificate Template Filter - Exclude (RegEx)</Name>
+        </DisplayString>
+        <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStoreDiscoveryProvider" SubElementID="IgnoreSupersededCert">
+          <Name>Ignore Superseded Certificates</Name>
         </DisplayString>
       </DisplayStrings>
     </LanguagePack>

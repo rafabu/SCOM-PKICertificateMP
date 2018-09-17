@@ -67,6 +67,8 @@
           <TemplateIncludeRegEx>^(|.+)$</TemplateIncludeRegEx>
           <TemplateExcludeRegEx>\s+</TemplateExcludeRegEx>
 
+          <IgnoreSupersededCert>true</IgnoreSupersededCert>         
+
           <!-- Certificate Store display name in OpsMgr -->
           <DisplayName>Cisco ACS Certificate Store</DisplayName>
 

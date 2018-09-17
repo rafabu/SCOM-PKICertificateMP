@@ -22,8 +22,8 @@
           <xsd:element minOccurs="0" name="EnhKeyUseExcludeRegEx" type="xsd:string" default="^$"/>
           <xsd:element minOccurs="0" name="TemplateIncludeRegEx" type="xsd:string" default="^(|.+)$"/>
           <xsd:element minOccurs="0" name="TemplateExcludeRegEx" type="xsd:string" default="\s+"/>
+          <xsd:element minOccurs="1" name="IgnoreSupersededCert" type="xsd:boolean" />
 
-     
           <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:integer" />
           <xsd:element minOccurs="0" name="SyncTime" type="xsd:string" />
           <xsd:element minOccurs="0" name="SpreadInitializationOverInterval" type="xsd:integer" default="900"/>
@@ -59,6 +59,7 @@
               <EnhKeyUseExcludeRegEx>$Config/EnhKeyUseExcludeRegEx$</EnhKeyUseExcludeRegEx>
               <TemplateIncludeRegEx>$Config/TemplateIncludeRegEx$</TemplateIncludeRegEx>
               <TemplateExcludeRegEx>$Config/TemplateExcludeRegEx$</TemplateExcludeRegEx>
+              <IgnoreSupersededCert>$Config/IgnoreSupersededCert$</IgnoreSupersededCert>         
               <ExpiryThresholdDays>31</ExpiryThresholdDays>
               <Debug>$Config/Debug$</Debug>
               <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>

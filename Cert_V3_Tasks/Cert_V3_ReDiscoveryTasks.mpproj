@@ -6,7 +6,7 @@
     <RootNamespace>SystemCenterCentral.Utilities.Certificates.ReDiscoveryTasks</RootNamespace>
     <Name>PKI Certificate Validation V3 (Rediscovery Tasks)</Name>
     <ManagementPackName>SystemCenterCentral.Utilities.Certificates.ReDiscoveryTasks</ManagementPackName>
-    <Version>1.4.1.0</Version>
+    <Version>1.4.2.0</Version>
     <MpFrameworkVersion>v7.0</MpFrameworkVersion>
     <MpFrameworkProfile>OM</MpFrameworkProfile>
     <ProductVersion>1.1.0.0</ProductVersion>
