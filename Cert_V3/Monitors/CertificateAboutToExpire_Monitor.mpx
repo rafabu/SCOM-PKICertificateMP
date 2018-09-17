@@ -46,6 +46,7 @@
           <EnhKeyUseExcludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/EnhKeyUseExcludeRegEx$</EnhKeyUseExcludeRegEx>
           <TemplateIncludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateIncludeRegEx$</TemplateIncludeRegEx>
           <TemplateExcludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateExcludeRegEx$</TemplateExcludeRegEx>
+          <IgnoreSupersededCert>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IgnoreSupersededCert$</IgnoreSupersededCert>
           
           <IntervalSeconds>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildMonitorInterval$</IntervalSeconds>
           <SyncTime>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/Sync$</SyncTime>

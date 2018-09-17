@@ -25,8 +25,7 @@
           <Property ID="EnhKeyUseExcludeRegEx" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
           <Property ID="TemplateIncludeRegEx" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
           <Property ID="TemplateExcludeRegEx" Type="string" Key="false" CaseSensitive="false" MinLength="0" />
-
-
+          <Property ID="IgnoreSupersededCert" Type="bool" Key="false"  />
         </ClassType>
         <ClassType ID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore" Accessibility="Public" Abstract="false" Base="SystemCenterCentral.Utilities.Certificates.CertificateStore" Hosted="true" Singleton="false" />
         <ClassType ID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore.Registry" Accessibility="Public" Abstract="false" Base="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore" Hosted="true" Singleton="false" />
@@ -109,6 +108,9 @@
         </DisplayString>
         <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="TemplateExcludeRegEx">
           <Name>Certificate Template Filter (Exclude)</Name>
+        </DisplayString>
+         <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.CertificateStore" SubElementID="IgnoreSupersededCert">
+          <Name>Ignore Superseded Certs</Name>
         </DisplayString>
         
         <DisplayString ElementID="SystemCenterCentral.Utilities.Certificates.LocalCertificateStore">

@@ -21,6 +21,7 @@
           <xsd:element minOccurs="0" name="EnhKeyUseExcludeRegEx" type="xsd:string" default="\n"/>
           <xsd:element minOccurs="0" name="TemplateIncludeRegEx" type="xsd:string" default="^(|.+)$"/>
           <xsd:element minOccurs="0" name="TemplateExcludeRegEx" type="xsd:string" default="\n"/>
+          <xsd:element minOccurs="1" name="IgnoreSupersededCert" type="xsd:boolean" />
           <xsd:element minOccurs="0" name="ExpiryThresholdDays" type="xsd:integer" default="31"/>
 
           <xsd:element minOccurs="1" name="Debug" type="xsd:boolean" />
@@ -59,6 +60,7 @@
               <EnhKeyUseExcludeRegEx>$Config/EnhKeyUseExcludeRegEx$</EnhKeyUseExcludeRegEx>
               <TemplateIncludeRegEx>$Config/TemplateIncludeRegEx$</TemplateIncludeRegEx>
               <TemplateExcludeRegEx>$Config/TemplateExcludeRegEx$</TemplateExcludeRegEx>
+              <IgnoreSupersededCert>$Config/IgnoreSupersededCert$</IgnoreSupersededCert>         
               <ExpiryThresholdDays>$Config/ExpiryThresholdDays$</ExpiryThresholdDays>
                   
               <Debug>$Config/Debug$</Debug>
@@ -96,6 +98,7 @@
                 <EnhKeyUseExcludeRegEx>$Config/EnhKeyUseExcludeRegEx$</EnhKeyUseExcludeRegEx>
                 <TemplateIncludeRegEx>$Config/TemplateIncludeRegEx$</TemplateIncludeRegEx>
                 <TemplateExcludeRegEx>$Config/TemplateExcludeRegEx$</TemplateExcludeRegEx>
+                <IgnoreSupersededCert>$Config/IgnoreSupersededCert$</IgnoreSupersededCert>         
                 <ExpiryThresholdDays>$Config/ExpiryThresholdDays$</ExpiryThresholdDays>
                 <Debug>$Config/Debug$</Debug>
               </ProbeAction>

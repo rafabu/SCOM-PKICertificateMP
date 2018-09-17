@@ -19,11 +19,12 @@
           <xsd:element minOccurs="0" name="EnhKeyUseExcludeRegEx" type="xsd:string" default="\n"/>
           <xsd:element minOccurs="0" name="TemplateIncludeRegEx" type="xsd:string" default="^(|.+)$"/>
           <xsd:element minOccurs="0" name="TemplateExcludeRegEx" type="xsd:string" default="\n"/>
+           <xsd:element minOccurs="1" name="IgnoreSupersededCert" type="xsd:boolean" />
           <xsd:element minOccurs="0" name="ExpiryThresholdDays" type="xsd:integer" default="31"/>
-
           <xsd:element minOccurs="1" name="Debug" type="xsd:boolean" />
         </Configuration>
         <OverrideableParameters>
+          <OverrideableParameter ID="IgnoreSupersededCert" Selector="$Config/IgnoreSupersededCert$" ParameterType="bool" />
           <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="bool" />
         </OverrideableParameters>
         <ModuleImplementation Isolation="Any">
@@ -93,6 +94,10 @@
                   <Parameter>
                     <Name>expiryThresholdDays</Name>
                     <Value>$Config/ExpiryThresholdDays$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>ignoreSupersededCert</Name>
+                    <Value>$Config/IgnoreSupersededCert$</Value>
                   </Parameter>
                   <Parameter>
                     <Name>debugParam</Name>

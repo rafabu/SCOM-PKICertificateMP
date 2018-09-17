@@ -21,7 +21,7 @@
         <xsd:element minOccurs="0" name="EnhKeyUseExcludeRegEx" type="xsd:string" default="\n"/>
         <xsd:element minOccurs="0" name="TemplateIncludeRegEx" type="xsd:string" default="^(|.+)$"/>
         <xsd:element minOccurs="0" name="TemplateExcludeRegEx" type="xsd:string" default="\n"/>
-
+			  <xsd:element minOccurs="1" name="IgnoreSupersededCert" type="xsd:boolean" />
       </Configuration>
 			<OverrideableParameters>
 				<OverrideableParameter ID="Frequency" Selector="$Config/Frequency$" ParameterType="int" />
@@ -40,7 +40,7 @@
         <OverrideableParameter ID="EnhKeyUseExcludeRegEx" Selector="$Config/EnhKeyUseExcludeRegEx$" ParameterType="string" />
         <OverrideableParameter ID="TemplateIncludeRegEx" Selector="$Config/TemplateIncludeRegEx$" ParameterType="string" />
         <OverrideableParameter ID="TemplateExcludeRegEx" Selector="$Config/TemplateExcludeRegEx$" ParameterType="string" />
-
+				<OverrideableParameter ID="IgnoreSupersededCert" Selector="$Config/IgnoreSupersededCert$" ParameterType="bool" />
       </OverrideableParameters>
 			<ModuleImplementation>
 				<Composite>
@@ -49,7 +49,7 @@
 							<IntervalSeconds>$Config/Frequency$</IntervalSeconds>
 							<SyncTime />
 							<ScriptName>SystemCenterCentral.Utilities.Certificates.LocalServiceStore.Discovery.vbs</ScriptName>
-							<Arguments>$MPElement$ $Target/Id$ $Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$ $Config/ChildMonitorInterval$ $Config/ChildDiscoveryInterval$ $Config/ChildScriptTimeout$ "$Config/RevocationFlag$" "$Config/RevocationMode$" "$Config/VerificationFlags$" "$Config/SubjectIncludeRegEx$" "$Config/IssuerIncludeRegEx$" "$Config/SubjectExcludeRegEx$" "$Config/IssuerExcludeRegEx$" "$Config/EnhKeyUseIncludeRegEx$" "$Config/EnhKeyUseExcludeRegEx$" "$Config/TemplateIncludeRegEx$" "$Config/TemplateExcludeRegEx$" $Config/Debug$</Arguments>
+							<Arguments>$MPElement$ $Target/Id$ $Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$ $Config/ChildMonitorInterval$ $Config/ChildDiscoveryInterval$ $Config/ChildScriptTimeout$ "$Config/RevocationFlag$" "$Config/RevocationMode$" "$Config/VerificationFlags$" "$Config/SubjectIncludeRegEx$" "$Config/IssuerIncludeRegEx$" "$Config/SubjectExcludeRegEx$" "$Config/IssuerExcludeRegEx$" "$Config/EnhKeyUseIncludeRegEx$" "$Config/EnhKeyUseExcludeRegEx$" "$Config/TemplateIncludeRegEx$" "$Config/TemplateExcludeRegEx$" $Config/IgnoreSupersededCert$ $Config/Debug$</Arguments>
 							<ScriptBody>
 								<![CDATA['*************************************************************************
 ' Script Name - SystemCenterCentral.Utilities.Certificates.LocalServiceStore.Discovery.vbs
@@ -74,6 +74,7 @@
 '    15 - strEnhKeyUseExclude
 '    16 - strTemplateInclude
 '    17 - strTemplateExclude
+'    18 - bIgnoreSupersededCert
 '
 ' 1.0 - 14. July 2009 - Raphael Burri / raburri@bluewin.ch
 ' 1.2 - 24. December 2013 - Raphael Burri / raburri@bluewin.ch
@@ -124,6 +125,7 @@ strEnhKeyUseInclude = objArgs(13)
 strEnhKeyUseExclude = objArgs(14)
 strTemplateInclude = objArgs(15)
 strTemplateExclude = objArgs(16)
+bIgnoreSupersededCert = objArgs(17)
 
 'create the SCOM API object
 Set objAPI = CreateObject("MOM.ScriptAPI")
@@ -137,7 +139,7 @@ On Error Resume Next
 If UBound(aServiceStores) >= 0 Then
     If Err.number = 0 Then
 	    'WScript.Echo "Discovering " & UBound(aServiceStores) + 1 & " stores"
-	    Set objDiscoveryData = DiscoverServiceStores(objDiscoveryData, aServiceStores, TargetComputer, iChildMonitorInterval,iChildDiscoveryInterval, strRevocationFlag, strRevocationMode, strVerificationFlags, strSubjectInclude, strIssuerInclude, strSubjectExclude, strIssuerExclude, strEnhKeyUseInclude, strEnhKeyUseExclude,strTemplateInclude, strTemplateExclude)
+	    Set objDiscoveryData = DiscoverServiceStores(objDiscoveryData, aServiceStores, TargetComputer, iChildMonitorInterval,iChildDiscoveryInterval, strRevocationFlag, strRevocationMode, strVerificationFlags, strSubjectInclude, strIssuerInclude, strSubjectExclude, strIssuerExclude, strEnhKeyUseInclude, strEnhKeyUseExclude,strTemplateInclude, strTemplateExclude, bIgnoreSupersededCert)
 	End If
 End If
 On Error Goto 0
@@ -232,7 +234,7 @@ Function ReadCertificates (strComputer)
 End Function
 
 
-Function DiscoverServiceStores (ByVal objDiscoveryData, ByVal aDiscoverData, strComputer, iChildMonitorInterval,iChildDiscoveryInterval, strRevocationFlag, strRevocationMode, strVerificationFlags, strSubjectInclude, strIssuerInclude, strSubjectExclude, strIssuerExclude, strEnhKeyUseInclude, strEnhKeyUseExclude, strTemplateInclude, strTemplateExclude)
+Function DiscoverServiceStores (ByVal objDiscoveryData, ByVal aDiscoverData, strComputer, iChildMonitorInterval,iChildDiscoveryInterval, strRevocationFlag, strRevocationMode, strVerificationFlags, strSubjectInclude, strIssuerInclude, strSubjectExclude, strIssuerExclude, strEnhKeyUseInclude, strEnhKeyUseExclude, strTemplateInclude, strTemplateExclude, bIgnoreSupersededCert)
 
 	Dim objInst
 	Dim strOutput
@@ -275,7 +277,7 @@ Function DiscoverServiceStores (ByVal objDiscoveryData, ByVal aDiscoverData, str
         Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/EnhKeyUseExcludeRegEx$", strEnhKeyUseExclude)
         Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/TemplateIncludeRegEx$", strTemplateInclude)
         Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/TemplateExcludeRegEx$", strTemplateExclude)
-
+				Call objInst.AddProperty("$MPElement[Name='SystemCenterCentral.Utilities.Certificates.CertificateStore']/IgnoreSupersededCert$", bIgnoreSupersededCert)
 
         Call objDiscoveryData.AddInstance(objInst)
 				strOutput = strOutput & vbCrLf & " - " & aDiscoverData(iStore,0)
