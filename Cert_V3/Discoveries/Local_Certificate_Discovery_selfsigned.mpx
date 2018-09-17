@@ -42,6 +42,7 @@
           <IssuerIncludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IssuerIncludeRegEx$</IssuerIncludeRegEx>
           <SubjectExcludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/SubjectExcludeRegEx$</SubjectExcludeRegEx>
           <IssuerExcludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IssuerExcludeRegEx$</IssuerExcludeRegEx>
+          <EnhKeyUseIncludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/EnhKeyUseIncludeRegEx$</EnhKeyUseIncludeRegEx>
           <EnhKeyUseExcludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/EnhKeyUseExcludeRegEx$</EnhKeyUseExcludeRegEx>
           <TemplateIncludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateIncludeRegEx$</TemplateIncludeRegEx>
           <TemplateExcludeRegEx>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateExcludeRegEx$</TemplateExcludeRegEx>
