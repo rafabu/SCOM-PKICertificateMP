@@ -9,7 +9,6 @@
             <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="CertStoreID" />
             <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="StoreProvider" />
             <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="StoreType" />
-
             <Property TypeID="System!System.Entity" PropertyID="DisplayName" />
             <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="Sync" />
             <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="ChildScriptTimeout" />  
@@ -26,8 +25,7 @@
             <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="EnhKeyUseExcludeRegEx" />
             <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="TemplateIncludeRegEx" />
             <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="TemplateExcludeRegEx" />
-      
-
+            <Property TypeID="SystemCenterCentral.Utilities.Certificates.CertificateStore" PropertyID="IgnoreSupersededCert" />
           </DiscoveryClass>
           <DiscoveryRelationship TypeID="Microsoft.Windows.Computer.Hosts.SystemCenterCentral.Utilities.Certificates.CertificateStore" />
         </DiscoveryTypes>
@@ -60,9 +58,7 @@
           <EnhKeyUseExcludeRegEx>^1\.3\.6\.1\.4\.1\.311\.47\.1\.(1|3)$</EnhKeyUseExcludeRegEx>
           <TemplateIncludeRegEx>^(|.+)$</TemplateIncludeRegEx>
           <TemplateExcludeRegEx>\n</TemplateExcludeRegEx>
-
-
-
+          <IgnoreSupersededCert>true</IgnoreSupersededCert>
           <DisplayName>Enterprise Trust Computer Certificate Store</DisplayName>
         </DataSource>
       </Discovery>
