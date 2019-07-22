@@ -11,13 +11,13 @@
           <AlertParameters>
             <!-- add default to overcome potential replacement issues -->
             <AlertParameter1>$Data[Default='_no_CertLifeTimeMessage']/Context/Property[@Name='CertLifeTimeMessage']$</AlertParameter1>
-            <AlertParameter2>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedTo$</AlertParameter2>
-            <AlertParameter3>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedBy$</AlertParameter3>
-            <AlertParameter4>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertSerial$</AlertParameter4>
-            <AlertParameter5>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/TemplateName$</AlertParameter5>
-            <AlertParameter6>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/EnhancedKeyUsageList$</AlertParameter6>
-            <AlertParameter7>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</AlertParameter7>
-            <AlertParameter8>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$\$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</AlertParameter8>
+            <AlertParameter2>$Target[Default='']/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedTo$</AlertParameter2>
+            <AlertParameter3>$Target[Default='']/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertIssuedBy$</AlertParameter3>
+            <AlertParameter4>$Target[Default='']/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertSerial$</AlertParameter4>
+            <AlertParameter5>$Target[Default='']/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/TemplateName$</AlertParameter5>
+            <AlertParameter6>$Target[Default='']/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/EnhancedKeyUsageList$</AlertParameter6>
+            <AlertParameter7>$Target[Default='']/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</AlertParameter7>
+            <AlertParameter8>$Target[Default='']/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$\$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</AlertParameter8>
             <AlertParameter9>$Data[Default='']/Context/Property[@Name='UserContext']$</AlertParameter9>
             <AlertParameter10>$Data[Default='']/Context/Property[@Name='CertVerboseTimeStatus']$</AlertParameter10>
           </AlertParameters>

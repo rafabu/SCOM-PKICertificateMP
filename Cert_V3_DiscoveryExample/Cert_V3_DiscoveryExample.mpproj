@@ -6,7 +6,7 @@
     <RootNamespace>SystemCenter.Utilities.Certificates.Discovery.AddOn</RootNamespace>
     <Name>PKI Certificate Validation - Additional Certificate Store discoveries example</Name>
     <ManagementPackName>SystemCenter.Utilities.Certificates.Discovery.AddOn</ManagementPackName>
-    <Version>1.4.2.0</Version>
+    <Version>1.4.2.10</Version>
     <MpFrameworkVersion>v7.0</MpFrameworkVersion>
     <MpFrameworkProfile>OM</MpFrameworkProfile>
     <ProductVersion>1.1.0.0</ProductVersion>
@@ -14,11 +14,11 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug\</OutputPath>
-    <GenerateSealed>false</GenerateSealed>
-    <Company>MyCompany</Company>
-    <Copyright>Copyright (c) MyCompany. All rights reserved.</Copyright>
-    <DelaySigning>false</DelaySigning>
-    <AssemblyOriginatorKeyFile />
+    <GenerateSealed>True</GenerateSealed>
+    <Company>Raphael Burri</Company>
+    <Copyright>Copyright (c) Raphael Burri. All rights reserved!</Copyright>
+    <DelaySigning>False</DelaySigning>
+    <AssemblyOriginatorKeyFile>C:\temp\SCOMKey.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugSymbols>false</DebugSymbols>
