@@ -3,3 +3,6 @@ This is for SCOM - System Center Operations Manager: The PKI Certificate Verific
 
 #Build
 Works best when using Visual Studio Authoring Extensions.
+
+#Release
+Download of sealed MP and guide are avalaible from the _Releases_ tab of github
