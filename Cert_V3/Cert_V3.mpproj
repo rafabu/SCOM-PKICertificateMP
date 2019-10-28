@@ -6,7 +6,7 @@
     <RootNamespace>SystemCenterCentral.Utilities.Certificates</RootNamespace>
     <Name>PKI Certificate Validation V3</Name>
     <ManagementPackName>SystemCenterCentral.Utilities.Certificates</ManagementPackName>
-    <Version>1.4.1.200</Version>
+    <Version>1.4.2.1</Version>
     <MpFrameworkVersion>v7.0</MpFrameworkVersion>
     <MpFrameworkProfile>OM</MpFrameworkProfile>
     <ProductVersion>1.1.0.0</ProductVersion>
