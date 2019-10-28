@@ -7,6 +7,6 @@
     "\\Cert_V3\\Monitors",
     "\\Cert_V3\\Scripts"
   ],
-  "SelectedNode": "\\Cert_V3\\ModuleTypes\\DS_Certificate_Script_Discovery.mpx",
+  "SelectedNode": "\\Cert_V3\\Discoveries\\Local_Store_Discovery_My.mpx",
   "PreviewInSolutionExplorer": false
 }

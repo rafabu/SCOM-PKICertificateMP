@@ -18,7 +18,7 @@
             <AlertParameter6>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/EnhancedKeyUsageList$</AlertParameter6>
             <AlertParameter7>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</AlertParameter7>
             <AlertParameter8>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$\$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</AlertParameter8>
-            <AlertParameter9>$Data[Default='']/Context/Property[@Name='UserContext']$</AlertParameter9>
+            <AlertParameter9>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertValidTo$</AlertParameter9>
             <AlertParameter10>$Data[Default='']/Context/Property[@Name='CertVerboseStatus']$</AlertParameter10>
           </AlertParameters>
         </AlertSettings>
@@ -94,7 +94,7 @@ Enterpise Template: {4}
 Enhanced Key Usage List: {5}
 
 Store: {6}\{7}
-Monitoring User: {8}
+Certificate Valid to date: {8}
 
 Chain Details:
 {9}</Description>
