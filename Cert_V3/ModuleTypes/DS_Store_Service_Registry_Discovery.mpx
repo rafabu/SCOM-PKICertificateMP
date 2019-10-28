@@ -101,7 +101,7 @@ Dim SourceID, ManagedEntityId, TargetComputer
 Dim aServiceStores
 Dim iChildMonitorInterval, iChildDiscoveryInterval, iChildScriptTimeout
 Dim strRevocationFlag, strRevocationMode, strVerificationFlags
-Dim strSubjectInclude, strIssuerInclude, strSubjectExclude, strIssuerExclude, strEnhKeyUseInclude, strEnhKeyUseExclude , strTemplateInclude, strTemplateExclude
+Dim strSubjectInclude, strIssuerInclude, strSubjectExclude, strIssuerExclude, strEnhKeyUseInclude, strEnhKeyUseExclude , strTemplateInclude, strTemplateExclude, bIgnoreSupersededCert
 
 'get the parameters from the management pack
 Set objArgs = WScript.Arguments

@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Cert_V3",
+    "\\Cert_V3\\Discoveries",
+    "\\Cert_V3\\ModuleTypes",
+    "\\Cert_V3\\Monitors",
+    "\\Cert_V3\\Scripts"
+  ],
+  "SelectedNode": "\\Cert_V3\\ModuleTypes\\DS_Certificate_Script_Discovery.mpx",
+  "PreviewInSolutionExplorer": false
+}
