@@ -6,7 +6,7 @@
     <RootNamespace>SystemCenterCentral.Utilities.Certificates.QuickStartOverrides</RootNamespace>
     <Name>PKI Certificate Validation V3 - Quick Start Overrides</Name>
     <ManagementPackName>SystemCenterCentral.Utilities.Certificates.QuickStartOverrides</ManagementPackName>
-    <Version>1.4.2.0</Version>
+    <Version>1.4.2.900</Version>
     <MpFrameworkVersion>v7.0</MpFrameworkVersion>
     <MpFrameworkProfile>OM</MpFrameworkProfile>
     <ProductVersion>1.1.0.0</ProductVersion>

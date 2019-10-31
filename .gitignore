@@ -6,6 +6,12 @@
 *.user
 *.sln.docstates
 
+# VS2017 config
+.vs/
+
+# VSAE sealing result
+MPResources.resources
+
 # Build results
 
 [Dd]ebug/
@@ -155,13 +161,13 @@ $RECYCLE.BIN/
 
 # rafabu's stuff
 #
+
 ServerSideResponseTest/
 _includes/
 _TestPlan/
 _artwork/
 _MPGuide/
 _Binary/
-
 
 # Mac desktop service store files
 .DS_Store

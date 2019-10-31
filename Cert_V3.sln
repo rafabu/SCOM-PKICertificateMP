@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2017
+VisualStudioVersion = 15.9.17.0
+MinimumVisualStudioVersion = 15.0.0.0
 Project("{D4B43EB3-688B-4EEE-86BD-088F0B28ABB3}") = "Cert_V3", "Cert_V3\Cert_V3.mpproj", "{0D03AFA0-C0B2-40B6-92EF-B4842CBA3546}"
 EndProject
 Project("{D4B43EB3-688B-4EEE-86BD-088F0B28ABB3}") = "Cert_V3_QuickStart_OR", "Cert_V3_QuickStart_OR\Cert_V3_QuickStart_OR.mpproj", "{C303FC6F-3553-47E1-8CD5-D853204ED68C}"
