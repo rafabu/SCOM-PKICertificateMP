@@ -18,9 +18,9 @@
 #			$verificationFlags  ...
 #			$subjectIncludeRegEx
 #			$issuerIncludeRegEx
-#           $subjectExcludeRegEx
+#           		$subjectExcludeRegEx
 #			$issuerExcludeRegEx
-#     $enhKeyUseIncludeRegEx RegEx to include certificates with a specific enhanced key usage OID
+#     			$enhKeyUseIncludeRegEx RegEx to include certificates with a specific enhanced key usage OID
 #			$enhKeyUseExcludeRegEx RegEx to exclude certificates with a specific enhanced key usage OID
 #			$templateIncludeRegEx
 #			$templateExcludeRegEx
@@ -43,6 +43,7 @@
 #									should be reported in views and reports
 # Version 5.2 - 30. July 2015	- fix localized detection of template name
 # Version 6.0 - 06. September 2018	- Add-Type modifications / add EKU to property bag / add EKU include filter
+# Version 6.1 - 01. November 2019	- bcornelissen: fix for empty enterprise template name
 #
 #
 #	CRL bits originally provided by and included with the approval of Vadims Podāns - vpodans@sysadmins.lv
