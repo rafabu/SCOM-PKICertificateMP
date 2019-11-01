@@ -132,7 +132,7 @@
               </Setting>
               <Setting>
                 <Name>$MPElement[Name="SystemCenterCentral.Utilities.Certificates.Certificate"]/TemplateName$</Name>
-                <Value>$Data/Property[@Name='TemplateName']$</Value>
+                <Value>$Data[Default='n/a']/Property[@Name='TemplateName']$</Value>
               </Setting>
               <Setting>
                 <Name>$MPElement[Name="System!System.Entity"]/DisplayName$</Name>

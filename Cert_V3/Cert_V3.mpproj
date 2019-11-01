@@ -6,7 +6,7 @@
     <RootNamespace>SystemCenterCentral.Utilities.Certificates</RootNamespace>
     <Name>PKI Certificate Validation V3</Name>
     <ManagementPackName>SystemCenterCentral.Utilities.Certificates</ManagementPackName>
-    <Version>1.4.1.200</Version>
+    <Version>1.4.3.0</Version>
     <MpFrameworkVersion>v7.0</MpFrameworkVersion>
     <MpFrameworkProfile>OM</MpFrameworkProfile>
     <ProductVersion>1.1.0.0</ProductVersion>
@@ -14,11 +14,11 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug\</OutputPath>
-    <GenerateSealed>True</GenerateSealed>
+    <GenerateSealed>true</GenerateSealed>
     <Company>Raphael Burri</Company>
     <Copyright>Copyright (c) Raphael Burri. All rights reserved!</Copyright>
     <DelaySigning>False</DelaySigning>
-    <AssemblyOriginatorKeyFile>c:\temp\Custom_Raphael_Burri.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\_signing\Custom_Raphael_Burri.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugSymbols>false</DebugSymbols>

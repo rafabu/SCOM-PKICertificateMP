@@ -6,7 +6,7 @@
     <RootNamespace>SystemCenter.Utilities.Certificates.Discovery.AddOn</RootNamespace>
     <Name>PKI Certificate Validation - Additional Certificate Store discoveries example</Name>
     <ManagementPackName>SystemCenter.Utilities.Certificates.Discovery.AddOn</ManagementPackName>
-    <Version>1.4.2.0</Version>
+    <Version>1.4.3.0</Version>
     <MpFrameworkVersion>v7.0</MpFrameworkVersion>
     <MpFrameworkProfile>OM</MpFrameworkProfile>
     <ProductVersion>1.1.0.0</ProductVersion>

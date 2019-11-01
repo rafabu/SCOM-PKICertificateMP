@@ -18,7 +18,7 @@
             <AlertParameter6>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/EnhancedKeyUsageList$</AlertParameter6>
             <AlertParameter7>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreProvider$</AlertParameter7>
             <AlertParameter8>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/StoreType$\$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/CertStoreID$</AlertParameter8>
-            <AlertParameter9>$Data[Default='']/Context/Property[@Name='UserContext']$</AlertParameter9>
+            <AlertParameter9>$Target/Property[Type="SystemCenterCentral.Utilities.Certificates.Certificate"]/CertValidTo$</AlertParameter9>
             <AlertParameter10>$Data[Default='']/Context/Property[@Name='CertVerboseTimeStatus']$</AlertParameter10>
           </AlertParameters>
         </AlertSettings>
@@ -36,7 +36,7 @@
           <RevocationFlag>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/RevocationFlag$</RevocationFlag>
           <RevocationMode>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/RevocationMode$</RevocationMode>
           <VerificationFlags>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/VerificationFlags$</VerificationFlags>
-       
+
           <!-- include / exclude certificates (from store properties - assure to keep cookdown) -->
           <SubjectIncludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/SubjectIncludeRegEx$</SubjectIncludeRegEx>
           <IssuerIncludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IssuerIncludeRegEx$</IssuerIncludeRegEx>
@@ -47,7 +47,7 @@
           <TemplateIncludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateIncludeRegEx$</TemplateIncludeRegEx>
           <TemplateExcludeRegEx>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/TemplateExcludeRegEx$</TemplateExcludeRegEx>
           <IgnoreSupersededCert>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/IgnoreSupersededCert$</IgnoreSupersededCert>
-          
+
           <IntervalSeconds>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/ChildMonitorInterval$</IntervalSeconds>
           <SyncTime>$Target/Host/Property[Type="SystemCenterCentral.Utilities.Certificates.CertificateStore"]/Sync$</SyncTime>
           <SpreadInitializationOverInterval>900</SpreadInitializationOverInterval>
@@ -92,13 +92,13 @@
 
 Certificate Subject: {1}
 Certificate Issuer: {2}
+Certificate Valid to: {8}
 Serial number: {3}
 
-Enterpise Template: {4}
+Enterprise Template: {4}
 Enhanced Key Usage List: {5}
 
 Store: {6}\{7}
-Monitoring User: {8}
 
 Chain Time Details:
 {9}</Description>

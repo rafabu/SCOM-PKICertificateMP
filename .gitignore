@@ -6,6 +6,14 @@
 *.user
 *.sln.docstates
 
+# VS2017 config
+.vs/
+
+# VSAE sealing result
+MPResources.resources
+*.snk
+
+
 # Build results
 
 [Dd]ebug/
@@ -14,6 +22,7 @@ x64/
 build/
 [Bb]in/
 [Oo]bj/
+.vs/
 
 # Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
 !packages/*/build/
@@ -154,13 +163,14 @@ $RECYCLE.BIN/
 
 # rafabu's stuff
 #
+
 ServerSideResponseTest/
+_signing/
 _includes/
 _TestPlan/
 _artwork/
 _MPGuide/
 _Binary/
-
 
 # Mac desktop service store files
 .DS_Store
