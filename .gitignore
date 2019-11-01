@@ -11,6 +11,8 @@
 
 # VSAE sealing result
 MPResources.resources
+*.snk
+
 
 # Build results
 
@@ -163,6 +165,7 @@ $RECYCLE.BIN/
 #
 
 ServerSideResponseTest/
+_signing/
 _includes/
 _TestPlan/
 _artwork/
