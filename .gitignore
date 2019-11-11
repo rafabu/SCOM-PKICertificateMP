@@ -163,14 +163,13 @@ $RECYCLE.BIN/
 
 # rafabu's stuff
 #
-
-ServerSideResponseTest/
-_signing/
-_includes/
-_TestPlan/
 _artwork/
-_MPGuide/
-_Binary/
+_codesamples/
+_mpguide/
+_signing/
+_testplan/
+_varia/
+_zip_release/
 
 # Mac desktop service store files
 .DS_Store
