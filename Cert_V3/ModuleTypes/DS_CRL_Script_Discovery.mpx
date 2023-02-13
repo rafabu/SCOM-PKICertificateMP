@@ -18,6 +18,7 @@
           <xsd:element minOccurs="0" name="IssuerIncludeRegEx" type="xsd:string" default="^.*$"/>
           <xsd:element minOccurs="0" name="SubjectExcludeRegEx" type="xsd:string" default="^$"/>
           <xsd:element minOccurs="0" name="IssuerExcludeRegEx" type="xsd:string" default="^$"/>
+	  <xsd:element minOccurs="0" name="EnhKeyUseIncludeRegEx" type="xsd:string" default="\n"/>
           <xsd:element minOccurs="0" name="EnhKeyUseExcludeRegEx" type="xsd:string" default="\n"/>
           <xsd:element minOccurs="0" name="TemplateIncludeRegEx" type="xsd:string" default="^(|.+)$"/>
           <xsd:element minOccurs="0" name="TemplateExcludeRegEx" type="xsd:string" default="\n"/>
@@ -95,6 +96,7 @@
                 <IssuerIncludeRegEx>$Config/IssuerIncludeRegEx$</IssuerIncludeRegEx>
                 <SubjectExcludeRegEx>$Config/SubjectExcludeRegEx$</SubjectExcludeRegEx>
                 <IssuerExcludeRegEx>$Config/IssuerExcludeRegEx$</IssuerExcludeRegEx>
+		<EnhKeyUseIncludeRegEx>$Config/EnhKeyUseIncludeRegEx$</EnhKeyUseIncludeRegEx>
                 <EnhKeyUseExcludeRegEx>$Config/EnhKeyUseExcludeRegEx$</EnhKeyUseExcludeRegEx>
                 <TemplateIncludeRegEx>$Config/TemplateIncludeRegEx$</TemplateIncludeRegEx>
                 <TemplateExcludeRegEx>$Config/TemplateExcludeRegEx$</TemplateExcludeRegEx>
